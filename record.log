@@ -1,0 +1,753 @@
+INFO:imp_calc.routes:xyz
+INFO:imp_calc.routes:did a file file_download
+ERROR:imp_calc:Exception on /file_download/D:\projects\impurity_calculator_app\imp_calc\files\RS/Acetaminophen-RS.xls [GET]
+Traceback (most recent call last):
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "D:\projects\impurity_calculator_app\imp_calc\routes.py", line 227, in file_download
+    return send_file(file_location, as_attachment = True, cache_timeout=0)
+TypeError: send_file() got an unexpected keyword argument 'cache_timeout'
+INFO:imp_calc:Homepage is opened
+INFO:imp_calc:Homepage is opened
+INFO:imp_calc:xyz
+INFO:imp_calc:is logged in
+INFO:imp_calc:xyz
+INFO:imp_calc:Used RScalc
+INFO:imp_calc:xyz
+INFO:imp_calc:Used RScalc
+ERROR:imp_calc:Exception on /RScalc [POST]
+Traceback (most recent call last):
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask_login\utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+  File "D:\projects\impurity_calculator_app\imp_calc\routes.py", line 275, in RScalc
+    rs_output = RS_creator.initiate_report_creation(chrom_inputs, area_input, input_list, process_impurities)
+  File "D:\projects\impurity_calculator_app\RS_creator.py", line 246, in initiate_report_creation
+    sample_wt = df_sample_prep['Sample Volume'][cond_1 & cond_2].values.tolist()[0]
+IndexError: list index out of range
+INFO:imp_calc:Homepage is opened
+INFO:imp_calc:xyz
+INFO:imp_calc:is logged in
+INFO:imp_calc:xyz
+INFO:imp_calc:Used RScalc
+INFO:imp_calc:xyz
+INFO:imp_calc:Used RScalc
+INFO:camelot:Processing page-1
+INFO:camelot:Processing page-2
+INFO:camelot:Processing page-3
+INFO:camelot:Processing page-1
+INFO:camelot:Processing page-2
+INFO:imp_calc.routes:xyz
+INFO:imp_calc.routes:did a file file_download
+ERROR:imp_calc:Exception on /file_download/D:\projects\impurity_calculator_app\imp_calc\files\RS/Acetaminophen-RS.xls [GET]
+Traceback (most recent call last):
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "D:\projects\impurity_calculator_app\imp_calc\routes.py", line 228, in file_download
+    return send_file(file_location, as_attachment = True, cache_timeout=0)
+TypeError: send_file() got an unexpected keyword argument 'cache_timeout'
+INFO:imp_calc:Homepage is opened
+INFO:imp_calc:xyz
+INFO:imp_calc:is logged in
+INFO:imp_calc:xyz
+INFO:imp_calc:Used RScalc
+INFO:imp_calc:xyz
+INFO:imp_calc:Used RScalc
+INFO:camelot:Processing page-1
+INFO:camelot:Processing page-2
+INFO:camelot:Processing page-3
+INFO:camelot:Processing page-1
+INFO:camelot:Processing page-2
+INFO:imp_calc.routes:xyz
+INFO:imp_calc.routes:did a file file_download
+ERROR:imp_calc:Exception on /file_download/D:\projects\impurity_calculator_app\imp_calc\files\RS/Acetaminophen-RS.xls [GET]
+Traceback (most recent call last):
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "D:\projects\impurity_calculator_app\imp_calc\routes.py", line 228, in file_download
+    return send_file(file_location, as_attachment = True, cache_timeout=0)
+TypeError: send_file() got an unexpected keyword argument 'cache_timeout'
+INFO:imp_calc:Homepage is opened
+INFO:imp_calc:xyz
+INFO:imp_calc:is logged in
+INFO:imp_calc:xyz
+INFO:imp_calc:Used RScalc
+INFO:imp_calc:xyz
+INFO:imp_calc:Used RScalc
+INFO:camelot:Processing page-1
+INFO:camelot:Processing page-2
+INFO:camelot:Processing page-3
+INFO:camelot:Processing page-1
+INFO:camelot:Processing page-2
+INFO:imp_calc.routes:xyz
+INFO:imp_calc.routes:did a file file_download
+[14:11:26] {D:\projects\impurity_calculator_app\imp_calc\routes.py:153} INFO - Homepage is opened
+[14:12:09] {D:\projects\impurity_calculator_app\imp_calc\routes.py:145} INFO - xyz
+[14:12:09] {D:\projects\impurity_calculator_app\imp_calc\routes.py:146} INFO - is logged in
+[14:12:34] {D:\projects\impurity_calculator_app\imp_calc\routes.py:153} INFO - Homepage is opened
+[14:13:45] {D:\projects\impurity_calculator_app\imp_calc\routes.py:145} INFO - xyz
+[14:13:45] {D:\projects\impurity_calculator_app\imp_calc\routes.py:146} INFO - is logged in
+[14:13:47] {D:\projects\impurity_calculator_app\imp_calc\routes.py:153} INFO - Homepage is opened
+[14:14:21] {D:\projects\impurity_calculator_app\imp_calc\routes.py:153} INFO - Homepage is opened
+[14:14:27] {D:\projects\impurity_calculator_app\imp_calc\routes.py:145} INFO - xyz
+[14:14:27] {D:\projects\impurity_calculator_app\imp_calc\routes.py:146} INFO - is logged in
+[14:14:28] {D:\projects\impurity_calculator_app\imp_calc\routes.py:216} INFO - xyz
+[14:14:28] {D:\projects\impurity_calculator_app\imp_calc\routes.py:217} INFO - logged out successfully
+[14:14:28] {D:\projects\impurity_calculator_app\imp_calc\routes.py:153} INFO - Homepage is opened
+[15:52:33] {D:\projects\impurity_calculator_app\imp_calc\routes.py:153} INFO - Homepage is opened
+[15:52:41] {D:\projects\impurity_calculator_app\imp_calc\routes.py:145} INFO - xyz
+[15:52:41] {D:\projects\impurity_calculator_app\imp_calc\routes.py:146} INFO - is logged in
+[15:52:42] {D:\projects\impurity_calculator_app\imp_calc\routes.py:265} INFO - xyz
+[15:52:42] {D:\projects\impurity_calculator_app\imp_calc\routes.py:266} INFO - Used RScalc
+[15:52:59] {D:\projects\impurity_calculator_app\imp_calc\routes.py:265} INFO - xyz
+[15:52:59] {D:\projects\impurity_calculator_app\imp_calc\routes.py:266} INFO - Used RScalc
+[15:53:01] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[15:53:03] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-2
+[15:53:04] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-3
+[15:53:05] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[15:53:06] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-2
+[15:53:09] {D:\projects\impurity_calculator_app\imp_calc\routes.py:255} INFO - xyz
+[15:53:09] {D:\projects\impurity_calculator_app\imp_calc\routes.py:256} INFO - did a file file_download
+[15:53:13] {D:\projects\impurity_calculator_app\imp_calc\routes.py:246} INFO - xyz
+[15:53:13] {D:\projects\impurity_calculator_app\imp_calc\routes.py:247} INFO - logged out successfully
+[15:53:13] {D:\projects\impurity_calculator_app\imp_calc\routes.py:153} INFO - Homepage is opened
+[15:54:44] {D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py:1741} ERROR - Exception on /register [POST]
+Traceback (most recent call last):
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "D:\projects\impurity_calculator_app\imp_calc\routes.py", line 172, in register_page
+    return redirect(url_for('home')) #home is the function defined for '/'url just above this code
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\helpers.py", line 256, in url_for
+    return current_app.url_for(
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 2031, in url_for
+    return self.handle_url_build_error(error, endpoint, values)
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 2020, in url_for
+    rv = url_adapter.build(  # type: ignore[union-attr]
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\werkzeug\routing\map.py", line 917, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'home'. Did you mean 'logout_page' instead?
+[15:56:26] {D:\projects\impurity_calculator_app\imp_calc\routes.py:153} INFO - Homepage is opened
+[15:56:36] {D:\projects\impurity_calculator_app\imp_calc\routes.py:145} INFO - Pawan Kurada
+[15:56:36] {D:\projects\impurity_calculator_app\imp_calc\routes.py:146} INFO - is logged in
+[15:56:41] {D:\projects\impurity_calculator_app\imp_calc\routes.py:246} INFO - Pawan Kurada
+[15:56:41] {D:\projects\impurity_calculator_app\imp_calc\routes.py:247} INFO - logged out successfully
+[15:56:41] {D:\projects\impurity_calculator_app\imp_calc\routes.py:153} INFO - Homepage is opened
+[15:59:01] {D:\projects\impurity_calculator_app\imp_calc\routes.py:145} INFO - Pawan Kurada
+[15:59:01] {D:\projects\impurity_calculator_app\imp_calc\routes.py:146} INFO - is logged in
+[15:59:03] {D:\projects\impurity_calculator_app\imp_calc\routes.py:265} INFO - Pawan Kurada
+[15:59:03] {D:\projects\impurity_calculator_app\imp_calc\routes.py:266} INFO - Used RScalc
+[15:59:03] {D:\projects\impurity_calculator_app\imp_calc\routes.py:314} INFO - Pawan Kurada
+[15:59:03] {D:\projects\impurity_calculator_app\imp_calc\routes.py:315} INFO - Used RSacyclovir
+[15:59:04] {D:\projects\impurity_calculator_app\imp_calc\routes.py:466} INFO - Pawan Kurada
+[15:59:04] {D:\projects\impurity_calculator_app\imp_calc\routes.py:467} INFO - Used Assay
+[15:59:05] {D:\projects\impurity_calculator_app\imp_calc\routes.py:519} INFO - Pawan Kurada
+[15:59:05] {D:\projects\impurity_calculator_app\imp_calc\routes.py:520} INFO - Used Lcysteine
+[15:59:05] {D:\projects\impurity_calculator_app\imp_calc\routes.py:396} INFO - Pawan Kurada
+[15:59:05] {D:\projects\impurity_calculator_app\imp_calc\routes.py:397} INFO - Used Impvsimp
+[15:59:06] {D:\projects\impurity_calculator_app\imp_calc\routes.py:355} INFO - Pawan Kurada
+[15:59:06] {D:\projects\impurity_calculator_app\imp_calc\routes.py:356} INFO - Used Areanorm
+[15:59:08] {D:\projects\impurity_calculator_app\imp_calc\routes.py:246} INFO - Pawan Kurada
+[15:59:08] {D:\projects\impurity_calculator_app\imp_calc\routes.py:247} INFO - logged out successfully
+[15:59:08] {D:\projects\impurity_calculator_app\imp_calc\routes.py:153} INFO - Homepage is opened
+[16:04:11] {D:\projects\impurity_calculator_app\imp_calc\routes.py:153} INFO - Homepage is opened
+[16:04:19] {D:\projects\impurity_calculator_app\imp_calc\routes.py:145} INFO - xyz
+[16:04:19] {D:\projects\impurity_calculator_app\imp_calc\routes.py:146} INFO - is logged in
+[16:04:20] {D:\projects\impurity_calculator_app\imp_calc\routes.py:265} INFO - xyz
+[16:04:20] {D:\projects\impurity_calculator_app\imp_calc\routes.py:266} INFO - Open RScalc
+[16:04:40] {D:\projects\impurity_calculator_app\imp_calc\routes.py:265} INFO - xyz
+[16:04:40] {D:\projects\impurity_calculator_app\imp_calc\routes.py:266} INFO - Open RScalc
+[16:04:42] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[16:04:43] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-2
+[16:04:44] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-3
+[16:04:45] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[16:04:46] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-2
+[16:04:46] {D:\projects\impurity_calculator_app\imp_calc\routes.py:308} INFO - xyz
+[16:04:46] {D:\projects\impurity_calculator_app\imp_calc\routes.py:309} INFO - Used RS Calculation
+[16:05:21] {D:\projects\impurity_calculator_app\imp_calc\routes.py:255} INFO - xyz
+[16:05:48] {D:\projects\impurity_calculator_app\imp_calc\routes.py:256} INFO - did a file file_download
+[16:06:09] {D:\projects\impurity_calculator_app\imp_calc\routes.py:255} INFO - xyz
+[16:06:09] {D:\projects\impurity_calculator_app\imp_calc\routes.py:256} INFO - did a file file_download
+[16:55:10] {D:\projects\impurity_calculator_app\imp_calc\routes.py:153} INFO - Homepage is opened
+[16:55:17] {D:\projects\impurity_calculator_app\imp_calc\routes.py:145} INFO - xyz
+[16:55:17] {D:\projects\impurity_calculator_app\imp_calc\routes.py:146} INFO - is logged in
+[16:55:19] {D:\projects\impurity_calculator_app\imp_calc\routes.py:265} INFO - xyz
+[16:55:19] {D:\projects\impurity_calculator_app\imp_calc\routes.py:266} INFO - Open RScalc
+[16:55:36] {D:\projects\impurity_calculator_app\imp_calc\routes.py:265} INFO - xyz
+[16:55:36] {D:\projects\impurity_calculator_app\imp_calc\routes.py:266} INFO - Open RScalc
+[16:55:38] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[16:55:40] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-2
+[16:55:41] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-3
+[16:55:42] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[16:55:42] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-2
+[16:55:43] {D:\projects\impurity_calculator_app\imp_calc\routes.py:308} INFO - xyz
+[16:55:43] {D:\projects\impurity_calculator_app\imp_calc\routes.py:309} INFO - Used RS Calculation
+[16:55:49] {D:\projects\impurity_calculator_app\imp_calc\routes.py:255} INFO - xyz
+[16:55:49] {D:\projects\impurity_calculator_app\imp_calc\routes.py:256} INFO - did a file file_download
+[16:55:52] {D:\projects\impurity_calculator_app\imp_calc\routes.py:246} INFO - xyz
+[16:55:52] {D:\projects\impurity_calculator_app\imp_calc\routes.py:247} INFO - logged out successfully
+[16:55:52] {D:\projects\impurity_calculator_app\imp_calc\routes.py:153} INFO - Homepage is opened
+[17:24:58] {D:\projects\impurity_calculator_app\imp_calc\routes.py:153} INFO - Homepage is opened
+[17:25:11] {D:\projects\impurity_calculator_app\imp_calc\routes.py:145} INFO - Pawan Kurada
+[17:25:11] {D:\projects\impurity_calculator_app\imp_calc\routes.py:146} INFO - is logged in
+[17:25:12] {D:\projects\impurity_calculator_app\imp_calc\routes.py:265} INFO - Pawan Kurada
+[17:25:12] {D:\projects\impurity_calculator_app\imp_calc\routes.py:266} INFO - Open RScalc
+[17:25:13] {D:\projects\impurity_calculator_app\imp_calc\routes.py:316} INFO - Pawan Kurada
+[17:25:13] {D:\projects\impurity_calculator_app\imp_calc\routes.py:317} INFO - Used RSacyclovir
+[17:25:14] {D:\projects\impurity_calculator_app\imp_calc\routes.py:468} INFO - Pawan Kurada
+[17:25:14] {D:\projects\impurity_calculator_app\imp_calc\routes.py:469} INFO - Used Assay
+[17:26:38] {D:\projects\impurity_calculator_app\imp_calc\routes.py:265} INFO - Pawan Kurada
+[17:26:38] {D:\projects\impurity_calculator_app\imp_calc\routes.py:266} INFO - Open RScalc
+[17:26:54] {D:\projects\impurity_calculator_app\imp_calc\routes.py:265} INFO - Pawan Kurada
+[17:26:54] {D:\projects\impurity_calculator_app\imp_calc\routes.py:266} INFO - Open RScalc
+[17:26:56] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[17:26:57] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-2
+[17:26:57] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-3
+[17:26:59] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[17:26:59] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-2
+[17:27:00] {D:\projects\impurity_calculator_app\imp_calc\routes.py:308} INFO - Pawan Kurada
+[17:27:00] {D:\projects\impurity_calculator_app\imp_calc\routes.py:309} INFO - Used RS Calculation
+[17:27:25] {D:\projects\impurity_calculator_app\imp_calc\routes.py:255} INFO - Pawan Kurada
+[17:28:47] {D:\projects\impurity_calculator_app\imp_calc\routes.py:255} INFO - Pawan Kurada
+[17:28:52] {D:\projects\impurity_calculator_app\imp_calc\routes.py:256} INFO - did a file file_download
+[17:28:52] {D:\projects\impurity_calculator_app\imp_calc\routes.py:256} INFO - did a file file_download
+[17:29:12] {D:\projects\impurity_calculator_app\imp_calc\routes.py:246} INFO - Pawan Kurada
+[17:29:24] {D:\projects\impurity_calculator_app\imp_calc\routes.py:247} INFO - logged out successfully
+[17:29:24] {D:\projects\impurity_calculator_app\imp_calc\routes.py:153} INFO - Homepage is opened
+[17:46:31] {D:\projects\impurity_calculator_app\imp_calc\routes.py:145} INFO - Pawan Kurada
+[17:46:31] {D:\projects\impurity_calculator_app\imp_calc\routes.py:146} INFO - is logged in
+[17:46:34] {D:\projects\impurity_calculator_app\imp_calc\routes.py:265} INFO - Pawan Kurada
+[17:46:34] {D:\projects\impurity_calculator_app\imp_calc\routes.py:266} INFO - Open RScalc
+[17:46:55] {D:\projects\impurity_calculator_app\imp_calc\routes.py:265} INFO - Pawan Kurada
+[17:46:55] {D:\projects\impurity_calculator_app\imp_calc\routes.py:266} INFO - Open RScalc
+[17:46:57] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[17:46:58] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-2
+[17:46:58] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-3
+[17:47:00] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[17:47:00] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-2
+[17:47:01] {D:\projects\impurity_calculator_app\imp_calc\routes.py:308} INFO - Pawan Kurada
+[17:47:01] {D:\projects\impurity_calculator_app\imp_calc\routes.py:309} INFO - Used RS Calculation
+[18:59:03] {D:\projects\impurity_calculator_app\imp_calc\routes.py:153} INFO - Homepage is opened
+[18:59:08] {D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py:1741} ERROR - Exception on /reset_password_request [GET]
+Traceback (most recent call last):
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "D:\projects\impurity_calculator_app\imp_calc\routes.py", line 184, in reset_password_request
+    form = ResetPasswordRequestForm()
+NameError: name 'ResetPasswordRequestForm' is not defined
+[19:01:53] {D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py:1741} ERROR - Exception on /reset_password_request [GET]
+Traceback (most recent call last):
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "D:\projects\impurity_calculator_app\imp_calc\routes.py", line 184, in reset_password_request
+    form = ResetPasswordRequestForm()
+NameError: name 'ResetPasswordRequestForm' is not defined
+[12:49:48] {D:\projects\impurity_calculator_app\imp_calc\routes.py:153} INFO - Homepage is opened
+[12:49:55] {D:\projects\impurity_calculator_app\imp_calc\routes.py:145} INFO - xyz
+[12:49:55] {D:\projects\impurity_calculator_app\imp_calc\routes.py:146} INFO - is logged in
+[12:49:56] {D:\projects\impurity_calculator_app\imp_calc\routes.py:265} INFO - xyz
+[12:49:56] {D:\projects\impurity_calculator_app\imp_calc\routes.py:266} INFO - Open RScalc
+[12:50:15] {D:\projects\impurity_calculator_app\imp_calc\routes.py:265} INFO - xyz
+[12:50:15] {D:\projects\impurity_calculator_app\imp_calc\routes.py:266} INFO - Open RScalc
+[12:50:17] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[12:50:19] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-2
+[12:50:20] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-3
+[12:50:21] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[12:50:22] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-2
+[12:50:22] {D:\projects\impurity_calculator_app\imp_calc\routes.py:308} INFO - xyz
+[12:50:22] {D:\projects\impurity_calculator_app\imp_calc\routes.py:309} INFO - Used RS Calculation
+[12:50:29] {D:\projects\impurity_calculator_app\imp_calc\routes.py:255} INFO - xyz
+[12:50:29] {D:\projects\impurity_calculator_app\imp_calc\routes.py:256} INFO - did a file file_download
+[13:03:43] {D:\projects\impurity_calculator_app\imp_calc\routes.py:153} INFO - Homepage is opened
+[13:15:46] {D:\projects\impurity_calculator_app\imp_calc\routes.py:153} INFO - Homepage is opened
+[13:16:09] {D:\projects\impurity_calculator_app\imp_calc\routes.py:246} INFO - xyz
+[13:16:09] {D:\projects\impurity_calculator_app\imp_calc\routes.py:247} INFO - logged out successfully
+[13:16:09] {D:\projects\impurity_calculator_app\imp_calc\routes.py:153} INFO - Homepage is opened
+[13:18:00] {D:\projects\impurity_calculator_app\imp_calc\routes.py:246} INFO - Yashwant
+[13:18:00] {D:\projects\impurity_calculator_app\imp_calc\routes.py:247} INFO - logged out successfully
+[13:18:00] {D:\projects\impurity_calculator_app\imp_calc\routes.py:153} INFO - Homepage is opened
+[13:18:15] {D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py:1741} ERROR - Exception on /reset_password_request [POST]
+Traceback (most recent call last):
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\sqlalchemy\sql\base.py", line 1694, in _entity_namespace_key
+    return getattr(ns, key)
+AttributeError: type object 'User' has no attribute 'email'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "D:\projects\impurity_calculator_app\imp_calc\routes.py", line 186, in reset_password_request
+    user = User.query.filter_by(email=form.email.data).first()
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\sqlalchemy\orm\query.py", line 1806, in filter_by
+    clauses = [
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\sqlalchemy\orm\query.py", line 1807, in <listcomp>
+    _entity_namespace_key(from_entity, key) == value
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\sqlalchemy\sql\base.py", line 1696, in _entity_namespace_key
+    util.raise_(
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\sqlalchemy\util\compat.py", line 208, in raise_
+    raise exception
+sqlalchemy.exc.InvalidRequestError: Entity namespace for "user" has no property "email"
+[13:25:49] {D:\projects\impurity_calculator_app\imp_calc\routes.py:153} INFO - Homepage is opened
+[13:25:55] {D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py:1741} ERROR - Exception on /reset_password_request [POST]
+Traceback (most recent call last):
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "D:\projects\impurity_calculator_app\imp_calc\routes.py", line 188, in reset_password_request
+    send_password_reset_email(user)
+NameError: name 'send_password_reset_email' is not defined
+[13:37:43] {D:\projects\impurity_calculator_app\imp_calc\routes.py:154} INFO - Homepage is opened
+[13:37:48] {D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py:1741} ERROR - Exception on /reset_password_request [POST]
+Traceback (most recent call last):
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "D:\projects\impurity_calculator_app\imp_calc\routes.py", line 189, in reset_password_request
+    send_password_reset_email(user)
+  File "D:\projects\impurity_calculator_app\imp_calc\email.py", line 19, in send_password_reset_email
+    sender=app.config['ADMINS'][0],
+KeyError: 'ADMINS'
+[13:43:43] {D:\projects\impurity_calculator_app\imp_calc\routes.py:154} INFO - Homepage is opened
+[13:43:49] {D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py:1741} ERROR - Exception on /reset_password_request [POST]
+Traceback (most recent call last):
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "D:\projects\impurity_calculator_app\imp_calc\routes.py", line 189, in reset_password_request
+    send_password_reset_email(user)
+  File "D:\projects\impurity_calculator_app\imp_calc\email.py", line 17, in send_password_reset_email
+    sender=app.config['ADMINS'][0],
+NameError: name 'app' is not defined
+[13:44:19] {D:\projects\impurity_calculator_app\imp_calc\routes.py:154} INFO - Homepage is opened
+[13:44:26] {D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py:1741} ERROR - Exception on /reset_password_request [POST]
+Traceback (most recent call last):
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "D:\projects\impurity_calculator_app\imp_calc\routes.py", line 189, in reset_password_request
+    send_password_reset_email(user)
+  File "D:\projects\impurity_calculator_app\imp_calc\email.py", line 17, in send_password_reset_email
+    sender=app.config['ADMINS'][0],
+KeyError: 'ADMINS'
+[14:46:07] {D:\projects\impurity_calculator_app\imp_calc\routes.py:154} INFO - Homepage is opened
+[14:46:11] {D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py:1741} ERROR - Exception on /reset_password_request [POST]
+Traceback (most recent call last):
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "D:\projects\impurity_calculator_app\imp_calc\routes.py", line 189, in reset_password_request
+    send_password_reset_email(user)
+  File "D:\projects\impurity_calculator_app\imp_calc\email.py", line 17, in send_password_reset_email
+    sender=app.config['ADMINS'][0],
+KeyError: 'ADMINS'
+[14:47:25] {D:\projects\impurity_calculator_app\imp_calc\routes.py:154} INFO - Homepage is opened
+[14:47:28] {D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py:1741} ERROR - Exception on /reset_password_request [POST]
+Traceback (most recent call last):
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "D:\projects\impurity_calculator_app\imp_calc\routes.py", line 189, in reset_password_request
+    send_password_reset_email(user)
+  File "D:\projects\impurity_calculator_app\imp_calc\email.py", line 17, in send_password_reset_email
+    sender=app.config['ADMINS'],
+KeyError: 'ADMINS'
+[14:53:40] {D:\projects\impurity_calculator_app\imp_calc\routes.py:154} INFO - Homepage is opened
+[14:53:45] {D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py:1741} ERROR - Exception on /reset_password_request [POST]
+Traceback (most recent call last):
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "D:\projects\impurity_calculator_app\imp_calc\routes.py", line 189, in reset_password_request
+    send_password_reset_email(user)
+  File "D:\projects\impurity_calculator_app\imp_calc\email.py", line 22, in send_password_reset_email
+    sender=app.config['ADMINS'][0],
+KeyError: 'ADMINS'
+[14:55:01] {D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py:1741} ERROR - Exception on /reset_password_request [POST]
+Traceback (most recent call last):
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "D:\projects\impurity_calculator_app\imp_calc\routes.py", line 189, in reset_password_request
+    send_password_reset_email(user)
+  File "D:\projects\impurity_calculator_app\imp_calc\email.py", line 22, in send_password_reset_email
+    sender=app.config['ADMINS'][0],
+KeyError: 'ADMINS'
+[14:57:33] {D:\projects\impurity_calculator_app\imp_calc\routes.py:154} INFO - Homepage is opened
+[14:57:47] {D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py:1741} ERROR - Exception on /reset_password_request [POST]
+Traceback (most recent call last):
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\projects\impurity_calculator_app\env\lib\site-packages\flask\app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "D:\projects\impurity_calculator_app\imp_calc\routes.py", line 189, in reset_password_request
+    send_password_reset_email(user)
+  File "D:\projects\impurity_calculator_app\imp_calc\email.py", line 21, in send_password_reset_email
+    print(*ADMINS)
+NameError: name 'ADMINS' is not defined
+[14:59:14] {D:\projects\impurity_calculator_app\imp_calc\routes.py:154} INFO - Homepage is opened
+[15:20:31] {D:\projects\impurity_calculator_app\imp_calc\routes.py:154} INFO - Homepage is opened
+[16:08:09] {D:\projects\impurity_calculator_app\imp_calc\routes.py:155} INFO - Homepage is opened
+[16:09:38] {D:\projects\impurity_calculator_app\imp_calc\routes.py:155} INFO - Homepage is opened
+[16:34:40] {D:\projects\impurity_calculator_app\imp_calc\routes.py:155} INFO - Homepage is opened
+[16:35:22] {D:\projects\impurity_calculator_app\imp_calc\routes.py:155} INFO - Homepage is opened
+[16:36:32] {D:\projects\impurity_calculator_app\imp_calc\routes.py:155} INFO - Homepage is opened
+[16:44:21] {D:\projects\impurity_calculator_app\imp_calc\routes.py:155} INFO - Homepage is opened
+[16:44:26] {D:\projects\impurity_calculator_app\imp_calc\routes.py:155} INFO - Homepage is opened
+[16:50:08] {D:\projects\impurity_calculator_app\imp_calc\routes.py:155} INFO - Homepage is opened
+[16:50:20] {D:\projects\impurity_calculator_app\imp_calc\routes.py:155} INFO - Homepage is opened
+[16:56:46] {D:\projects\impurity_calculator_app\imp_calc\routes.py:155} INFO - Homepage is opened
+[16:57:53] {D:\projects\impurity_calculator_app\imp_calc\routes.py:155} INFO - Homepage is opened
+[17:05:54] {D:\projects\impurity_calculator_app\imp_calc\routes.py:155} INFO - Homepage is opened
+[17:05:56] {D:\projects\impurity_calculator_app\imp_calc\routes.py:155} INFO - Homepage is opened
+[17:20:22] {D:\projects\impurity_calculator_app\imp_calc\routes.py:155} INFO - Homepage is opened
+[18:02:13] {D:\projects\impurity_calculator_app\imp_calc\routes.py:155} INFO - Homepage is opened
+[18:08:58] {D:\projects\impurity_calculator_app\imp_calc\routes.py:155} INFO - Homepage is opened
+[18:11:27] {D:\projects\impurity_calculator_app\imp_calc\routes.py:155} INFO - Homepage is opened
+[18:11:36] {D:\projects\impurity_calculator_app\imp_calc\routes.py:155} INFO - Homepage is opened
+[18:12:06] {D:\projects\impurity_calculator_app\imp_calc\routes.py:155} INFO - Homepage is opened
+[18:12:24] {D:\projects\impurity_calculator_app\imp_calc\routes.py:155} INFO - Homepage is opened
+[18:12:29] {D:\projects\impurity_calculator_app\imp_calc\routes.py:155} INFO - Homepage is opened
+[18:12:51] {D:\projects\impurity_calculator_app\imp_calc\routes.py:155} INFO - Homepage is opened
+[18:13:53] {D:\projects\impurity_calculator_app\imp_calc\routes.py:248} INFO - yusharth
+[18:13:53] {D:\projects\impurity_calculator_app\imp_calc\routes.py:249} INFO - logged out successfully
+[18:13:53] {D:\projects\impurity_calculator_app\imp_calc\routes.py:155} INFO - Homepage is opened
+[18:14:17] {D:\projects\impurity_calculator_app\imp_calc\routes.py:155} INFO - Homepage is opened
+[18:14:31] {D:\projects\impurity_calculator_app\imp_calc\routes.py:155} INFO - Homepage is opened
+[18:14:38] {D:\projects\impurity_calculator_app\imp_calc\routes.py:155} INFO - Homepage is opened
+[18:16:42] {D:\projects\impurity_calculator_app\imp_calc\routes.py:147} INFO - yusharth
+[18:16:42] {D:\projects\impurity_calculator_app\imp_calc\routes.py:148} INFO - is logged in
+[18:16:50] {D:\projects\impurity_calculator_app\imp_calc\routes.py:248} INFO - yusharth
+[18:16:50] {D:\projects\impurity_calculator_app\imp_calc\routes.py:249} INFO - logged out successfully
+[18:16:50] {D:\projects\impurity_calculator_app\imp_calc\routes.py:155} INFO - Homepage is opened
+[18:17:25] {D:\projects\impurity_calculator_app\imp_calc\routes.py:155} INFO - Homepage is opened
+[11:06:21] {/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py:155} INFO - Homepage is opened
+[11:06:30] {/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/flask/app.py:1741} ERROR - Exception on /reset_password_request [POST]
+Traceback (most recent call last):
+  File "/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py", line 190, in reset_password_request
+    send_password_reset_email(user)
+  File "/mnt/d/projects/impurity_calculator_app/imp_calc/email.py", line 24, in send_password_reset_email
+    token = user.get_reset_password_token()
+  File "/mnt/d/projects/impurity_calculator_app/imp_calc/models.py", line 32, in get_reset_password_token
+    return jwt.encode(
+AttributeError: module 'jwt' has no attribute 'encode'
+[11:08:39] {/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/flask/app.py:1741} ERROR - Exception on /reset_password_request [POST]
+Traceback (most recent call last):
+  File "/mnt/d/projects/impurity_calculator_app/imp_calc/email.py", line 17, in send_email
+    mail.send(msg)
+  File "/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/flask_mail.py", line 491, in send
+    with self.connect() as connection:
+  File "/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/flask_mail.py", line 144, in __enter__
+    self.host = self.configure_host()
+  File "/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/flask_mail.py", line 158, in configure_host
+    host = smtplib.SMTP(self.mail.server, self.mail.port)
+  File "/usr/lib/python3.10/smtplib.py", line 255, in __init__
+    (code, msg) = self.connect(host, port)
+  File "/usr/lib/python3.10/smtplib.py", line 341, in connect
+    self.sock = self._get_socket(host, port, self.timeout)
+  File "/usr/lib/python3.10/smtplib.py", line 312, in _get_socket
+    return socket.create_connection((host, port), timeout,
+  File "/usr/lib/python3.10/socket.py", line 845, in create_connection
+    raise err
+  File "/usr/lib/python3.10/socket.py", line 833, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py", line 190, in reset_password_request
+    send_password_reset_email(user)
+  File "/mnt/d/projects/impurity_calculator_app/imp_calc/email.py", line 25, in send_password_reset_email
+    send_email('Reset Your Password',
+  File "/mnt/d/projects/impurity_calculator_app/imp_calc/email.py", line 19, in send_email
+    mail.send(msg)
+  File "/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/flask_mail.py", line 491, in send
+    with self.connect() as connection:
+  File "/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/flask_mail.py", line 144, in __enter__
+    self.host = self.configure_host()
+  File "/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/flask_mail.py", line 158, in configure_host
+    host = smtplib.SMTP(self.mail.server, self.mail.port)
+  File "/usr/lib/python3.10/smtplib.py", line 255, in __init__
+    (code, msg) = self.connect(host, port)
+  File "/usr/lib/python3.10/smtplib.py", line 341, in connect
+    self.sock = self._get_socket(host, port, self.timeout)
+  File "/usr/lib/python3.10/smtplib.py", line 312, in _get_socket
+    return socket.create_connection((host, port), timeout,
+  File "/usr/lib/python3.10/socket.py", line 845, in create_connection
+    raise err
+  File "/usr/lib/python3.10/socket.py", line 833, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [Errno 111] Connection refused
+[11:12:45] {/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py:155} INFO - Homepage is opened
+[11:12:50] {/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/flask/app.py:1741} ERROR - Exception on /reset_password_request [POST]
+Traceback (most recent call last):
+  File "/mnt/d/projects/impurity_calculator_app/imp_calc/email.py", line 17, in send_email
+    mail.send(msg)
+  File "/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/flask_mail.py", line 491, in send
+    with self.connect() as connection:
+  File "/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/flask_mail.py", line 144, in __enter__
+    self.host = self.configure_host()
+  File "/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/flask_mail.py", line 158, in configure_host
+    host = smtplib.SMTP(self.mail.server, self.mail.port)
+  File "/usr/lib/python3.10/smtplib.py", line 255, in __init__
+    (code, msg) = self.connect(host, port)
+  File "/usr/lib/python3.10/smtplib.py", line 341, in connect
+    self.sock = self._get_socket(host, port, self.timeout)
+  File "/usr/lib/python3.10/smtplib.py", line 312, in _get_socket
+    return socket.create_connection((host, port), timeout,
+  File "/usr/lib/python3.10/socket.py", line 845, in create_connection
+    raise err
+  File "/usr/lib/python3.10/socket.py", line 833, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py", line 190, in reset_password_request
+    send_password_reset_email(user)
+  File "/mnt/d/projects/impurity_calculator_app/imp_calc/email.py", line 25, in send_password_reset_email
+    send_email('Reset Your Password',
+  File "/mnt/d/projects/impurity_calculator_app/imp_calc/email.py", line 19, in send_email
+    mail.send(msg)
+  File "/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/flask_mail.py", line 491, in send
+    with self.connect() as connection:
+  File "/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/flask_mail.py", line 144, in __enter__
+    self.host = self.configure_host()
+  File "/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/flask_mail.py", line 158, in configure_host
+    host = smtplib.SMTP(self.mail.server, self.mail.port)
+  File "/usr/lib/python3.10/smtplib.py", line 255, in __init__
+    (code, msg) = self.connect(host, port)
+  File "/usr/lib/python3.10/smtplib.py", line 341, in connect
+    self.sock = self._get_socket(host, port, self.timeout)
+  File "/usr/lib/python3.10/smtplib.py", line 312, in _get_socket
+    return socket.create_connection((host, port), timeout,
+  File "/usr/lib/python3.10/socket.py", line 845, in create_connection
+    raise err
+  File "/usr/lib/python3.10/socket.py", line 833, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [Errno 111] Connection refused
+[11:55:44] {/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py:155} INFO - Homepage is opened
+[11:55:49] {/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/flask/app.py:1741} ERROR - Exception on /reset_password_request [POST]
+Traceback (most recent call last):
+  File "/mnt/d/projects/impurity_calculator_app/imp_calc/email.py", line 17, in send_email
+    mail.send(msg)
+  File "/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/flask_mail.py", line 491, in send
+    with self.connect() as connection:
+  File "/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/flask_mail.py", line 144, in __enter__
+    self.host = self.configure_host()
+  File "/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/flask_mail.py", line 158, in configure_host
+    host = smtplib.SMTP(self.mail.server, self.mail.port)
+  File "/usr/lib/python3.10/smtplib.py", line 255, in __init__
+    (code, msg) = self.connect(host, port)
+  File "/usr/lib/python3.10/smtplib.py", line 341, in connect
+    self.sock = self._get_socket(host, port, self.timeout)
+  File "/usr/lib/python3.10/smtplib.py", line 312, in _get_socket
+    return socket.create_connection((host, port), timeout,
+  File "/usr/lib/python3.10/socket.py", line 845, in create_connection
+    raise err
+  File "/usr/lib/python3.10/socket.py", line 833, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py", line 190, in reset_password_request
+    send_password_reset_email(user)
+  File "/mnt/d/projects/impurity_calculator_app/imp_calc/email.py", line 25, in send_password_reset_email
+    send_email('Reset Your Password',
+  File "/mnt/d/projects/impurity_calculator_app/imp_calc/email.py", line 19, in send_email
+    mail.send(msg)
+  File "/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/flask_mail.py", line 491, in send
+    with self.connect() as connection:
+  File "/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/flask_mail.py", line 144, in __enter__
+    self.host = self.configure_host()
+  File "/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/flask_mail.py", line 158, in configure_host
+    host = smtplib.SMTP(self.mail.server, self.mail.port)
+  File "/usr/lib/python3.10/smtplib.py", line 255, in __init__
+    (code, msg) = self.connect(host, port)
+  File "/usr/lib/python3.10/smtplib.py", line 341, in connect
+    self.sock = self._get_socket(host, port, self.timeout)
+  File "/usr/lib/python3.10/smtplib.py", line 312, in _get_socket
+    return socket.create_connection((host, port), timeout,
+  File "/usr/lib/python3.10/socket.py", line 845, in create_connection
+    raise err
+  File "/usr/lib/python3.10/socket.py", line 833, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [Errno 111] Connection refused
+[14:12:39] {/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py:155} INFO - Homepage is opened
+[14:21:37] {/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py:155} INFO - Homepage is opened
+[14:29:31] {/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py:155} INFO - Homepage is opened
+[14:31:34] {/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py:155} INFO - Homepage is opened
+[16:08:46] {/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/werkzeug/_internal.py:224} WARNING -  * Debugger is active!
+[16:08:46] {/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/werkzeug/_internal.py:224} INFO -  * Debugger PIN: 274-115-279
+[16:15:42] {/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/werkzeug/_internal.py:224} INFO -  * Detected change in '/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py', reloading
+[16:15:43] {/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/werkzeug/_internal.py:224} WARNING -  * Debugger is active!
+[16:15:43] {/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/werkzeug/_internal.py:224} INFO -  * Debugger PIN: 274-115-279
+[16:23:15] {/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/werkzeug/_internal.py:224} INFO -  * Detected change in '/mnt/d/projects/impurity_calculator_app/imp_calc/models.py', reloading
+[16:23:16] {/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/werkzeug/_internal.py:224} WARNING -  * Debugger is active!
+[16:23:16] {/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/werkzeug/_internal.py:224} INFO -  * Debugger PIN: 274-115-279
+[16:23:42] {/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/werkzeug/_internal.py:224} INFO -  * Detected change in '/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py', reloading
+[16:24:15] {/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py:155} INFO - Homepage is opened
+[16:28:18] {/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/werkzeug/_internal.py:224} WARNING -  * Debugger is active!
+[16:28:18] {/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/werkzeug/_internal.py:224} INFO -  * Debugger PIN: 274-115-279
+[16:28:20] {/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/werkzeug/_internal.py:224} INFO - 127.0.0.1 - - [26/Oct/2022 16:28:20] "[35m[1mGET /change_password HTTP/1.1[0m" 500 -
+[16:28:20] {/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/werkzeug/_internal.py:224} INFO - 127.0.0.1 - - [26/Oct/2022 16:28:20] "[36mGET /change_password?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+[16:28:20] {/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/werkzeug/_internal.py:224} INFO - 127.0.0.1 - - [26/Oct/2022 16:28:20] "[36mGET /change_password?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+[16:28:20] {/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/werkzeug/_internal.py:224} INFO - 127.0.0.1 - - [26/Oct/2022 16:28:20] "[36mGET /change_password?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+[16:28:20] {/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/werkzeug/_internal.py:224} INFO - 127.0.0.1 - - [26/Oct/2022 16:28:20] "[36mGET /change_password?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+[16:29:13] {/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/werkzeug/_internal.py:224} INFO -  * Detected change in '/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py', reloading
+[16:29:13] {/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/werkzeug/_internal.py:224} WARNING -  * Debugger is active!
+[16:29:13] {/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/werkzeug/_internal.py:224} INFO -  * Debugger PIN: 274-115-279
+[16:29:15] {/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/werkzeug/_internal.py:224} INFO -  * Detected change in '/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py', reloading
+[16:29:22] {/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py:155} INFO - Homepage is opened
+[16:29:29] {/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py:147} INFO - xyz
+[16:29:29] {/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py:148} INFO - is logged in
+[16:52:26] {/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py:155} INFO - Homepage is opened
+[16:52:28] {/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py:155} INFO - Homepage is opened
+[16:55:39] {/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py:155} INFO - Homepage is opened
+[17:05:18] {/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py:155} INFO - Homepage is opened
+[17:05:34] {/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py:155} INFO - Homepage is opened
+[17:05:48] {/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py:155} INFO - Homepage is opened
+[17:05:56] {/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py:155} INFO - Homepage is opened
+[17:06:02] {/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py:147} INFO - xyz
+[17:06:02] {/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py:148} INFO - is logged in
+[17:09:46] {/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py:155} INFO - Homepage is opened
+[17:26:59] {/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/werkzeug/_internal.py:224} WARNING -  * Debugger is active!
+[17:26:59] {/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/werkzeug/_internal.py:224} INFO -  * Debugger PIN: 274-115-279
+[17:27:01] {/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/werkzeug/_internal.py:224} INFO -  * Detected change in '/mnt/d/projects/impurity_calculator_app/imp_calc/models.py', reloading
+[17:27:02] {/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/werkzeug/_internal.py:224} WARNING -  * Debugger is active!
+[17:27:02] {/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/werkzeug/_internal.py:224} INFO -  * Debugger PIN: 274-115-279
+[17:27:03] {/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/werkzeug/_internal.py:224} INFO -  * Detected change in '/mnt/d/projects/impurity_calculator_app/imp_calc/models.py', reloading
+[17:27:04] {/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/werkzeug/_internal.py:224} WARNING -  * Debugger is active!
+[17:27:04] {/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/werkzeug/_internal.py:224} INFO -  * Debugger PIN: 274-115-279
+[17:27:05] {/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/werkzeug/_internal.py:224} INFO -  * Detected change in '/mnt/d/projects/impurity_calculator_app/imp_calc/models.py', reloading
+[17:27:06] {/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/werkzeug/_internal.py:224} WARNING -  * Debugger is active!
+[17:27:06] {/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/werkzeug/_internal.py:224} INFO -  * Debugger PIN: 274-115-279
+[17:34:05] {/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py:155} INFO - Homepage is opened

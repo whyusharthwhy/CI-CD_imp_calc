@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block nav%}
+<div class="container-fluid">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+      <span class="icon-bar"></span>
+      
+    </button>
+    <a class="navbar-brand" href="/"><img src="{{ url_for('static', filename='img/logo.png') }}"></a>
+  </div>
+  <div class="collapse navbar-collapse" id="myNavbar">
+    <ul class="nav navbar-nav">
+      <li style class="active"><a href="index">Home</a></li>
+      <li><a href="RScalc">RS</a></li>
+      <li><a href="RSacyclovir">RS Acyclovir</a></li>
+      <li><a href="Assay">Assay</a></li>
+      <li><a href="Lcysteine">L Cysteine</a></li>
+      <li><a href="Impvsimp">Impurity vs Impurity</a></li>
+      <li><a href="Areanorm">Area Normalization</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="#">Welcome, {{ current_user.username }}</a></li>
+      {% if current_user.is_authenticated %}
+      <li><a href="{{ url_for('logout_page') }}">Logout</a></li>
+      {% else %}
+      <li><a href="/">Login</a></li>
+      {% endif %}
+    </ul>
+  </div>
+</div>
+{% endblock %}
+{% block main %}
+<div class="container">
+  <div class="row content text-center">
+    <h1>Selcet Method</h1>
+    <div class="col-sm-12 pd10">
+     <a href="RScalc"> <button type="button" class="btn btn-color">RS</button></a>
+    </div>
+    <div class="col-sm-12 pd10">
+     <a href="RSacyclovir"> <button type="button" class="btn btn-color">RS Acyclovir</button></a>
+    </div>
+    <div class="col-sm-12 pd10"><a href="Assay"><button type="button" class="btn btn-color">Assay</button></a>
+    </div>
+    <div class="col-sm-12 pd10"><a href="Lcysteine"><button type="button" class="btn btn-color">L Cysteine</button></a>
+    </div>
+    <div class="col-sm-12 pd10"><a href="Impvsimp"><button type="button" class="btn btn-color">Impurity vs Impurity</button></a>
+    </div>
+    <div class="col-sm-12 pd10"><a href="Areanorm"><button type="button" class="btn btn-color">Area Normalization</button></a>
+    </div>
+  </div>
+</div>
+{% endblock %}

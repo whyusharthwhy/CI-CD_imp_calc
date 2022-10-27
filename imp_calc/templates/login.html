@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Document automation tool</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <!--Fontawesome CDN 'http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg'-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+  <style>
+  html,body{
+          background-image: url('http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg');
+          background-size: cover;
+          background-repeat: no-repeat;
+          height: 100%;
+          font-size: 15px;
+      }
+      .form-control{padding: 25px !important;font-size: 15px;}
+    /* Remove the navbar's default margin-bottom and rounded borders */
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 450px}
+
+    /* Set gray background color and 100% height */
+    .sidenav {
+      padding-top: 20px;
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+    .row{
+      padding:10px;
+    }
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+    .pd10{
+      padding-top: 10px;
+    }
+    .navbar {
+      min-height: 125px;
+    }
+    .navbar-nav {
+      margin: 35.5px 50px;
+    }
+    .btn-color{
+      background-color: #7a231c;
+      font-size: 18px;
+      width: 300px;
+    }
+    .btn-color-acyclo{
+      background-color: #7a231c;
+    }
+    .btn-color-acyclo a {
+      color: #FFFFFF;
+    }
+  .btn-color a {
+      color: #fff;
+      font-size: 18px;
+  }
+  .pd10 a {
+      color: #fff;
+  }
+  .pd10 a:hover {
+      color: #fff !important;
+  }
+  .btn.focus, .btn:focus, .btn:hover {
+      color: #f5f5f5;
+      text-decoration: none;
+  }
+
+  div#loading {
+    display: none;
+  }
+  a#download{
+    background-color: #ffff00;
+    font-size: 20px;
+  }
+  .pdnew{
+    padding: 10px;
+  }
+  .pdload {
+      /* padding: 13px; */
+      padding-bottom: 20px;
+  }
+  /* On small screens, set height to 'auto' for sidenav and grid */
+  @media screen and (max-width: 767px) {
+    .sidenav {
+      height: auto;
+      padding: 15px;
+    }
+    .row.content {height:auto;}
+    .navbar-nav {
+      margin: 85.5px 50px;
+    }
+      }
+      .container{
+height: 100%;
+align-content: center;
+text-align: center;
+}
+
+.card{
+height: 370px;
+margin-bottom: auto;
+width: 400px;
+background-color: rgba(0, 0, 0, 0.58) !important;
+}
+
+.card-header h3{
+color: white;
+}
+.card-footer{
+  background-color: rgba(0, 0, 0, 0.58) !important;
+}
+
+
+.input-group-prepend span{
+width: 50px;
+background-color: #7a231c;
+color: black;
+border:0 !important;
+color:  #fff;
+}
+
+input:focus{
+outline: 0 0 0 0  !important;
+box-shadow: 0 0 0 0 !important;
+
+}
+
+.remember{
+color: white;
+}
+
+.remember input
+{
+width: 20px;
+height: 20px;
+margin-left: 15px;
+margin-right: 5px;
+}
+
+.login_btn{
+color: #fff;
+background-color: #7a231c;
+width: 100px;
+}
+
+.login_btn:hover{
+color: black;
+background-color: white;
+}
+
+.links{
+color: white;
+}
+
+.links a{
+margin-left: 4px;
+}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img style="margin-top: 50px; margin-bottom: 10px;" src="{{ url_for('static', filename='img/logo.png') }}">
+  <div class="d-flex justify-content-center h-100">
+    <div class="card">
+      <div class="card-header">
+        <h3>Sign In</h3>
+      </div>
+      <div class="card-body">
+        <form method="POST" class="form-signin" style="color:white">
+          {{ form.hidden_tag() }}
+          <!-- This is the beauty Backend-Dev's Can't afford -->
+          <!--
+          <div class="input-group form-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-user"></i></span>
+            </div>
+            <input type="text" class="form-control" placeholder="username">
+            
+          </div>
+          <div class="input-group form-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-key"></i></span>
+            </div>
+            <input type="password" class="form-control" placeholder="password">
+          </div>
+          <div class="row align-items-center remember">
+            <input type="checkbox">Remember Me
+          </div>
+          <div class="form-group">
+            <input type="submit" value="Login" class="btn float-right login_btn">
+          </div>
+        -->
+          <h1 class="h3 mb-3 font-weight-normal">
+          Please Login
+          </h1>
+          <br>
+          {{ form.username.label() }}
+          {{ form.username(class="form-control", placeholder="User Name") }}
+          {{ form.password.label() }}
+          {{ form.password(class="form-control", placeholder="Password") }}
+
+          <br>
+          <!--
+          <div class="checkbox mb-3">
+            <h6>Do not have an account?</h6>
+            <a class="btn btn-sm btn-secondary" href="{{ url_for('register_page') }}">Register</a>
+          </div>
+          -->
+          <br>
+          {{ form.submit(class="btn btn-lg btn-block btn-primary") }}
+        </form>
+      </div>
+      <div class="card-footer">
+        <!--Removing Sign-Up option
+        <div class="d-flex justify-content-center links">
+          Don't have an account?<a href="#">Sign Up</a>
+        </div>
+      -->
+        <div class="d-flex justify-content-center text-primary  ">
+          <a href="{{ url_for('reset_password_request') }}">Forgot your password?</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

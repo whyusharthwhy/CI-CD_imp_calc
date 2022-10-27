@@ -1,0 +1,210 @@
+{% extends 'base.html' %}
+{% block nav%}
+<div class="container-fluid">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="/"><img src="{{ url_for('static', filename='img/logo.png') }}"></a>
+  </div>
+  <div class="collapse navbar-collapse" id="myNavbar">
+    <ul class="nav navbar-nav">
+      <li><a href="index">Home</a></li>
+      <li><a href="RScalc">RS</a></li>
+      <li><a href="RSacyclovir">RS Acyclovir</a></li>
+      <li><a href="Assay">Assay</a></li>
+      <li style class="active"><a href="Lcysteine">L Cysteine</a></li>
+      <li><a href="Impvsimp">Impurity vs Impurity</a></li>
+      <li><a href="Areanorm">Area Normalization</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="#">Welcome, {{ current_user.username }}</a></li>
+      {% if current_user.is_authenticated %}
+      <li><a href="{{ url_for('logout_page') }}">Logout</a></li>
+      {% else %}
+      <li><a href="/">Login</a></li>
+      {% endif %}
+    </ul>
+  </div>
+</div>
+{% endblock %}
+{% block main %}
+<div class="container text-center">
+  <div class="row content">
+    <form action="/Lcysteine" method = "POST" enctype="multipart/form-data">
+      <h1>L-Cysteine & Degradant Impurity Calculation </h1>
+      <div class="col-sm-12 text-left pdnew">
+        {% if output_file %}
+          <a href="{{ url_for('file_download', output_folder = output_folder, output_file = output_file) }}" id= 'download'>Download {{ output_file }}</a>
+        {% endif %}
+      </div>
+      <div class="col-sm-6 text-left">
+          <div class="form-group">
+            <label for="files">Select files:</label>
+            <input type="file" id="files" name="files" multiple required>
+          </div>
+      </div>
+       <div class="col-sm-6 text-left">
+        <div class="form-group">
+          <input type="radio" name="software" id = "software-s" value="Lab Solutions" required> <label for="shimadzu">Lab Solutions</label><br/>
+          <input type="radio" name="software" id = "software-E" value="Empower"> <label for="shimadzu">Empower</label>
+        </div>
+       </div>
+      <div class="col-sm-6 text-left">
+        <div class="form-group">
+          <label for="Compound Name">Compound Name:</label>
+          <input type="text" class="form-control" id="compound" name="compound" value = "L-Cysteine" required>
+        </div>
+      </div>
+      <div class="col-sm-6 text-left">
+        <div class="form-group">
+          <label for="Product Name">Product Name:</label>
+          <input type="text" class="form-control" id="product" name="product"  required>
+        </div>
+      </div>
+      <div class="col-sm-6 text-left">
+        <div class="form-group">
+          <label for="Concentration">Label Claim:</label>
+          <input type="text" class="form-control" id="concentration" name="concentration" required>
+        </div>
+      </div>
+      <div class="col-sm-6 text-left">
+        <div class="form-group">
+          <label for="Sample weight">Standard weight:</label>
+          <input type="text" class="form-control" id="sampleweight" name="sampleweight" required>
+        </div>
+      </div>
+      <div class="col-sm-6 text-left">
+        <div class="form-group">
+          <label for="V1">V1:</label>
+          <input type="text" class="form-control" id="v1" name="v1" required>
+        </div>
+      </div>
+      <div class="col-sm-6 text-left">
+        <div class="form-group">
+          <label for="V2">V2:</label>
+          <input type="text" class="form-control" id="v2" name="v2" required>
+        </div>
+      </div>
+      <div class="col-sm-6 text-left">
+        <div class="form-group">
+          <label for="V3">V3:</label>
+          <input type="text" class="form-control" id="v3" name="v3" required>
+        </div>
+      </div>
+      <div class="col-sm-6 text-left">
+        <div class="form-group">
+          <label for="V4">V4:</label>
+          <input type="text" class="form-control" id="v4" name="v4" required>
+        </div>
+      </div>
+      <div class="col-sm-6 text-left">
+        <div class="form-group">
+          <label for="V5">V5:</label>
+          <input type="text" class="form-control" id="v5" name="v5" required>
+        </div>
+      </div>
+      <div class="col-sm-6 text-left">
+        <div class="form-group">
+          <label for="V6">V6:</label>
+          <input type="text" class="form-control" id="v6" name="v6" required>
+        </div>
+      </div>
+      <div class="col-sm-6 text-left">
+        <div class="form-group">
+          <label for="V7">V7:</label>
+          <input type="text" class="form-control" id="v7" name="v7" required>
+        </div>
+      </div>
+      <div class="col-sm-6 text-left">
+        <div class="form-group">
+          <label for="Factor 1">Factor 1:</label>
+          <input type="text" class="form-control" id="factor1" name="factor1" required>
+        </div>
+      </div>
+      <div class="col-sm-6 text-left">
+        <div class="form-group">
+          <label for="Factor 2">Factor 2:</label>
+          <input type="text" class="form-control" id="factor2" name="factor2" required>
+        </div>
+      </div>
+      <div class="col-sm-6 text-left">
+        <div class="form-group">
+          <label for="Potency">Potency:</label>
+          <input type="text" class="form-control" id="potency" name="potency" required>
+        </div>
+      </div>
+      <div class="col-sm-6 text-left">
+        <div class="form-group">
+          <label for="doa">Date of analysis (DD-MM-YY):</label>
+          <input type="text" class="form-control" id="doa" name="doa" required>
+        </div>
+      </div>
+      <div class="col-sm-6 text-left">
+        <div class="form-group">
+          <label for="mor">Method of reference:</label>
+          <input type="text" class="form-control" id="mor" name="mor" required>
+        </div>
+      </div>
+      <div class="col-sm-6 text-left">
+        <div class="form-group">
+          <label for="WSID number">RS/WS ID number:</label>
+          <input type="text" class="form-control" id="wsid" name="wsid" required>
+        </div>
+      </div>
+      <div class="col-sm-6 text-left">
+        <div class="form-group">
+          <label for="Use before date (DD-MM-YY)">Use before date (DD-MM-YY):</label>
+          <input type="text" class="form-control" id="ubd" name="ubd" required>
+        </div>
+        </div>
+      <div class="filesadd" id="filesadd">
+      </div>
+      <div class="col-sm-12 form-group text-left">
+        <input type="submit" class="btn btn-success" id ='submit' onclick=" return loading();">
+        <input type="reset" class="btn btn-success" id ='reset'>
+      </div>
+    </form>
+    <div class="col-sm-12 text-center pdload" id = "loading">
+      <img src="{{ url_for('static', filename='img/loading.gif') }}">
+    </div>
+  </div>
+</div>
+<script>
+  $( function() {
+    $("body").on("change", function(e){
+    var numFiles = $("input",this)[0].files.length;
+    for(n=0;n<=numFiles;n++){
+      var file = e.target.files[n].name;
+      var filename = file.split('.').slice(0, -1).join('.');
+      if(filename.includes("areas"))
+      {
+        continue;
+      }
+      $('<div class="col-sm-6 text-left"> <div class="form-group"><label for="Density">Density' + filename + ':</label><input type="text" class="form-control" id="density' + n + '" name="density' + n + '" required></div></div>').appendTo('#filesadd');
+      $('<div class="col-sm-6 text-left"> <div class="form-group"><label for="Sample Quantity">Sample Quantity' + filename + ':</label><input type="text" class="form-control" id="smplqty' + n + '" name="smplqty' + n + '" required></div></div>').appendTo('#filesadd');
+    }
+    });
+    $("#reset").click(function(){
+            location.reload(true);
+        });
+  });
+</script>
+<script type="text/javascript">// <![CDATA[
+  function loading(){
+      const inputFeilds = document.querySelectorAll("input");
+      const validInputs = Array.from(inputFeilds).filter( input => input.value !== "");
+      // alert(validInputs.length-2);
+      // alert(inputFeilds.length-4);
+      if(validInputs.length-2 == inputFeilds.length-4 && ($('#software-s').is(':checked') || $('#software-E').is(':checked')))
+      {
+        $("#loading").show();
+        $("#submit").hide();
+        $("#reset").hide();
+      }
+
+  }
+// ]]></script>
+{% endblock %}

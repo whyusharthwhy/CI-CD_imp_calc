@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Document automation tool</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+  <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 450px}
+
+    /* Set gray background color and 100% height */
+    .sidenav {
+      padding-top: 20px;
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+    .row{
+      padding:10px;
+    }
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+    .pd10{
+      padding-top: 10px;
+    }
+    .navbar {
+      min-height: 125px;
+    }
+    .navbar-nav {
+      margin: 35.5px 50px;
+    }
+    .btn-color{
+      background-color: #7a231c;
+      font-size: 18px;
+      width: 300px;
+    }
+    .btn-color-acyclo{
+      background-color: #7a231c;
+    }
+    .btn-color-acyclo a {
+      color: #FFFFFF;
+    }
+  .btn-color a {
+      color: #fff;
+      font-size: 18px;
+  }
+  .pd10 a {
+      color: #fff;
+  }
+  .pd10 a:hover {
+      color: #fff !important;
+  }
+  .btn.focus, .btn:focus, .btn:hover {
+      color: #f5f5f5;
+      text-decoration: none;
+  }
+
+  div#loading {
+    display: none;
+  }
+  a#download{
+    background-color: #ffff00;
+    font-size: 20px;
+  }
+  .pdnew{
+    padding: 10px;
+  }
+  .pdload {
+      /* padding: 13px; */
+      padding-bottom: 20px;
+  }
+  /* On small screens, set height to 'auto' for sidenav and grid */
+  @media screen and (max-width: 767px) {
+    .sidenav {
+      height: auto;
+      padding: 15px;
+    }
+    .row.content {height:auto;}
+    .navbar-nav {
+      margin: 85.5px 50px;
+    }
+      }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-inverse">
+      {% block nav %}{% endblock %}
+  </nav>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+           {% for category, message in messages %}
+              <div class="alert alert-{{ category }}">
+                  <button type="button" class="m1-2 mb-1 close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+                  {{ message }}
+              </div>
+           {% endfor %}
+        {% endif %}
+      {% endwith %}
+  <main>
+    {% block main %}{% endblock %}
+  </main>
+  <footer class="container-fluid text-center">
+    <p>Document Automation Suite. Anthea Pharma 2022. Ver 1.0 </p>
+  </footer>
+</body>
