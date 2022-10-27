@@ -2,6 +2,7 @@ from imp_calc import db, bcrypt, login_manager,app
 from flask_login import UserMixin
 import jwt
 from time import time
+from datetime import datetime
 
 
 #Working at 2:16:37 on YT course. Keep Doing Yusharth You are doing great
@@ -16,6 +17,14 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(length=12),nullable = False, unique = True)
     email_address = db.Column(db.String(length=50),nullable = False, unique = True)
     password_hash = db.Column(db.String(length=60),nullable = False)
+    created_at = db.Column(db.DateTime, nullable = False, default= datetime.utcnow)
+
+    def __init__(self,username, email_address, password_hash,created_at):
+        self.username = username
+        self.email_address=email_address
+        self.password_hash=password_hash
+        if created_at is not None:
+            self.created_at=created_at
 
     @property
     def password(self):

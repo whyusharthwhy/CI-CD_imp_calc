@@ -764,3 +764,17 @@ ConnectionRefusedError: [Errno 111] Connection refused
 [15:50:04] {/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py:155} INFO - Homepage is opened
 [15:50:09] {/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py:147} INFO - xyz
 [15:50:09] {/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py:148} INFO - is logged in
+[17:26:59] {/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py:155} INFO - Homepage is opened
+[17:27:11] {/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py:155} INFO - Homepage is opened
+[17:27:19] {/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py:147} INFO - xyz
+[17:27:19] {/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py:148} INFO - is logged in
+[17:27:59] {/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py:155} INFO - Homepage is opened
+[17:32:40] {/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py:290} INFO - xyz
+[17:32:40] {/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py:291} INFO - Open RScalc
+[17:32:43] {/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py:546} INFO - xyz
+[17:32:43] {/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py:547} INFO - Used Lcysteine
+[17:32:44] {/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py:423} INFO - xyz
+[17:32:44] {/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py:424} INFO - Used Impvsimp
+[17:32:44] {/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py:382} INFO - xyz
+[17:32:44] {/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py:383} INFO - Used Areanorm
+[18:43:10] {/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py:157} INFO - Homepage is opened

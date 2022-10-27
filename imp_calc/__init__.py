@@ -1,13 +1,17 @@
 from flask import Flask
-from datetime import timedelta
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt 
 from flask_login import LoginManager
-import logging
-from logging import FileHandler, INFO
 from flask_mail import Mail
+from flask_migrate import Migrate
+
 import os
 from itsdangerous import URLSafeTimedSerializer, SignatureExpired
+from logging import FileHandler, INFO
+import logging
+from datetime import timedelta
+
+
 
 logging.basicConfig(filename='record.log', level=logging.DEBUG, 
 	format= '[%(asctime)s] {%(pathname)s:%(lineno)d} %(levelname)s - %(message)s',
@@ -26,6 +30,7 @@ app.config['SECRET_KEY']= '0b843376d6f247b8a5e38df2'
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes = 30)
 #creating a sqlalchemy instance
 db = SQLAlchemy(app)
+migrate = Migrate(app, db)
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
 
