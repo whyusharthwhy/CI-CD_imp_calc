@@ -256,7 +256,7 @@ def change_password():
         ):
             id = current_user.get_id()
             user = User.query.filter_by(id=id).first_or_404()
-            user.password(form.password_new2.data)
+            user.password=form.password_new2.data
             db.session.add(user)
             db.session.commit()
             print("prolly the Password changed")

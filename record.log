@@ -751,3 +751,16 @@ ConnectionRefusedError: [Errno 111] Connection refused
 [17:27:06] {/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/werkzeug/_internal.py:224} WARNING -  * Debugger is active!
 [17:27:06] {/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/werkzeug/_internal.py:224} INFO -  * Debugger PIN: 274-115-279
 [17:34:05] {/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py:155} INFO - Homepage is opened
+[15:40:06] {/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py:155} INFO - Homepage is opened
+[15:40:41] {/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py:155} INFO - Homepage is opened
+[15:40:53] {/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py:155} INFO - Homepage is opened
+[15:41:00] {/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py:147} INFO - xyz
+[15:41:00] {/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py:148} INFO - is logged in
+[15:49:19] {/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py:155} INFO - Homepage is opened
+[15:49:39] {/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py:155} INFO - Homepage is opened
+[15:49:56] {/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py:269} INFO - xyz
+[15:49:56] {/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py:270} INFO - logged out successfully
+[15:49:56] {/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py:155} INFO - Homepage is opened
+[15:50:04] {/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py:155} INFO - Homepage is opened
+[15:50:09] {/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py:147} INFO - xyz
+[15:50:09] {/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py:148} INFO - is logged in
