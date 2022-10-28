@@ -17,23 +17,27 @@
       <li><a href="Lcysteine">L Cysteine</a></li>
       <li><a href="Impvsimp">Impurity vs Impurity</a></li>
       <li><a href="Areanorm">Area Normalization</a></li>
-   <!-- </ul>
+   </ul>
     <ul class="nav navbar-nav navbar-right">
-      -->
+      
       <li><a href="#">Welcome, {{ current_user.username }}</a></li>
-      <li><a href="{{ url_for('change_password') }}">Password Expiring in{{ remaining_days }}days</a></li>
+    <!--<li><a href="{{ url_for('change_password') }}">Password Expiring in{{ remaining_days }}days</a></li> --> 
       {% if current_user.is_authenticated %}
       <li><a href="{{ url_for('logout_page') }}">Logout</a></li>
       {% else %}
       <li><a href="/">Login</a></li>
       {% endif %}
-    <!--</ul>-->
+    </ul>
   </div>
 </div>
 {% endblock %}
 {% block main %}
 <div class="container">
   <div class="row content text-center">
+    <div class="col-sm-12">
+    <a href="{{ url_for('change_password') }}"><button type="button" class="btn btn-outline-dark btn-lg navbar-right">Password Expiring in {{ remaining_days }} days</button>
+</a>  
+  </div>
     <h1>Selcet Method</h1>
     <div class="col-sm-12 pd10">
      <a href="RScalc"> <button type="button" class="btn btn-color">RS</button></a>

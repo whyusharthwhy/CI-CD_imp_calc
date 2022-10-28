@@ -186,17 +186,21 @@ def login():
 
 
 @app.route('/index')
+@login_required
 def index():
-    time_between_insertion = datetime.now() - current_user.created_at
-    remaining_days = 30 - time_between_insertion.days
-    if time_between_insertion.days>30:
-        flash('Sorry for the inconvenience but it seeems that your password expired,please create a new password using the expired ones')
-        return redirect(url_for('change_password'))
-    elif time_between_insertion.days>25:
-        flash('Your password is about to expire within few days please change it.')
+    if current_user.is_authenticated:
+        time_between_insertion = datetime.now() - current_user.created_at
+        remaining_days = 30 - time_between_insertion.days
+        if time_between_insertion.days>30:
+            flash('Sorry for the inconvenience but it seeems that your password expired,please create a new password using the expired ones')
+            return redirect(url_for('change_password'))
+        elif time_between_insertion.days>25:
+            flash('Your password is about to expire within few days please change it.')
+        else:
+            pass
+        return render_template('index.html', remaining_days=remaining_days)
     else:
-        pass
-    return render_template('index.html', remaining_days=remaining_days)
+        return render_template('index.html')
 
 @app.route('/register',methods=['GET', 'POST']) 
 def register_page():
