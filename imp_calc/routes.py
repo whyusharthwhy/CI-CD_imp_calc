@@ -134,18 +134,44 @@ logging.getLogger('imp_calc').addHandler(console)
 
 logger = logging.getLogger(__name__)
 
+
+# def expiry_check(checking_password_expiration):
+#     def wrapper_func():
+#         def checking_password_expiration():
+#             time_between_insertion = datetime.now() - attempted_user.created_at
+#             if time_between_insertion.days>30:
+#                 flash('Sorry for the inconvenience but it seeems that your password expired,please create a new password using the expired ones')
+#                 return redirect(url_for('change_password'))
+#             else:
+#                 if time_between_insertion.days<5:
+#                     flash('Your password is about to expire within few days please change it.')
+#     return wrapper_func
+
 @app.route('/', methods = ['GET','POST'])
+#@expiry_check
 def login():
     if current_user.is_authenticated:
         return redirect(url_for('index'))
     form = LoginForm()
     if form.validate_on_submit():
         attempted_user = User.query.filter_by(username=form.username.data).first()
+        #time_between_insertion = datetime.now() - attempted_user.created_at
+        #print("This is the remaining time",time_between_insertion)
+        #remaining_days = 30 - time_between_insertion.days
+        #print("This is the remaining days",remaining_days)
+        # if time_between_insertion.days>30:
+        #     flash('Sorry for the inconvenience but it seeems that your password expired,please create a new password using the expired ones')
+        #     return redirect(url_for('change_password'))
+        # elif time_between_insertion.days>25:
+        #         flash('Your password is about to expire within few days please change it.')
+        # else:
+        #     pass
         if attempted_user and attempted_user.check_password_correction(
                 attempted_password=form.password.data
         ):
             login_user(attempted_user)
             flash(f'Success! You are logged in as: {attempted_user.username}', category='success')
+            print(attempted_user.created_at)
             app.logger.info(attempted_user.username)
             app.logger.info('is logged in')
             return redirect(url_for('index'))
@@ -154,12 +180,23 @@ def login():
             session.permanent= True
         else:
             flash('Username and password are not match! Please try again', category='danger')
-    app.logger.info('Homepage is opened')
-    return render_template('login.html', form = form)
+        return render_template('login.html', form = form, remaining_days = remaining_days)
+    else:
+        return render_template('login.html', form = form)
+
 
 @app.route('/index')
 def index():
-    return render_template('index.html')
+    time_between_insertion = datetime.now() - current_user.created_at
+    remaining_days = 30 - time_between_insertion.days
+    if time_between_insertion.days>30:
+        flash('Sorry for the inconvenience but it seeems that your password expired,please create a new password using the expired ones')
+        return redirect(url_for('change_password'))
+    elif time_between_insertion.days>25:
+        flash('Your password is about to expire within few days please change it.')
+    else:
+        pass
+    return render_template('index.html', remaining_days=remaining_days)
 
 @app.route('/register',methods=['GET', 'POST']) 
 def register_page():
@@ -266,7 +303,8 @@ def change_password():
             #login_user(attempted_user)
     return render_template('change_password.html',form = form)        
 
-@app.route('/logout',methods=['GET','POST'])    
+@app.route('/logout',methods=['GET','POST'])
+@login_required    
 def logout_page():  
     logger.info(current_user.username)
     logger.info("logged out successfully")

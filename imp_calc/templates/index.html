@@ -17,15 +17,17 @@
       <li><a href="Lcysteine">L Cysteine</a></li>
       <li><a href="Impvsimp">Impurity vs Impurity</a></li>
       <li><a href="Areanorm">Area Normalization</a></li>
-    </ul>
+   <!-- </ul>
     <ul class="nav navbar-nav navbar-right">
+      -->
       <li><a href="#">Welcome, {{ current_user.username }}</a></li>
+      <li><a href="{{ url_for('change_password') }}">Password Expiring in{{ remaining_days }}days</a></li>
       {% if current_user.is_authenticated %}
       <li><a href="{{ url_for('logout_page') }}">Logout</a></li>
       {% else %}
       <li><a href="/">Login</a></li>
       {% endif %}
-    </ul>
+    <!--</ul>-->
   </div>
 </div>
 {% endblock %}

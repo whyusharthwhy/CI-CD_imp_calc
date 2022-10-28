@@ -19,13 +19,6 @@ class User(db.Model, UserMixin):
     password_hash = db.Column(db.String(length=60),nullable = False)
     created_at = db.Column(db.DateTime, nullable = False, default= datetime.utcnow)
 
-    def __init__(self,username, email_address, password_hash,created_at):
-        self.username = username
-        self.email_address=email_address
-        self.password_hash=password_hash
-        if created_at is not None:
-            self.created_at=created_at
-
     @property
     def password(self):
         return self.password
@@ -56,21 +49,21 @@ class User(db.Model, UserMixin):
 #aside because more enhancements and developments work need to be done around            |
 #no time for bugs and discrepancy reduction                                             \l/
 
-class Profile(db.Model):
-    # Id : Field which stores unique id for every row in
-    # database table.
-    # first_name: Used to store the first name if the user
-    # last_name: Used to store last name of the user
-    # Age: Used to store the age of the user
-    id = db.Column(db.Integer, primary_key=True)
-    first_name = db.Column(db.String(20), unique=False, nullable=False)
-    last_name = db.Column(db.String(20), unique=False, nullable=False)
-    age = db.Column(db.Integer, nullable=False)     
-    owner = db.Column(db.Integer(),db.ForeignKey('user.id'))
-    # repr method represents how one object of this datatable   
-    # will look like
-    def __repr__(self):
-        return f"Name : {self.first_name}, Age: {self.age}"
+# class Profile(db.Model):
+#     # Id : Field which stores unique id for every row in
+#     # database table.
+#     # first_name: Used to store the first name if the user
+#     # last_name: Used to store last name of the user
+#     # Age: Used to store the age of the user
+#     id = db.Column(db.Integer, primary_key=True)
+#     first_name = db.Column(db.String(20), unique=False, nullable=False)
+#     last_name = db.Column(db.String(20), unique=False, nullable=False)
+#     age = db.Column(db.Integer, nullable=False)     
+#     owner = db.Column(db.Integer(),db.ForeignKey('user.id'))
+#     # repr method represents how one object of this datatable   
+#     # will look like
+#     def __repr__(self):
+#         return f"Name : {self.first_name}, Age: {self.age}"
 
         '''
     username ="Miguel",    email_address ="Grinber@gmail.com", password_hash = "1234567" ,items =  '''
