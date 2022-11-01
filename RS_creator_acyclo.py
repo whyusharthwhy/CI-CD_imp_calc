@@ -231,7 +231,7 @@ def fill_rs_sheet(output_sheet, df_area_table, df_peak_table, sample_input_list,
 def initiate_report_creation(chrom_inputs, area_input, area_input_imp_b, input_list):
 
     """ Begins the report creation process following the defined business logics"""
-    rs_template_input = xlrd.open_workbook(os.path.join(os.getcwd(), "files", "Templates",'RS-template.xls'), formatting_info=True)
+    rs_template_input = xlrd.open_workbook(os.path.join(os.getcwd(), "imp_calc","files", "Templates",'RS-template.xls'), formatting_info=True)
     rs_template = xlutils.copy.copy(rs_template_input)
     imp_b_rs_template = xlutils.copy.copy(rs_template_input)
     software = input_list[0]

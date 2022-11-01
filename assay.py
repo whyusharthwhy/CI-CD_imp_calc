@@ -198,7 +198,7 @@ def fill_assay_sheet(output_sheet, df_area_table, df_peak_table, sample_input_li
 
 def initiate_report_creation(chrom_inputs, area_input, input_list, rt_range):
     """ Begins the report creation process following the defined business logics"""
-    assay_template_input = xlrd.open_workbook(os.path.join(os.getcwd(), "files", "Templates",'Assay-template.xls'), formatting_info=True)
+    assay_template_input = xlrd.open_workbook(os.path.join(os.getcwd(), 'imp_calc',"files", "Templates",'Assay-template.xls'), formatting_info=True)
     assay_template = xlutils.copy.copy(assay_template_input)
     software = input_list[0]
     compound = input_list[1]

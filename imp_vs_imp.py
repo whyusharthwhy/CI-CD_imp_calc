@@ -232,7 +232,7 @@ def initiate_report_creation(chrom_inputs, area_inputs, inputs):
     sample_v7 = df_sample_prep['v7'][df_sample_prep["Compound"].str.contains(compound, flags = re.IGNORECASE)].values.tolist()[0]
     label_claim = df_sample_prep['label claim'][df_sample_prep["Compound"].str.contains(compound, flags = re.IGNORECASE)].values.tolist()[0]
     unit = df_sample_prep['per unit'][df_sample_prep["Compound"].str.contains(compound, flags = re.IGNORECASE)].values.tolist()[0]
-    ivi_template_input = xlrd.open_workbook(os.path.join(os.getcwd(), 'files', 'Templates','{}-template.xls'.format(compound)), formatting_info=True)
+    ivi_template_input = xlrd.open_workbook(os.path.join(os.getcwd(),'imp_calc', 'files', 'Templates','{}-template.xls'.format(compound)), formatting_info=True)
     ivi_template = xlutils.copy.copy(ivi_template_input)
     # area tables extraction
     area_tables =  []

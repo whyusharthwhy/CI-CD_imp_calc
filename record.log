@@ -1014,3 +1014,63 @@ ConnectionRefusedError: [Errno 111] Connection refused
 [18:51:56] {/mnt/d/projects/impurity_calculator_app/uvenv/lib/python3.10/site-packages/werkzeug/_internal.py:224} INFO -  * Detected change in '/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py', reloading
 [18:52:04] {/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py:175} INFO - YUSHARTH
 [18:52:04] {/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py:176} INFO - is logged in
+[15:28:40] {D:\projects\impurity_calculator_app\imp_calc\routes.py:175} INFO - YUSHARTH
+[15:28:40] {D:\projects\impurity_calculator_app\imp_calc\routes.py:176} INFO - is logged in
+[15:28:57] {D:\projects\impurity_calculator_app\imp_calc\routes.py:313} INFO - YUSHARTH
+[15:28:57] {D:\projects\impurity_calculator_app\imp_calc\routes.py:314} INFO - logged out successfully
+[15:35:08] {D:\projects\impurity_calculator_app\imp_calc\routes.py:175} INFO - YUSHARTH
+[15:35:08] {D:\projects\impurity_calculator_app\imp_calc\routes.py:176} INFO - is logged in
+[15:35:09] {D:\projects\impurity_calculator_app\imp_calc\routes.py:313} INFO - YUSHARTH
+[15:35:09] {D:\projects\impurity_calculator_app\imp_calc\routes.py:314} INFO - logged out successfully
+[15:35:14] {D:\projects\impurity_calculator_app\imp_calc\routes.py:175} INFO - YUSHARTH
+[15:35:14] {D:\projects\impurity_calculator_app\imp_calc\routes.py:176} INFO - is logged in
+[15:35:15] {D:\projects\impurity_calculator_app\imp_calc\routes.py:313} INFO - YUSHARTH
+[15:35:15] {D:\projects\impurity_calculator_app\imp_calc\routes.py:314} INFO - logged out successfully
+[15:35:23] {D:\projects\impurity_calculator_app\imp_calc\routes.py:175} INFO - YUSHARTH
+[15:35:23] {D:\projects\impurity_calculator_app\imp_calc\routes.py:176} INFO - is logged in
+[15:36:38] {D:\projects\impurity_calculator_app\imp_calc\routes.py:304} INFO - YUSHARTH
+[15:36:38] {D:\projects\impurity_calculator_app\imp_calc\routes.py:305} INFO - changed password
+[15:36:42] {D:\projects\impurity_calculator_app\imp_calc\routes.py:313} INFO - YUSHARTH
+[15:36:42] {D:\projects\impurity_calculator_app\imp_calc\routes.py:314} INFO - logged out successfully
+[15:36:47] {D:\projects\impurity_calculator_app\imp_calc\routes.py:175} INFO - YUSHARTH
+[15:36:47] {D:\projects\impurity_calculator_app\imp_calc\routes.py:176} INFO - is logged in
+[15:36:52] {D:\projects\impurity_calculator_app\imp_calc\routes.py:332} INFO - YUSHARTH
+[15:36:52] {D:\projects\impurity_calculator_app\imp_calc\routes.py:333} INFO - Open RScalc
+[15:36:53] {D:\projects\impurity_calculator_app\imp_calc\routes.py:383} INFO - YUSHARTH
+[15:36:53] {D:\projects\impurity_calculator_app\imp_calc\routes.py:384} INFO - Used RSacyclovir
+[15:36:54] {D:\projects\impurity_calculator_app\imp_calc\routes.py:535} INFO - YUSHARTH
+[15:36:54] {D:\projects\impurity_calculator_app\imp_calc\routes.py:536} INFO - Used Assay
+[15:36:55] {D:\projects\impurity_calculator_app\imp_calc\routes.py:588} INFO - YUSHARTH
+[15:36:55] {D:\projects\impurity_calculator_app\imp_calc\routes.py:589} INFO - Used Lcysteine
+[15:36:55] {D:\projects\impurity_calculator_app\imp_calc\routes.py:465} INFO - YUSHARTH
+[15:36:55] {D:\projects\impurity_calculator_app\imp_calc\routes.py:466} INFO - Used Impvsimp
+[15:36:56] {D:\projects\impurity_calculator_app\imp_calc\routes.py:424} INFO - YUSHARTH
+[15:36:56] {D:\projects\impurity_calculator_app\imp_calc\routes.py:425} INFO - Used Areanorm
+[15:37:01] {D:\projects\impurity_calculator_app\imp_calc\routes.py:313} INFO - YUSHARTH
+[15:37:01] {D:\projects\impurity_calculator_app\imp_calc\routes.py:314} INFO - logged out successfully
+[15:37:06] {D:\projects\impurity_calculator_app\imp_calc\routes.py:175} INFO - YUSHARTH
+[15:37:06] {D:\projects\impurity_calculator_app\imp_calc\routes.py:176} INFO - is logged in
+[15:37:51] {D:\projects\impurity_calculator_app\imp_calc\routes.py:313} INFO - YUSHARTH
+[15:37:51] {D:\projects\impurity_calculator_app\imp_calc\routes.py:314} INFO - logged out successfully
+[15:37:55] {D:\projects\impurity_calculator_app\imp_calc\routes.py:175} INFO - YUSHARTH
+[15:37:55] {D:\projects\impurity_calculator_app\imp_calc\routes.py:176} INFO - is logged in
+[15:38:23] {D:\projects\impurity_calculator_app\imp_calc\routes.py:304} INFO - YUSHARTH
+[15:38:23] {D:\projects\impurity_calculator_app\imp_calc\routes.py:305} INFO - changed password
+[15:38:28] {D:\projects\impurity_calculator_app\imp_calc\routes.py:313} INFO - YUSHARTH
+[15:38:28] {D:\projects\impurity_calculator_app\imp_calc\routes.py:314} INFO - logged out successfully
+[15:38:37] {D:\projects\impurity_calculator_app\imp_calc\routes.py:175} INFO - YUSHARTH
+[15:38:37] {D:\projects\impurity_calculator_app\imp_calc\routes.py:176} INFO - is logged in
+[15:38:52] {D:\projects\impurity_calculator_app\imp_calc\routes.py:332} INFO - YUSHARTH
+[15:38:52] {D:\projects\impurity_calculator_app\imp_calc\routes.py:333} INFO - Open RScalc
+[15:38:52] {D:\projects\impurity_calculator_app\imp_calc\routes.py:383} INFO - YUSHARTH
+[15:38:52] {D:\projects\impurity_calculator_app\imp_calc\routes.py:384} INFO - Used RSacyclovir
+[15:38:53] {D:\projects\impurity_calculator_app\imp_calc\routes.py:535} INFO - YUSHARTH
+[15:38:53] {D:\projects\impurity_calculator_app\imp_calc\routes.py:536} INFO - Used Assay
+[15:38:54] {D:\projects\impurity_calculator_app\imp_calc\routes.py:588} INFO - YUSHARTH
+[15:38:54] {D:\projects\impurity_calculator_app\imp_calc\routes.py:589} INFO - Used Lcysteine
+[15:38:54] {D:\projects\impurity_calculator_app\imp_calc\routes.py:465} INFO - YUSHARTH
+[15:38:54] {D:\projects\impurity_calculator_app\imp_calc\routes.py:466} INFO - Used Impvsimp
+[15:38:55] {D:\projects\impurity_calculator_app\imp_calc\routes.py:424} INFO - YUSHARTH
+[15:38:55] {D:\projects\impurity_calculator_app\imp_calc\routes.py:425} INFO - Used Areanorm
+[15:39:55] {D:\projects\impurity_calculator_app\imp_calc\routes.py:313} INFO - YUSHARTH
+[15:39:55] {D:\projects\impurity_calculator_app\imp_calc\routes.py:314} INFO - logged out successfully

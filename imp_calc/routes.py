@@ -180,9 +180,7 @@ def login():
             session.permanent= True
         else:
             flash('Username and password are not match! Please try again', category='danger')
-        return render_template('login.html', form = form, remaining_days = remaining_days)
-    else:
-        return render_template('login.html', form = form)
+    return render_template('login.html', form = form)
 
 
 @app.route('/index')
@@ -300,10 +298,12 @@ def change_password():
             id = current_user.get_id()
             user = User.query.filter_by(id=id).first_or_404()
             user.password=form.password_new2.data
+            user.created_at= datetime.now()
             db.session.add(user)
             db.session.commit()
-            print("prolly the Password changed")
-            return redirect(url_for('login'))
+            logger.info(current_user.username)
+            logger.info("changed password")
+            return redirect(url_for('index'))
             #login_user(attempted_user)
     return render_template('change_password.html',form = form)        
 
