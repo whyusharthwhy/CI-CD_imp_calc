@@ -534,7 +534,7 @@ def Impvsimp():
         
 
         ivi_output = imp_vs_imp.initiate_report_creation(chrom_inputs, area_inputs, inputs)
-        ivi_output.save(os.path.join(os.path.join(os.path.dirname(os.path.abspath(__file__)),'imp_calc','files', 'Imp-vs-Imp'),
+        ivi_output.save(os.path.join(os.path.join(os.path.dirname(os.path.abspath(__file__)),'files', 'Imp-vs-Imp'),
          "{}-imp-vs-imp.xls".format(compound)))
 
 
