@@ -1074,3 +1074,222 @@ ConnectionRefusedError: [Errno 111] Connection refused
 [15:38:55] {D:\projects\impurity_calculator_app\imp_calc\routes.py:425} INFO - Used Areanorm
 [15:39:55] {D:\projects\impurity_calculator_app\imp_calc\routes.py:313} INFO - YUSHARTH
 [15:39:55] {D:\projects\impurity_calculator_app\imp_calc\routes.py:314} INFO - logged out successfully
+[15:54:00] {D:\projects\impurity_calculator_app\imp_calc\routes.py:175} INFO - YUSHARTH
+[15:54:00] {D:\projects\impurity_calculator_app\imp_calc\routes.py:176} INFO - is logged in
+[15:54:03] {D:\projects\impurity_calculator_app\imp_calc\routes.py:332} INFO - YUSHARTH
+[15:54:03] {D:\projects\impurity_calculator_app\imp_calc\routes.py:333} INFO - Open RScalc
+[15:54:07] {D:\projects\impurity_calculator_app\imp_calc\routes.py:383} INFO - YUSHARTH
+[15:54:07] {D:\projects\impurity_calculator_app\imp_calc\routes.py:384} INFO - Used RSacyclovir
+[16:06:04] {D:\projects\impurity_calculator_app\imp_calc\routes.py:535} INFO - YUSHARTH
+[16:06:04] {D:\projects\impurity_calculator_app\imp_calc\routes.py:536} INFO - Used Assay
+[16:06:05] {D:\projects\impurity_calculator_app\imp_calc\routes.py:383} INFO - YUSHARTH
+[16:06:05] {D:\projects\impurity_calculator_app\imp_calc\routes.py:384} INFO - Used RSacyclovir
+[16:06:48] {D:\projects\impurity_calculator_app\imp_calc\routes.py:383} INFO - YUSHARTH
+[16:06:48] {D:\projects\impurity_calculator_app\imp_calc\routes.py:384} INFO - Used RSacyclovir
+[16:07:02] {D:\projects\impurity_calculator_app\imp_calc\routes.py:535} INFO - YUSHARTH
+[16:07:02] {D:\projects\impurity_calculator_app\imp_calc\routes.py:536} INFO - Used Assay
+[16:07:03] {D:\projects\impurity_calculator_app\imp_calc\routes.py:588} INFO - YUSHARTH
+[16:07:03] {D:\projects\impurity_calculator_app\imp_calc\routes.py:589} INFO - Used Lcysteine
+[16:07:04] {D:\projects\impurity_calculator_app\imp_calc\routes.py:535} INFO - YUSHARTH
+[16:07:04] {D:\projects\impurity_calculator_app\imp_calc\routes.py:536} INFO - Used Assay
+[16:07:04] {D:\projects\impurity_calculator_app\imp_calc\routes.py:383} INFO - YUSHARTH
+[16:07:04] {D:\projects\impurity_calculator_app\imp_calc\routes.py:384} INFO - Used RSacyclovir
+[16:07:05] {D:\projects\impurity_calculator_app\imp_calc\routes.py:535} INFO - YUSHARTH
+[16:07:05] {D:\projects\impurity_calculator_app\imp_calc\routes.py:536} INFO - Used Assay
+[16:07:06] {D:\projects\impurity_calculator_app\imp_calc\routes.py:383} INFO - YUSHARTH
+[16:07:06] {D:\projects\impurity_calculator_app\imp_calc\routes.py:384} INFO - Used RSacyclovir
+[16:07:06] {D:\projects\impurity_calculator_app\imp_calc\routes.py:535} INFO - YUSHARTH
+[16:07:06] {D:\projects\impurity_calculator_app\imp_calc\routes.py:536} INFO - Used Assay
+[16:07:07] {D:\projects\impurity_calculator_app\imp_calc\routes.py:588} INFO - YUSHARTH
+[16:07:07] {D:\projects\impurity_calculator_app\imp_calc\routes.py:589} INFO - Used Lcysteine
+[16:07:07] {D:\projects\impurity_calculator_app\imp_calc\routes.py:465} INFO - YUSHARTH
+[16:07:07] {D:\projects\impurity_calculator_app\imp_calc\routes.py:466} INFO - Used Impvsimp
+[16:07:08] {D:\projects\impurity_calculator_app\imp_calc\routes.py:424} INFO - YUSHARTH
+[16:07:08] {D:\projects\impurity_calculator_app\imp_calc\routes.py:425} INFO - Used Areanorm
+[16:07:08] {D:\projects\impurity_calculator_app\imp_calc\routes.py:465} INFO - YUSHARTH
+[16:07:08] {D:\projects\impurity_calculator_app\imp_calc\routes.py:466} INFO - Used Impvsimp
+[16:07:09] {D:\projects\impurity_calculator_app\imp_calc\routes.py:588} INFO - YUSHARTH
+[16:07:09] {D:\projects\impurity_calculator_app\imp_calc\routes.py:589} INFO - Used Lcysteine
+[16:07:09] {D:\projects\impurity_calculator_app\imp_calc\routes.py:535} INFO - YUSHARTH
+[16:07:09] {D:\projects\impurity_calculator_app\imp_calc\routes.py:536} INFO - Used Assay
+[16:07:09] {D:\projects\impurity_calculator_app\imp_calc\routes.py:383} INFO - YUSHARTH
+[16:07:09] {D:\projects\impurity_calculator_app\imp_calc\routes.py:384} INFO - Used RSacyclovir
+[16:07:11] {D:\projects\impurity_calculator_app\imp_calc\routes.py:332} INFO - YUSHARTH
+[16:07:11] {D:\projects\impurity_calculator_app\imp_calc\routes.py:333} INFO - Open RScalc
+[16:07:11] {D:\projects\impurity_calculator_app\imp_calc\routes.py:383} INFO - YUSHARTH
+[16:07:11] {D:\projects\impurity_calculator_app\imp_calc\routes.py:384} INFO - Used RSacyclovir
+[16:07:12] {D:\projects\impurity_calculator_app\imp_calc\routes.py:535} INFO - YUSHARTH
+[16:07:12] {D:\projects\impurity_calculator_app\imp_calc\routes.py:536} INFO - Used Assay
+[16:07:12] {D:\projects\impurity_calculator_app\imp_calc\routes.py:588} INFO - YUSHARTH
+[16:07:12] {D:\projects\impurity_calculator_app\imp_calc\routes.py:589} INFO - Used Lcysteine
+[16:07:13] {D:\projects\impurity_calculator_app\imp_calc\routes.py:465} INFO - YUSHARTH
+[16:07:13] {D:\projects\impurity_calculator_app\imp_calc\routes.py:466} INFO - Used Impvsimp
+[16:07:14] {D:\projects\impurity_calculator_app\imp_calc\routes.py:424} INFO - YUSHARTH
+[16:07:14] {D:\projects\impurity_calculator_app\imp_calc\routes.py:425} INFO - Used Areanorm
+[17:12:39] {D:\projects\impurity_calculator_app\imp_calc\routes.py:175} INFO - YUSHARTH
+[17:12:39] {D:\projects\impurity_calculator_app\imp_calc\routes.py:176} INFO - is logged in
+[17:12:42] {D:\projects\impurity_calculator_app\imp_calc\routes.py:383} INFO - YUSHARTH
+[17:12:42] {D:\projects\impurity_calculator_app\imp_calc\routes.py:384} INFO - Used RSacyclovir
+[17:16:04] {D:\projects\impurity_calculator_app\imp_calc\routes.py:383} INFO - YUSHARTH
+[17:16:04] {D:\projects\impurity_calculator_app\imp_calc\routes.py:384} INFO - Used RSacyclovir
+[17:16:07] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[17:16:09] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-2
+[17:16:10] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-3
+[17:16:11] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[17:16:11] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-2
+[17:16:13] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[17:21:25] {D:\projects\impurity_calculator_app\imp_calc\routes.py:383} INFO - YUSHARTH
+[17:21:25] {D:\projects\impurity_calculator_app\imp_calc\routes.py:384} INFO - Used RSacyclovir
+[17:21:28] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[17:21:29] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-2
+[17:21:30] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-3
+[17:21:31] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[17:21:31] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-2
+[17:21:32] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[17:21:43] {D:\projects\impurity_calculator_app\imp_calc\routes.py:535} INFO - YUSHARTH
+[17:21:43] {D:\projects\impurity_calculator_app\imp_calc\routes.py:536} INFO - Used Assay
+[17:24:02] {D:\projects\impurity_calculator_app\imp_calc\routes.py:535} INFO - YUSHARTH
+[17:24:02] {D:\projects\impurity_calculator_app\imp_calc\routes.py:536} INFO - Used Assay
+[17:24:03] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[17:24:04] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-2
+[17:24:05] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-3
+[17:24:06] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[17:24:07] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[17:24:12] {D:\projects\impurity_calculator_app\imp_calc\routes.py:588} INFO - YUSHARTH
+[17:24:12] {D:\projects\impurity_calculator_app\imp_calc\routes.py:589} INFO - Used Lcysteine
+[17:27:16] {D:\projects\impurity_calculator_app\imp_calc\routes.py:588} INFO - YUSHARTH
+[17:27:16] {D:\projects\impurity_calculator_app\imp_calc\routes.py:589} INFO - Used Lcysteine
+[17:27:17] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[17:27:17] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-2
+[17:27:18] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-3
+[17:27:19] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[17:27:20] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[17:27:23] {D:\projects\impurity_calculator_app\imp_calc\routes.py:465} INFO - YUSHARTH
+[17:27:23] {D:\projects\impurity_calculator_app\imp_calc\routes.py:466} INFO - Used Impvsimp
+[17:27:55] {D:\projects\impurity_calculator_app\imp_calc\routes.py:424} INFO - YUSHARTH
+[17:27:55] {D:\projects\impurity_calculator_app\imp_calc\routes.py:425} INFO - Used Areanorm
+[17:33:23] {D:\projects\impurity_calculator_app\imp_calc\routes.py:424} INFO - YUSHARTH
+[17:33:23] {D:\projects\impurity_calculator_app\imp_calc\routes.py:425} INFO - Used Areanorm
+[17:33:25] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[17:33:26] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-2
+[17:33:28] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[17:33:29] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-2
+[17:33:51] {D:\projects\impurity_calculator_app\imp_calc\routes.py:424} INFO - YUSHARTH
+[17:33:51] {D:\projects\impurity_calculator_app\imp_calc\routes.py:425} INFO - Used Areanorm
+[17:35:39] {D:\projects\impurity_calculator_app\imp_calc\routes.py:424} INFO - YUSHARTH
+[17:35:39] {D:\projects\impurity_calculator_app\imp_calc\routes.py:425} INFO - Used Areanorm
+[17:35:41] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[17:35:42] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-2
+[17:35:43] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[17:35:45] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[17:35:47] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-2
+[17:35:48] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[17:35:50] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[17:35:51] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-2
+[17:35:52] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[17:35:55] {D:\projects\impurity_calculator_app\imp_calc\routes.py:465} INFO - YUSHARTH
+[17:35:55] {D:\projects\impurity_calculator_app\imp_calc\routes.py:466} INFO - Used Impvsimp
+[17:37:16] {D:\projects\impurity_calculator_app\imp_calc\routes.py:465} INFO - YUSHARTH
+[17:37:16] {D:\projects\impurity_calculator_app\imp_calc\routes.py:466} INFO - Used Impvsimp
+[17:38:36] {D:\projects\impurity_calculator_app\imp_calc\routes.py:465} INFO - YUSHARTH
+[17:38:36] {D:\projects\impurity_calculator_app\imp_calc\routes.py:466} INFO - Used Impvsimp
+[17:38:39] {D:\projects\impurity_calculator_app\imp_calc\routes.py:465} INFO - YUSHARTH
+[17:38:39] {D:\projects\impurity_calculator_app\imp_calc\routes.py:466} INFO - Used Impvsimp
+[17:39:37] {D:\projects\impurity_calculator_app\imp_calc\routes.py:465} INFO - YUSHARTH
+[17:39:37] {D:\projects\impurity_calculator_app\imp_calc\routes.py:466} INFO - Used Impvsimp
+[17:40:04] {D:\projects\impurity_calculator_app\imp_calc\routes.py:465} INFO - YUSHARTH
+[17:40:04] {D:\projects\impurity_calculator_app\imp_calc\routes.py:466} INFO - Used Impvsimp
+[17:40:40] {D:\projects\impurity_calculator_app\imp_calc\routes.py:465} INFO - YUSHARTH
+[17:40:40] {D:\projects\impurity_calculator_app\imp_calc\routes.py:466} INFO - Used Impvsimp
+[17:41:19] {D:\projects\impurity_calculator_app\imp_calc\routes.py:465} INFO - YUSHARTH
+[17:41:19] {D:\projects\impurity_calculator_app\imp_calc\routes.py:466} INFO - Used Impvsimp
+[17:42:53] {D:\projects\impurity_calculator_app\imp_calc\routes.py:175} INFO - YUSHARTH
+[17:42:53] {D:\projects\impurity_calculator_app\imp_calc\routes.py:176} INFO - is logged in
+[17:43:00] {D:\projects\impurity_calculator_app\imp_calc\routes.py:465} INFO - YUSHARTH
+[17:43:00] {D:\projects\impurity_calculator_app\imp_calc\routes.py:466} INFO - Used Impvsimp
+[17:43:26] {D:\projects\impurity_calculator_app\imp_calc\routes.py:465} INFO - YUSHARTH
+[17:43:26] {D:\projects\impurity_calculator_app\imp_calc\routes.py:466} INFO - Used Impvsimp
+[17:47:30] {D:\projects\impurity_calculator_app\imp_calc\routes.py:465} INFO - YUSHARTH
+[17:47:30] {D:\projects\impurity_calculator_app\imp_calc\routes.py:466} INFO - Used Impvsimp
+[17:47:33] {D:\projects\impurity_calculator_app\imp_calc\routes.py:465} INFO - YUSHARTH
+[17:47:33] {D:\projects\impurity_calculator_app\imp_calc\routes.py:466} INFO - Used Impvsimp
+[17:47:48] {D:\projects\impurity_calculator_app\imp_calc\routes.py:465} INFO - YUSHARTH
+[17:47:48] {D:\projects\impurity_calculator_app\imp_calc\routes.py:466} INFO - Used Impvsimp
+[17:47:51] {D:\projects\impurity_calculator_app\imp_calc\routes.py:465} INFO - YUSHARTH
+[17:47:51] {D:\projects\impurity_calculator_app\imp_calc\routes.py:466} INFO - Used Impvsimp
+[17:52:54] {D:\projects\impurity_calculator_app\imp_calc\routes.py:465} INFO - YUSHARTH
+[17:52:54] {D:\projects\impurity_calculator_app\imp_calc\routes.py:466} INFO - Used Impvsimp
+[17:52:56] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[17:52:57] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[17:52:58] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[17:52:59] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[17:53:01] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[17:53:02] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[17:53:03] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[17:53:04] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-2
+[17:53:05] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[17:53:05] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-2
+[17:54:09] {D:\projects\impurity_calculator_app\imp_calc\routes.py:465} INFO - YUSHARTH
+[17:54:09] {D:\projects\impurity_calculator_app\imp_calc\routes.py:466} INFO - Used Impvsimp
+[17:59:18] {D:\projects\impurity_calculator_app\imp_calc\routes.py:465} INFO - YUSHARTH
+[17:59:18] {D:\projects\impurity_calculator_app\imp_calc\routes.py:466} INFO - Used Impvsimp
+[17:59:20] {D:\projects\impurity_calculator_app\imp_calc\routes.py:465} INFO - YUSHARTH
+[17:59:20] {D:\projects\impurity_calculator_app\imp_calc\routes.py:466} INFO - Used Impvsimp
+[17:59:48] {D:\projects\impurity_calculator_app\imp_calc\routes.py:465} INFO - YUSHARTH
+[17:59:48] {D:\projects\impurity_calculator_app\imp_calc\routes.py:466} INFO - Used Impvsimp
+[17:59:50] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[17:59:51] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[17:59:52] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[17:59:53] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[17:59:54] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[17:59:55] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[18:02:06] {D:\projects\impurity_calculator_app\imp_calc\routes.py:465} INFO - YUSHARTH
+[18:02:06] {D:\projects\impurity_calculator_app\imp_calc\routes.py:466} INFO - Used Impvsimp
+[18:08:28] {D:\projects\impurity_calculator_app\imp_calc\routes.py:465} INFO - YUSHARTH
+[18:08:28] {D:\projects\impurity_calculator_app\imp_calc\routes.py:466} INFO - Used Impvsimp
+[18:08:30] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[18:08:31] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[18:08:32] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[18:08:33] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[18:08:34] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[18:08:35] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[18:08:36] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[18:08:37] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-2
+[18:08:38] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[18:08:38] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-2
+[18:11:49] {D:\projects\impurity_calculator_app\imp_calc\routes.py:465} INFO - YUSHARTH
+[18:11:49] {D:\projects\impurity_calculator_app\imp_calc\routes.py:466} INFO - Used Impvsimp
+[18:11:51] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[18:11:52] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[18:11:53] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[18:11:54] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[18:11:55] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[18:11:56] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[18:11:57] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[18:11:58] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-2
+[18:11:59] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[18:11:59] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-2
+[18:21:54] {D:\projects\impurity_calculator_app\imp_calc\routes.py:175} INFO - YUSHARTH
+[18:21:54] {D:\projects\impurity_calculator_app\imp_calc\routes.py:176} INFO - is logged in
+[18:22:05] {D:\projects\impurity_calculator_app\imp_calc\routes.py:465} INFO - YUSHARTH
+[18:22:05] {D:\projects\impurity_calculator_app\imp_calc\routes.py:466} INFO - Used Impvsimp
+[18:22:48] {D:\projects\impurity_calculator_app\imp_calc\routes.py:465} INFO - YUSHARTH
+[18:22:48] {D:\projects\impurity_calculator_app\imp_calc\routes.py:466} INFO - Used Impvsimp
+[18:22:50] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[18:22:51] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[18:22:52] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[18:22:53] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[18:22:54] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[18:22:55] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[18:22:56] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[18:22:57] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-2
+[18:22:58] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-1
+[18:22:59] {D:\projects\impurity_calculator_app\env\lib\site-packages\camelot\parsers\lattice.py:407} INFO - Processing page-2
+[12:14:50] {/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py:175} INFO - YUSHARTH
+[12:14:50] {/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py:176} INFO - is logged in
+[12:14:57] {/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py:313} INFO - YUSHARTH
+[12:14:57] {/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py:314} INFO - logged out successfully
+[12:29:07] {/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py:175} INFO - YUSHARTH
+[12:29:07] {/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py:176} INFO - is logged in
+[12:29:12] {/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py:313} INFO - YUSHARTH
+[12:29:12] {/mnt/d/projects/impurity_calculator_app/imp_calc/routes.py:314} INFO - logged out successfully

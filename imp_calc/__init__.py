@@ -53,7 +53,7 @@ app.config.update(dict(
     MAIL_USE_TLS = True,
     MAIL_USE_SSL = False,
     MAIL_USERNAME = 'yusharth@gmail.com',
-    MAIL_PASSWORD = 'Yush@1999',
+    MAIL_PASSWORD = 'nobpxtjovahyvyfm',
 ))
 
 

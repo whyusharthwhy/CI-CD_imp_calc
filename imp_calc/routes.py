@@ -469,7 +469,7 @@ def Impvsimp():
 
     if request.method == "POST":
         UPLOAD_FOLDER = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-         'files', 'Imp-vs-imp')
+         'files', 'Imp-vs-Imp')
         inputs = {
          'Ketorolac Tromethamine':{
          'Ketorolac Tromethamine': [],
@@ -502,7 +502,7 @@ def Impvsimp():
         input_list_fields =["software","doa","mehtodofreference"]
         common_input_list =[]
         for field in input_list_fields:
-            common_input_list.append(request.form[field])
+            common_input_list.append(request.form[field])       
         if(compound == 'Ketorolac'):
             compound = 'Ketorolac Tromethamine'
             inputs = inputs[compound]
@@ -524,9 +524,21 @@ def Impvsimp():
         chrom_inputs = glob.glob(os.path.join(UPLOAD_FOLDER,'*.pdf'))
         area_inputs = glob.glob(os.path.join(UPLOAD_FOLDER, '*standard*.pdf'))
         chrom_inputs = [chrom_input for chrom_input in chrom_inputs if chrom_input not in area_inputs]
-        ivi_output = imp_vs_imp.initiate_report_creation(chrom_inputs, area_inputs, inputs)
 
-        ivi_output.save(os.path.join(UPLOAD_FOLDER, "{}-imp-vs-imp.xls".format(compound)))
+
+
+
+        # assay_output = assay.initiate_report_creation(chrom_inputs, area_input, input_list, rt_range)
+        # assay_output.save(os.path.join(UPLOAD_FOLDER, "{}-Assay.xls".format(compound)))
+
+        
+
+        ivi_output = imp_vs_imp.initiate_report_creation(chrom_inputs, area_inputs, inputs)
+        ivi_output.save(os.path.join(os.path.join(os.path.dirname(os.path.abspath(__file__)),'imp_calc','files', 'Imp-vs-Imp'),
+         "{}-imp-vs-imp.xls".format(compound)))
+
+
+
         return render_template('imp-vs-imp.html', output_folder = UPLOAD_FOLDER, output_file =  "{}-imp-vs-imp.xls".format(compound))
 
 @app.route('/Assay',methods=['GET', 'POST'])

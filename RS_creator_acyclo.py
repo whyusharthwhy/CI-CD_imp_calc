@@ -341,9 +341,9 @@ def initiate_report_creation(chrom_inputs, area_input, area_input_imp_b, input_l
         imp_b_sheet.password = "Welcomeanthea*08"
         fill_rs_sheet(imp_b_sheet, df_area_table_imp_b, df_impurity_b, sample_input_list, input_list_imp_b)
         if(b_no != '' and condition != ''):
-            worksheets[index].name = b_no +"_" + condition
+            worksheets_imp_b[index].name = b_no +"_" + condition
         else:
-            worksheets[index].name = worksheet_name
+            worksheets_imp_b[index].name = worksheet_name
 
     rs_template._Workbook__worksheets = [worksheet for worksheet in rs_template._Workbook__worksheets if "Sheet" not in worksheet.name ]
     rs_template.active_sheet = 0
