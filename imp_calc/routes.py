@@ -303,7 +303,11 @@ def change_password():
             db.session.commit()
             logger.info(current_user.username)
             logger.info("changed password")
+            logout_user()
             return redirect(url_for('index'))
+    if form.errors !={}: #if there are no errors from the validators
+        for err_msg in form.errors.values():
+            flash(f'There was an error while creating user:{err_msg}',category='danger')
             #login_user(attempted_user)
     return render_template('change_password.html',form = form)        
 
