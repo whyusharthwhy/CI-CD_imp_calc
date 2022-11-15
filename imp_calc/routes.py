@@ -4,6 +4,7 @@ import json
 import uuid
 import base64
 import glob
+import pandas as pd
 
 import logging
 from logging.config import dictConfig
@@ -12,7 +13,7 @@ from datetime import datetime, timedelta
 from pathlib import Path
 
 
-from flask import Flask, session, g,     redirect, url_for, render_template, request, send_file, send_from_directory, request, flash 
+from flask import Flask, session, g, redirect, url_for, render_template, request, send_file, send_from_directory, request, flash 
 from flask_login import login_user, logout_user, login_required, current_user
 from werkzeug.utils import secure_filename
 from flask.templating import render_template
@@ -31,98 +32,11 @@ import area_norm
 import imp_vs_imp
 import assay
 import L_cysteine
-# from imp_calc import app
-# from flask import Flask, render_template, url_for,redirect, flash, request
-# from imp_calc.forms import RegisterForm, LoginForm
-# from imp_calc.models import User
-# from imp_calc import db
-# from flask_login import login_user, logout_user, login_required
-# import os
-
-# DEBUG: Detailed information, typically of interest only when diagnosing problems.
-
-# info: Confirmation that things are working as expected.
-
-# WARNING: An indication that something unexpected happened, or indicative of some problem in the near future (e.g. ‘disk space low’). The software is still working as expected.
-
-# ERROR: Due to a more serious problem, the software has not been able to perform some function.
-
-# CRITICAL: A serious error, indicating that the program itself may be unable to continue running.
-
-
-#log = logging.getLogger('werkzeug') #These two lines is to keep aside the unwanted get and post request manipulations that comes
-#log.disabled=True # This one works with the above live to prevent get/Post request to coming in the logs 
-#logging.basicConfig(filename='example.log', level=logging.info,format='%(asctime)s:%(levelname)s:%(message)s')  
-# logging.basicConfig(filename='log/flask_server.log' ,level=logging.info)
-# formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
-# handler = logging.FileHandler(filename='log/flask_server.log')
-# handler.setFormatter(formatter)
-# logger = logging.getLogger()
-# logger.setLevel(logging.info)
-# logger.addHandler(handler)
-
-# file_handler = FileHandler('errorlog.txt')
-# file_handler.setLevel(info)
-# logger = logging.getLogger()
-# app.logger.addHandler(file_handler)   
-
-## Approach given by stack overflow Question## i.e. dict config approach
-'''
-dictConfig({
-    'version': 1,
-    'loggers': {
-        # root logger
-        '': {
-            'level': 'INFO',
-            'handlers': ['console_handler'],
-        },
-        'imp_calc': {
-            'level': 'INFO',
-            'handlers': ['console_handler', 'file_handler'],
-            'propagate': False,
-        },
-        # this logger will write logs into file
-        'debug': {
-            'level': 'INFO',
-            'handlers': ['console_handler', 'file_handler'],
-            'propagate': False,
-        },
-    },
-    'handlers': {
-        'console_handler': {
-            'level': 'INFO',
-            'class': 'logging.StreamHandler',
-            'stream': 'ext://sys.stdout',
-            'formatter': 'simple'
-        },
-        'file_handler': {
-            'level': 'INFO',
-            'class': 'logging.handlers.RotatingFileHandler',
-            'filename': 'debug.log',
-            'maxBytes': 1024,
-            'backupCount': 3,
-            'formatter': 'simple',
-        }
-    },
-    'formatters': {
-        'simple': {
-            'format': '%(pathname)s:%(lineno)d %(name)s %(asctime)s - %(levelname)s - %(message)s',
-        },
-    },
-})
-'''
 
 #hiding werkzeug and pdfminer logs from the console
 werk_log = logging.getLogger('werkzeug')
 werk_log.setLevel(logging.ERROR)
 logging.getLogger("pdfminer").setLevel(logging.WARNING)
-
-# logging.basicConfig(
-#      filename='log_file_name.log',
-#      level=logging.INFO, 
-#      format= '[%(asctime)s] {%(pathname)s:%(lineno)d} %(levelname)s - %(message)s',
-#      datefmt='%H:%M:%S'
-#  )
 
 console = logging.StreamHandler()
 console.setLevel(logging.INFO)
@@ -134,49 +48,27 @@ logging.getLogger('imp_calc').addHandler(console)
 
 logger = logging.getLogger(__name__)
 
-
-# def expiry_check(checking_password_expiration):
-#     def wrapper_func():
-#         def checking_password_expiration():
-#             time_between_insertion = datetime.now() - attempted_user.created_at
-#             if time_between_insertion.days>30:
-#                 flash('Sorry for the inconvenience but it seeems that your password expired,please create a new password using the expired ones')
-#                 return redirect(url_for('change_password'))
-#             else:
-#                 if time_between_insertion.days<5:
-#                     flash('Your password is about to expire within few days please change it.')
-#     return wrapper_func
-
+session_logs = []                                  #Initiating the log creation
 @app.route('/', methods = ['GET','POST'])
 #@expiry_check
 def login():
+    global session_logs
     if current_user.is_authenticated:
         return redirect(url_for('index'))
     form = LoginForm()
     if form.validate_on_submit():
         attempted_user = User.query.filter_by(username=form.username.data).first()
-        #time_between_insertion = datetime.now() - attempted_user.created_at
-        #print("This is the remaining time",time_between_insertion)
-        #remaining_days = 30 - time_between_insertion.days
-        #print("This is the remaining days",remaining_days)
-        # if time_between_insertion.days>30:
-        #     flash('Sorry for the inconvenience but it seeems that your password expired,please create a new password using the expired ones')
-        #     return redirect(url_for('change_password'))
-        # elif time_between_insertion.days>25:
-        #         flash('Your password is about to expire within few days please change it.')
-        # else:
-        #     pass
         if attempted_user and attempted_user.check_password_correction(
                 attempted_password=form.password.data
         ):
             login_user(attempted_user)
             flash(f'Success! You are logged in as: {attempted_user.username}', category='success')
-            print(attempted_user.created_at)
-            app.logger.info(attempted_user.username)
-            app.logger.info('is logged in')
+            dt_string = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+            userId = attempted_user.id
+            activity = "logged in" 
+            session_logs.append([dt_string, userId, activity])
+            print(session_logs)
             return redirect(url_for('index'))
-            
-            logger.info(attempted_user.username," logged in successfully")
             session.permanent= True
         else:
             flash('Username and password are not match! Please try again', category='danger')
@@ -251,40 +143,6 @@ def reset_password(token):
         return redirect(url_for('login'))
     return render_template('reset_password.html', form=form)
 
-# @app.route('/login', methods=['GET', 'POST'])
-# def login_page():
-#     form = LoginForm()
-#     if form.validate_on_submit():
-#         attempted_user = User.query.filter_by(username=form.username.data).first()
-#         if attempted_user and attempted_user.check_password_correction(
-#                 attempted_password=form.password.data
-#         ):
-#             login_user(attempted_user)
-#             flash(f'Success! You are logged in as: {attempted_user.username}', category='success')
-#             return redirect(url_for('home'))
-            
-#             logger.info(attempted_user.username," logged in successfully")
-#             session.permanent= True
-#         else:
-#             flash('Username and password are not match! Please try again', category='danger')
-
-#     return render_template('login.html', form=form)
-
-# @app.route('/login', methods =['GET','POST'])
-# def login_page():
-#     form = LoginForm()
-#     if form.validate_on_submit():
-#         attempted_user = User.query.filter_by(username=form.username.data).first()
-#         if attempted_user and attempted_user.check_password_correction(
-#             attempted_password = form.password.data
-#         ):
-#             login_user(attempted_user)
-#             flash('Success! You are logged in as: {attempted_user.username}', category='success')
-#             return redirect(url_for('home'))
-#         else:
-#             flash('Username and password does not match please try again', category='danger')
-
-#     return render_template('login.html', form=form)
 @app.route('/change_password',methods=['GET','POST'])
 @login_required
 def change_password():
@@ -311,11 +169,41 @@ def change_password():
             #login_user(attempted_user)
     return render_template('change_password.html',form = form)        
 
+import sqlite3
+conn = sqlite3.connect('instance/site.db',check_same_thread=False)
+
+
 @app.route('/logout',methods=['GET','POST'])
 @login_required    
 def logout_page():  
-    logger.info(current_user.username)
-    logger.info("logged out successfully")
+    global session_logs
+    dt_string = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+    userId = current_user.id
+    activity = "logged out" 
+    session_logs.append([dt_string, userId, activity])
+    print(session_logs)
+    # time_stamp = datetime.now()
+    # user = current_user.username
+    # activity = "is logged out"
+    # session_logs.append([time_stamp, user, activity])
+    # logger.info(current_user.username)
+    # logger.info("logged out successfully")
+    df_session_logs = pd.DataFrame(session_logs, columns = ["Time", "User", "Activity"])
+    df = pd.read_csv(os.path.join('imp_calc',"Session-logs.csv"))
+    print(df)
+    if df.empty:
+        df_session_logs.to_csv(os.path.join('imp_calc',"Session-logs.csv"), index =False)
+        df_session_logs.to_sql('logs',conn, if_exists='append', index =False)
+    else:
+        df_session_logs.append(df)
+        df_session_logs.to_csv(os.path.join('imp_calc',"Session-logs.csv"), index =False)
+        df_session_logs.to_sql('logs',conn, if_exists='append', index =False)
+        # for i in session_logs:
+        #     print(i)
+    # if df_session_logs.empty:
+    #     df_session_logs.to_csv(os.path.join('imp_calc',"Session-logs.csv"), index =False)
+    # else:
+    #     pass
     logout_user()
     #flash("You Have been logged out!", category= 'info')
     return redirect(url_for('login')) 
@@ -323,8 +211,12 @@ def logout_page():
 
 @app.route('/file_download/<path:output_folder>/<output_file>')
 def file_download(output_folder, output_file):
-    logger.info(current_user.username)
-    logger.info("did a file file_download")
+    dt_string = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+    userId = current_user.id
+    # logger.info(current_user.username)
+    # logger.info("did a file file_download")
+    activity = "File download" 
+    session_logs.append([dt_string, userId, activity])
     file_location = os.path.join('/', output_folder, output_file)
     print(file_location)
     return send_file(file_location, as_attachment = True)
@@ -333,11 +225,12 @@ def file_download(output_folder, output_file):
 @app.route('/RScalc',methods=['GET', 'POST'])
 @login_required
 def RScalc():
-    logging.getLogger('imp_calc').info(current_user.username)
-    logging.getLogger('imp_calc').info("Open RScalc")
-    #logging.getLogger().info('log from root logger')
-    #logging.getLogger('imp_calc').info('log from imp_calc logger')
-    #app.logger.info('log from app logger')
+    global session_logs
+    dt_string = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+    userId = current_user.id
+    activity = "opened RS Calculation" 
+    session_logs.append([dt_string, userId, activity])
+    print(session_logs)    
     if request.method == "GET":
         return render_template('rsscreen.html')
     if request.method == "POST":
@@ -356,9 +249,6 @@ def RScalc():
             upload_files = request.files.getlist('files')
         for file in upload_files:
             original_filename = file.filename
-            # extension = original_filename.rsplit('.', 1)[1].lower()
-            # filename = str(uuid.uuid1()) + '.' + extension
-            # print("#######y###########",UPLOAD_FOLDER)
             filename = original_filename
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             file_list = os.path.join(UPLOAD_FOLDER, 'files.json')
@@ -376,16 +266,25 @@ def RScalc():
             return render_template('rsscreen.html')
 
         rs_output = RS_creator.initiate_report_creation(chrom_inputs, area_input, input_list, process_impurities)
-        logging.getLogger('imp_calc').info(current_user.username)
-        logging.getLogger('imp_calc').info("Used RS Calculation")
+        dt_string = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+        user = current_user.id
+        activity = "used RS Calculation" 
+        session_logs.append([dt_string, userId, activity])
+        print(session_logs)
         rs_output.save(os.path.join(UPLOAD_FOLDER, "{}-RS.xls".format(compound)))
         return render_template('rsscreen.html', output_folder= UPLOAD_FOLDER, output_file =  "{}-RS.xls".format(compound))
 
 @app.route('/RSacyclovir',methods=['GET', 'POST'])
 @login_required
 def RSacyclovir():
-    logging.getLogger('imp_calc').info(current_user.username)
-    logging.getLogger('imp_calc').info("Used RSacyclovir")
+    # logging.getLogger('imp_calc').info(current_user.username)
+    # logging.getLogger('imp_calc').info("Used RSacyclovir")
+    global session_logs
+    dt_string = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+    userId = current_user.id
+    activity = "opened RS Acyclovir" 
+    session_logs.append([dt_string, userId, activity])
+    print(session_logs)    
     if request.method == "GET":
         return render_template('rsacyclo.html')
 
@@ -401,8 +300,6 @@ def RSacyclovir():
             upload_files = request.files.getlist('files')
         for file in upload_files:
             original_filename = file.filename
-            # extension = original_filename.rsplit('.', 1)[1].lower()
-            # filename = str(uuid.uuid1()) + '.' + extension
             filename = original_filename
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             file_list = os.path.join(UPLOAD_FOLDER, 'files.json')
@@ -418,6 +315,9 @@ def RSacyclovir():
         chrom_inputs.remove(area_input_imp_b)
 
         rs_output, imp_b_rs_output = RS_creator_acyclo.initiate_report_creation(chrom_inputs, area_input, area_input_imp_b, input_list)
+        #init...rc...every used rs 
+        activity = "Used RS Acyclovir" 
+        session_logs.append([dt_string, user, activity])
         rs_output.save(os.path.join(UPLOAD_FOLDER, "Acyclovir-RS.xls"))
         imp_b_rs_output.save(os.path.join(UPLOAD_FOLDER, "Imp-B-RS.xls"))
         return render_template('rsacyclo.html', output_folder= UPLOAD_FOLDER, output_file1 =  "Acyclovir-RS.xls", output_file2 = "Imp-B-RS.xls")
@@ -425,8 +325,15 @@ def RSacyclovir():
 @app.route('/Areanorm',methods=['GET', 'POST'])
 @login_required
 def Areanorm():
-    logging.getLogger('imp_calc').info(current_user.username)
-    logging.getLogger('imp_calc').info("Used Areanorm")
+    global session_logs
+    dt_string = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+    userId = current_user.id
+    activity = "opened Area Normalization" 
+    session_logs.append([dt_string, userId, activity])
+    print(session_logs)    
+
+    # logging.getLogger('imp_calc').info(current_user.username)
+    # logging.getLogger('imp_calc').info("Used Areanorm")
     if request.method == "GET":
         return render_template('area-normalization.html')
     if request.method == "POST":
@@ -459,6 +366,8 @@ def Areanorm():
 
         compound = input_list[1]
         area_norm_output = area_norm.initiate_report_creation(chrom_inputs, input_list)
+        activity = "Used Area Normalization" 
+        session_logs.append([dt_string, userId, activity])
         area_norm_output.save(os.path.join(UPLOAD_FOLDER, "{}-area-norm.xls".format(compound)))
 
         return render_template('area-normalization.html', output_folder = UPLOAD_FOLDER, output_file =  "{}-area-norm.xls".format(compound))
@@ -466,8 +375,15 @@ def Areanorm():
 @app.route('/Impvsimp',methods=['GET', 'POST'])
 @login_required
 def Impvsimp():
-    logging.getLogger('imp_calc').info(current_user.username)
-    logging.getLogger('imp_calc').info("Used Impvsimp")
+    global session_logs
+    dt_string = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+    userId = current_user.id
+    activity = "opened Impurity vs Impurity" 
+    session_logs.append([dt_string, userId, activity])
+    print(session_logs)    
+
+    # logging.getLogger('imp_calc').info(current_user.username)
+    # logging.getLogger('imp_calc').info("Used Impvsimp")
     if request.method == "GET":
         return render_template('imp-vs-imp.html')
 
@@ -501,7 +417,6 @@ def Impvsimp():
             filename = original_filename
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             file_list = os.path.join(UPLOAD_FOLDER, 'files.json')
-
         compound = request.form["compound"]
         input_list_fields =["software","doa","mehtodofreference"]
         common_input_list =[]
@@ -528,16 +443,9 @@ def Impvsimp():
         chrom_inputs = glob.glob(os.path.join(UPLOAD_FOLDER,'*.pdf'))
         area_inputs = glob.glob(os.path.join(UPLOAD_FOLDER, '*standard*.pdf'))
         chrom_inputs = [chrom_input for chrom_input in chrom_inputs if chrom_input not in area_inputs]
-
-
-
-
-        # assay_output = assay.initiate_report_creation(chrom_inputs, area_input, input_list, rt_range)
-        # assay_output.save(os.path.join(UPLOAD_FOLDER, "{}-Assay.xls".format(compound)))
-
-        
-
         ivi_output = imp_vs_imp.initiate_report_creation(chrom_inputs, area_inputs, inputs)
+        activity = "Used Impurity vs Impurity" 
+        session_logs.append([dt_string, user, activity])
         ivi_output.save(os.path.join(os.path.join(os.path.dirname(os.path.abspath(__file__)),'files', 'Imp-vs-Imp'),
          "{}-imp-vs-imp.xls".format(compound)))
 
@@ -548,8 +456,15 @@ def Impvsimp():
 @app.route('/Assay',methods=['GET', 'POST'])
 @login_required
 def Assay():
-    logging.getLogger('imp_calc').info(current_user.username)
-    logging.getLogger('imp_calc').info("Used Assay")
+    global session_logs
+    dt_string = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+    userId = current_user.id
+    activity = "opened Assay" 
+    session_logs.append([dt_string, userId, activity])
+    print(session_logs)    
+
+    # logging.getLogger('imp_calc').info(current_user.username)
+    # logging.getLogger('imp_calc').info("Used Assay")
     if request.method == "GET":
         return render_template('assay.html')
 
@@ -595,14 +510,26 @@ def Assay():
         if(compound.lower() == 'benzoic acid'):
             rt_range = [8,13.5]
         assay_output = assay.initiate_report_creation(chrom_inputs, area_input, input_list, rt_range)
+        dt_string = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+        userId = current_user.id
+        activity = "Used Assay" 
+        session_logs.append([dt_string, userId, activity])
+        print(session_logs)    
         assay_output.save(os.path.join(UPLOAD_FOLDER, "{}-Assay.xls".format(compound)))
         return render_template('assay.html', output_folder= UPLOAD_FOLDER, output_file =  "{}-Assay.xls".format(compound))
 
 @app.route('/Lcysteine',methods=['GET', 'POST'])
 @login_required
 def Lcysteine():
-    logging.getLogger('imp_calc').info(current_user.username)
-    logging.getLogger('imp_calc').info("Used Lcysteine")
+    global session_logs
+    dt_string = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+    userId = current_user.id
+    activity = "opened Lcysteine" 
+    session_logs.append([dt_string, userId, activity])
+    print(session_logs)    
+
+    # logging.getLogger('imp_calc').info(current_user.username)
+    # logging.getLogger('imp_calc').info("Used Lcysteine")
     if request.method == "GET":
         return render_template('lcysteine.html')
 
@@ -641,5 +568,11 @@ def Lcysteine():
             return render_template('lcysteine.html')
 
         l_cysteine_output = L_cysteine.initiate_report_creation(chrom_inputs, area_input, input_list)
+        dt_string = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+        userId = current_user.id
+        activity = "Used Assay" 
+        session_logs.append([dt_string, userId, activity])
+        print(session_logs)    
+
         l_cysteine_output.save(os.path.join(UPLOAD_FOLDER, "{}-Assay.xls".format(compound)))
         return render_template('lcysteine.html', output_folder= UPLOAD_FOLDER, output_file =  "{}-Assay.xls".format(compound))

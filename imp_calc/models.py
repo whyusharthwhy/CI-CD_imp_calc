@@ -43,7 +43,10 @@ class User(db.Model, UserMixin):
         except:
             return
         return User.query.get(id)
-
+# class Logs(db.Model):
+#     Time = db.Column(db.String(length=50),nullable = False)
+#     username = db.Column(db.String(length=50),nullable = False)
+#     activity = db.Column(db.String(length=50),nullable = False)
 
 #this table is obsolete right now i.e. not used anywhere can be deleted even but left    |
 #aside because more enhancements and developments work need to be done around            |

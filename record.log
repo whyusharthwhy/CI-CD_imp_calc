@@ -1560,3 +1560,83 @@ ConnectionRefusedError: [Errno 111] Connection refused
 [17:59:22] {D:\projects\impurity_calculator_app\imp_calc\routes.py:176} INFO - is logged in
 [18:05:24] {D:\projects\impurity_calculator_app\imp_calc\routes.py:317} INFO - YUSHARTH
 [18:05:24] {D:\projects\impurity_calculator_app\imp_calc\routes.py:318} INFO - logged out successfully
+[10:00:43] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:175} INFO - YUSHARTH
+[10:00:43] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:176} INFO - is logged in
+[10:01:30] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:304} INFO - YUSHARTH
+[10:01:30] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:305} INFO - changed password
+[10:01:44] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:175} INFO - YUSHARTH
+[10:01:44] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:176} INFO - is logged in
+[10:01:48] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:336} INFO - YUSHARTH
+[10:01:48] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:337} INFO - Open RScalc
+[10:01:50] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:387} INFO - YUSHARTH
+[10:01:50] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:388} INFO - Used RSacyclovir
+[10:01:51] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:604} INFO - YUSHARTH
+[10:01:51] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:605} INFO - Used Lcysteine
+[10:01:51] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:469} INFO - YUSHARTH
+[10:01:51] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:470} INFO - Used Impvsimp
+[10:01:52] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:428} INFO - YUSHARTH
+[10:01:52] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:429} INFO - Used Areanorm
+[10:01:52] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:469} INFO - YUSHARTH
+[10:01:52] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:470} INFO - Used Impvsimp
+[10:01:53] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:604} INFO - YUSHARTH
+[10:01:53] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:605} INFO - Used Lcysteine
+[10:01:54] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:551} INFO - YUSHARTH
+[10:01:54] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:552} INFO - Used Assay
+[10:01:55] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:387} INFO - YUSHARTH
+[10:01:55] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:388} INFO - Used RSacyclovir
+[10:01:55] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:336} INFO - YUSHARTH
+[10:01:55] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:337} INFO - Open RScalc
+[10:05:16] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:317} INFO - YUSHARTH
+[10:05:16] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:318} INFO - logged out successfully
+[10:06:27] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:175} INFO - YUSHARTH is logged in
+[10:11:07] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:318} INFO - YUSHARTH
+[10:11:07] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:319} INFO - logged out successfully
+[10:11:10] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:176} INFO - YUSHARTH is logged in
+[11:40:24] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:176} INFO - YUSHARTH is logged in
+[11:40:43] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:319} INFO - YUSHARTH
+[11:40:43] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:320} INFO - logged out successfully
+[11:42:01] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:176} INFO - YUSHARTH is logged in
+[11:42:31] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:319} INFO - YUSHARTH
+[11:42:31] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:320} INFO - logged out successfully
+[11:42:34] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:176} INFO - YUSHARTH is logged in
+[11:42:58] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:176} INFO - YUSHARTH is logged in
+[11:43:51] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:176} INFO - YUSHARTH is logged in
+[11:46:21] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:319} INFO - YUSHARTH
+[11:46:21] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:320} INFO - logged out successfully
+[11:46:24] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:176} INFO - YUSHARTH is logged in
+[11:47:29] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:319} INFO - YUSHARTH
+[11:47:29] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:320} INFO - logged out successfully
+[11:47:32] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:176} INFO - YUSHARTH is logged in
+[11:47:49] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:176} INFO - YUSHARTH is logged in
+[12:23:51] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:176} INFO - YUSHARTH is logged in
+[12:33:44] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:330} INFO - YUSHARTH
+[12:33:44] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:331} INFO - logged out successfully
+[12:36:33] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:331} INFO - YUSHARTH
+[12:36:33] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:332} INFO - logged out successfully
+[12:36:58] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:331} INFO - YUSHARTH
+[12:36:58] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:332} INFO - logged out successfully
+[12:54:30] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:332} INFO - YUSHARTH
+[12:54:30] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:333} INFO - logged out successfully
+[12:55:33] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:332} INFO - YUSHARTH
+[12:55:33] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:333} INFO - logged out successfully
+[13:04:41] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:333} INFO - YUSHARTH
+[13:04:41] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:334} INFO - logged out successfully
+[13:05:22] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:333} INFO - YUSHARTH
+[13:05:22] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:334} INFO - logged out successfully
+[13:05:58] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:333} INFO - YUSHARTH
+[13:05:58] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:334} INFO - logged out successfully
+[13:09:11] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:324} INFO - YUSHARTH
+[13:09:11] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:325} INFO - logged out successfully
+[13:11:39] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:350} INFO - YUSHARTH
+[13:11:39] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:351} INFO - Open RScalc
+[13:13:02] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:350} INFO - YUSHARTH
+[13:13:02] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:351} INFO - Open RScalc
+[15:07:22] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:258} INFO - YUSHARTH
+[15:07:22] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:259} INFO - Used RSacyclovir
+[16:27:36] {C:\Users\MR9065\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\flask_wtf\csrf.py:164} INFO - The CSRF tokens do not match.
+[17:17:44] {C:\Users\MR9065\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\flask_wtf\csrf.py:164} INFO - The CSRF tokens do not match.
+[18:11:45] {C:\Users\MR9065\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\flask_wtf\csrf.py:164} INFO - The CSRF tokens do not match.
+[16:33:41] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:162} INFO - YUSHARTH
+[16:33:41] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:163} INFO - changed password
+[16:35:55] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:162} INFO - YUSHARTH
+[16:35:55] {C:\Users\MR9065\Desktop\impurity_calculator_app2\imp_calc\routes.py:163} INFO - changed password
