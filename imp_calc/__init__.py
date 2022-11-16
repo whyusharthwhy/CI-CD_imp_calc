@@ -13,11 +13,11 @@ from datetime import timedelta
 
 
 
-logging.basicConfig(filename='record.log', level=logging.DEBUG, 
-	format= '[%(asctime)s] {%(pathname)s:%(lineno)d} %(levelname)s - %(message)s',
-      datefmt='%H:%M:%S')
-logger = logging.getLogger('imp_calc')
-logger.setLevel(logging.INFO)
+# logging.basicConfig(filename='record.log', level=logging.DEBUG, 
+# 	format= '[%(asctime)s] {%(pathname)s:%(lineno)d} %(levelname)s - %(message)s',
+#       datefmt='%H:%M:%S')
+# logger = logging.getLogger('imp_calc')
+# logger.setLevel(logging.INFO)
 
 app = Flask(__name__)
 app.debug = True
