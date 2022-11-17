@@ -13,7 +13,7 @@ from datetime import datetime, timedelta
 from pathlib import Path
 
 
-from flask import Flask, session, g, redirect, url_for, render_template, request, send_file, send_from_directory, request, flash 
+from flask import Flask, session, g, redirect, url_for, render_template, request, send_file, send_from_directory, request, flash
 from flask_login import login_user, logout_user, login_required, current_user
 from werkzeug.utils import secure_filename
 from flask.templating import render_template
@@ -49,7 +49,7 @@ import L_cysteine
 
 # logger = logging.getLogger(__name__)
 
-session_logs = []                                  #Initiating the log creation
+session_logs = []                               #Initiating the log creation
 @app.route('/', methods = ['GET','POST'])
 #@expiry_check
 def login():
@@ -67,7 +67,7 @@ def login():
             flash(f'Success! You are logged in as: {attempted_user.username}', category='success')
             dt_string = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
             userId = attempted_user.id
-            activity = "logged in" 
+            activity = "logged in"
             session_logs.append([dt_string, userId, activity])
             return redirect(url_for('index'))
             session.permanent= True
@@ -93,7 +93,7 @@ def index():
     else:
         return render_template('index.html')
 
-@app.route('/register',methods=['GET', 'POST']) 
+@app.route('/register',methods=['GET', 'POST'])
 def register_page():
     form = RegisterForm()
     if form.validate_on_submit():
@@ -123,7 +123,7 @@ def reset_password_request():
         user = User.query.filter_by(email_address=form.email.data).first()
         if user:
             send_password_reset_email(user)
-            
+
         flash('Check your email for the instructions to reset your password')
         return redirect(url_for('login'))
     return render_template('reset_password_request.html',
@@ -168,19 +168,19 @@ def change_password():
         for err_msg in form.errors.values():
             flash(f'There was an error while creating user:{err_msg}',category='danger')
             #login_user(attempted_user)
-    return render_template('change_password.html',form = form)        
+    return render_template('change_password.html',form = form)
 
 import sqlite3
 conn = sqlite3.connect('instance/site.db',check_same_thread=False)
 
 
 @app.route('/logout',methods=['GET','POST'])
-@login_required    
-def logout_page():  
+@login_required
+def logout_page():
     global session_logs
     dt_string = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
     userId = current_user.id
-    activity = "logged out" 
+    activity = "logged out"
     session_logs.append([dt_string, userId, activity])
     # time_stamp = datetime.now()
     # user = current_user.username
@@ -205,7 +205,7 @@ def logout_page():
     #     pass
     logout_user()
     #flash("You Have been logged out!", category= 'info')
-    return redirect(url_for('login')) 
+    return redirect(url_for('login'))
 
 
 @app.route('/file_download/<path:output_folder>/<output_file>')
@@ -214,7 +214,7 @@ def file_download(output_folder, output_file):
     userId = current_user.id
     # logger.info(current_user.username)
     # logger.info("did a file file_download")
-    activity = "File download" 
+    activity = "File download"
     session_logs.append([dt_string, userId, activity])
     file_location = os.path.join('/', output_folder, output_file)
     print(file_location)
@@ -227,10 +227,10 @@ def RScalc():
     global session_logs
     dt_string = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
     userId = current_user.id
-    activity = "opened RS Calculation" 
+    activity = "opened RS Calculation"
     if request.method == "GET":
+        session_logs.append([dt_string, userId, activity])
         return render_template('rsscreen.html')
-        session_logs.append([dt_string, userId, activity]) 
     if request.method == "POST":
         process_impurities = request.form.getlist('process_impurities[]')
         if(len(process_impurities) ==1 and process_impurities[0] == ''):
@@ -266,7 +266,7 @@ def RScalc():
         rs_output = RS_creator.initiate_report_creation(chrom_inputs, area_input, input_list, process_impurities)
         dt_string = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
         user = current_user.id
-        activity = "used RS Calculation" 
+        activity = "used RS Calculation"
         session_logs.append([dt_string, userId, activity])
         rs_output.save(os.path.join(UPLOAD_FOLDER, "{}-RS.xls".format(compound)))
         return render_template('rsscreen.html', output_folder= UPLOAD_FOLDER, output_file =  "{}-RS.xls".format(compound))
@@ -279,10 +279,10 @@ def RSacyclovir():
     global session_logs
     dt_string = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
     userId = current_user.id
-    activity = "opened RS Acyclovir" 
+    activity = "opened RS Acyclovir"
     if request.method == "GET":
-        return render_template('rsacyclo.html')
         session_logs.append([dt_string, userId, activity])
+        return render_template('rsacyclo.html')
     if request.method == "POST":
         UPLOAD_FOLDER = os.path.join(os.path.dirname(os.path.abspath(__file__)),
          'files', 'RS')
@@ -310,9 +310,9 @@ def RSacyclovir():
         chrom_inputs.remove(area_input_imp_b)
 
         rs_output, imp_b_rs_output = RS_creator_acyclo.initiate_report_creation(chrom_inputs, area_input, area_input_imp_b, input_list)
-        #init...rc...every used rs 
-        activity = "Used RS Acyclovir" 
-        session_logs.append([dt_string, user, activity])
+        #init...rc...every used rs
+        activity = "Used RS Acyclovir"
+        session_logs.append([dt_string, userId, activity])
         rs_output.save(os.path.join(UPLOAD_FOLDER, "Acyclovir-RS.xls"))
         imp_b_rs_output.save(os.path.join(UPLOAD_FOLDER, "Imp-B-RS.xls"))
         return render_template('rsacyclo.html', output_folder= UPLOAD_FOLDER, output_file1 =  "Acyclovir-RS.xls", output_file2 = "Imp-B-RS.xls")
@@ -323,12 +323,12 @@ def Areanorm():
     global session_logs
     dt_string = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
     userId = current_user.id
-    activity = "opened Area Normalization" 
+    activity = "opened Area Normalization"
     # logging.getLogger('imp_calc').info(current_user.username)
     # logging.getLogger('imp_calc').info("Used Areanorm")
     if request.method == "GET":
-        return render_template('area-normalization.html')
         session_logs.append([dt_string, userId, activity])
+        return render_template('area-normalization.html')
     if request.method == "POST":
         UPLOAD_FOLDER = os.path.join(os.path.dirname(os.path.abspath(__file__)),
          'files', 'Area-norm')
@@ -359,7 +359,7 @@ def Areanorm():
 
         compound = input_list[1]
         area_norm_output = area_norm.initiate_report_creation(chrom_inputs, input_list)
-        activity = "Used Area Normalization" 
+        activity = "Used Area Normalization"
         session_logs.append([dt_string, userId, activity])
         area_norm_output.save(os.path.join(UPLOAD_FOLDER, "{}-area-norm.xls".format(compound)))
 
@@ -375,8 +375,8 @@ def Impvsimp():
     # logging.getLogger('imp_calc').info(current_user.username)
     # logging.getLogger('imp_calc').info("Used Impvsimp")
     if request.method == "GET":
-        return render_template('imp-vs-imp.html')
         session_logs.append([dt_string, userId, activity])
+        return render_template('imp-vs-imp.html')
 
     if request.method == "POST":
         UPLOAD_FOLDER = os.path.join(os.path.dirname(os.path.abspath(__file__)),
@@ -412,7 +412,7 @@ def Impvsimp():
         input_list_fields =["software","doa","mehtodofreference"]
         common_input_list =[]
         for field in input_list_fields:
-            common_input_list.append(request.form[field])       
+            common_input_list.append(request.form[field])
         if(compound == 'Ketorolac'):
             compound = 'Ketorolac Tromethamine'
             inputs = inputs[compound]
@@ -435,8 +435,8 @@ def Impvsimp():
         area_inputs = glob.glob(os.path.join(UPLOAD_FOLDER, '*standard*.pdf'))
         chrom_inputs = [chrom_input for chrom_input in chrom_inputs if chrom_input not in area_inputs]
         ivi_output = imp_vs_imp.initiate_report_creation(chrom_inputs, area_inputs, inputs)
-        activity = "Used Impurity vs Impurity" 
-        session_logs.append([dt_string, user, activity])
+        activity = "Used Impurity vs Impurity"
+        session_logs.append([dt_string, userId, activity])
         ivi_output.save(os.path.join(os.path.join(os.path.dirname(os.path.abspath(__file__)),'files', 'Imp-vs-Imp'),
          "{}-imp-vs-imp.xls".format(compound)))
 
@@ -450,12 +450,12 @@ def Assay():
     global session_logs
     dt_string = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
     userId = current_user.id
-    activity = "opened Assay" 
+    activity = "opened Assay"
     # logging.getLogger('imp_calc').info(current_user.username)
     # logging.getLogger('imp_calc').info("Used Assay")
     if request.method == "GET":
+        session_logs.append([dt_string, userId, activity])
         return render_template('assay.html')
-        session_logs.append([dt_string, userId, activity]) 
 
     if request.method == "POST":
         UPLOAD_FOLDER = os.path.join(os.path.dirname(os.path.abspath(__file__)),
@@ -501,7 +501,7 @@ def Assay():
         assay_output = assay.initiate_report_creation(chrom_inputs, area_input, input_list, rt_range)
         dt_string = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
         userId = current_user.id
-        activity = "Used Assay" 
+        activity = "Used Assay"
         session_logs.append([dt_string, userId, activity])
         assay_output.save(os.path.join(UPLOAD_FOLDER, "{}-Assay.xls".format(compound)))
         return render_template('assay.html', output_folder= UPLOAD_FOLDER, output_file =  "{}-Assay.xls".format(compound))
@@ -512,12 +512,13 @@ def Lcysteine():
     global session_logs
     dt_string = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
     userId = current_user.id
-    activity = "opened Lcysteine" 
-    session_logs.append([dt_string, userId, activity])
+    activity = "opened Lcysteine"
+
 
     # logging.getLogger('imp_calc').info(current_user.username)
     # logging.getLogger('imp_calc').info("Used Lcysteine")
     if request.method == "GET":
+        session_logs.append([dt_string, userId, activity])
         return render_template('lcysteine.html')
 
     if request.method == "POST":
@@ -557,7 +558,7 @@ def Lcysteine():
         l_cysteine_output = L_cysteine.initiate_report_creation(chrom_inputs, area_input, input_list)
         dt_string = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
         userId = current_user.id
-        activity = "Used Assay" 
-        session_logs.append([dt_string, userId, activity])   
+        activity = "Used Assay"
+        session_logs.append([dt_string, userId, activity])
         l_cysteine_output.save(os.path.join(UPLOAD_FOLDER, "{}-Assay.xls".format(compound)))
         return render_template('lcysteine.html', output_folder= UPLOAD_FOLDER, output_file =  "{}-Assay.xls".format(compound))
