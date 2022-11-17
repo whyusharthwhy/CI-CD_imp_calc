@@ -160,6 +160,9 @@ def change_password():
             user.created_at= datetime.now()
             db.session.add(user)
             db.session.commit()
+            dt_string = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+            activity = "logged in"
+            session_logs.append([dt_string, id, activity])
             # logger.info(current_user.username)
             # logger.info("changed password")
             logout_user()
