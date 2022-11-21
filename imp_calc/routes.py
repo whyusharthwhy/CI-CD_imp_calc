@@ -6,9 +6,6 @@ import base64
 import glob
 import pandas as pd
 
-import logging
-from logging.config import dictConfig
-from logging import INFO
 from datetime import datetime, timedelta
 from pathlib import Path
 
@@ -17,41 +14,27 @@ from flask import Flask, session, g, redirect, url_for, render_template, request
 from flask_login import login_user, logout_user, login_required, current_user
 from werkzeug.utils import secure_filename
 from flask.templating import render_template
-#from flask_mail import message
 
 
 from imp_calc import app
-from imp_calc.forms import RegisterForm, LoginForm, ResetPasswordForm, ResetPasswordRequestForm, ChangePasswordForm
+from imp_calc.forms import RegisterForm, LoginForm
 from imp_calc.models import User
-from imp_calc import db, mail, s
-from imp_calc.email import send_password_reset_email
+from imp_calc import db, s
 
 import RS_creator
 import RS_creator_acyclo
-
 import area_norm
 import imp_vs_imp
 import assay
 import L_cysteine
 
-#hiding werkzeug and pdfminer logs from the console
-# werk_log = logging.getLogger('werkzeug')
-# werk_log.setLevel(logging.ERROR)
-# logging.getLogger("pdfminer").setLevel(logging.WARNING)
+#Database Direct Connection - Without going through models, so we can't create a relationship between this scheam and model in our sqlite database
 
-# console = logging.StreamHandler()
-# console.setLevel(logging.INFO)
-# # set a format which is simpler for console use
-# formatter = logging.Formatter('%(name)-12s: %(levelname)-8s %(message)s')
-# console.setFormatter(formatter)
-# # add the handler to the root logger
-# logging.getLogger('imp_calc').addHandler(console)
-
-# logger = logging.getLogger(__name__)
+import sqlite3
+conn = sqlite3.connect('instance/site.db',check_same_thread=False)
 
 session_logs = []                               #Initiating the log creation
 @app.route('/', methods = ['GET','POST'])
-#@expiry_check
 def login():
     global session_logs
     session_logs = []
@@ -104,15 +87,14 @@ def register_page():
         db.session.commit()
         login_user(user_to_create)
         flash(f"Account created successfully! You are now logged in as {user_to_create.username}", category='success')
-        #app.logger.info("User Account:{user_to_create.username} created")
-        return redirect(url_for('index')) #home is the function defined for '/'url just above this code
-    if form.errors !={}: #if there are no errors from the validators
+        return redirect(url_for('index'))  #home is the function defined for '/'url just above this code
+    if form.errors !={}:                   # if there are no errors from the validators
         for err_msg in form.errors.values():
             flash(f'There was an error while creating user:{err_msg}')
 
     return render_template('register.html', form=form)
 
-#This one request to reset the password - https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-x-email-support
+ #  This one request to reset the password - https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-x-email-support
 @app.route('/reset_password_request', methods=['GET', 'POST'])
 def reset_password_request():
     if current_user.is_authenticated:
@@ -164,19 +146,12 @@ def change_password():
             dt_string = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
             activity = "changed password"
             session_logs.append([dt_string, id, activity])
-            # logger.info(current_user.username)
-            # logger.info("changed password")
             logout_page()
             return redirect(url_for('index'))
-    if form.errors !={}: #if there are no errors from the validators
+    if form.errors !={}: # if there are no errors from the validators
         for err_msg in form.errors.values():
             flash(f'There was an error while creating user:{err_msg}',category='danger')
-            #login_user(attempted_user)
     return render_template('change_password.html',form = form)
-
-import sqlite3
-conn = sqlite3.connect('instance/site.db',check_same_thread=False)
-
 
 @app.route('/logout',methods=['GET','POST'])
 @login_required
@@ -186,14 +161,9 @@ def logout_page():
     userId = current_user.id
     activity = "logged out"
     session_logs.append([dt_string, userId, activity])
-    # time_stamp = datetime.now()
-    # user = current_user.username
-    # activity = "is logged out"
-    # session_logs.append([time_stamp, user, activity])
-    # logger.info(current_user.username)
-    # # logger.info("logged out successfully")
     df_session_logs = pd.DataFrame(session_logs, columns = ["Time", "User", "Activity"])
-    # # df = pd.read_csv(os.path.join('imp_calc',"Session-logs.csv"))
+
+    ## This comment is to suggest how we can add sql database if the database isn't instantaniated by the flask inbuilt functions
     # if df.empty:
     #     df_session_logs.to_csv(os.path.join('imp_calc',"Session-logs.csv"), index =False)
     #     df_session_logs.to_sql('logs',conn, if_exists='append', index =False)
@@ -201,29 +171,20 @@ def logout_page():
     #     df_session_logs.append(df)
     #     df_session_logs.to_csv(os.path.join('imp_calc',"Session-logs.csv"), index =False)
     df_session_logs.to_sql('logs',conn, if_exists='append', index =False)
-        # for i in session_logs:
-        #     print(i)
-    # if df_session_logs.empty:
-    #     df_session_logs.to_csv(os.path.join('imp_calc',"Session-logs.csv"), index =False)
-    # else:
-    #     pass
     logout_user()
     #flash("You Have been logged out!", category= 'info')
     return redirect(url_for('login'))
-
 
 @app.route('/file_download/<path:output_folder>/<output_file>')
 def file_download(output_folder, output_file):
     dt_string = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
     userId = current_user.id
-    # logger.info(current_user.username)
-    # logger.info("did a file file_download")
     activity = "File download"
     session_logs.append([dt_string, userId, activity])
     file_location = os.path.join('/', output_folder, output_file)
     print(file_location)
-    return send_file(file_location, as_attachment = True)
-    #return send_file(file_location, as_attachment = True, cache_timeout=0)
+    return send_file(file_location, as_attachment = True, max_age=0)
+    #return send_file(file_location, as_attachment = True, cache_timeout=0) ##cache_timeout = 0 wasn't working for some reason so omitted it to make it work better
 
 @app.route('/RScalc',methods=['GET', 'POST'])
 @login_required
@@ -278,8 +239,6 @@ def RScalc():
 @app.route('/RSacyclovir',methods=['GET', 'POST'])
 @login_required
 def RSacyclovir():
-    # logging.getLogger('imp_calc').info(current_user.username)
-    # logging.getLogger('imp_calc').info("Used RSacyclovir")
     global session_logs
     dt_string = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
     userId = current_user.id
@@ -328,8 +287,6 @@ def Areanorm():
     dt_string = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
     userId = current_user.id
     activity = "opened Area Normalization"
-    # logging.getLogger('imp_calc').info(current_user.username)
-    # logging.getLogger('imp_calc').info("Used Areanorm")
     if request.method == "GET":
         session_logs.append([dt_string, userId, activity])
         return render_template('area-normalization.html')
@@ -376,8 +333,6 @@ def Impvsimp():
     dt_string = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
     userId = current_user.id
     activity = "opened Impurity vs Impurity"
-    # logging.getLogger('imp_calc').info(current_user.username)
-    # logging.getLogger('imp_calc').info("Used Impvsimp")
     if request.method == "GET":
         session_logs.append([dt_string, userId, activity])
         return render_template('imp-vs-imp.html')
@@ -407,8 +362,6 @@ def Impvsimp():
             upload_files = request.files.getlist('files')
         for file in upload_files:
             original_filename = file.filename
-            # extension = original_filename.rsplit('.', 1)[1].lower()
-            # filename = str(uuid.uuid1()) + '.' + extension
             filename = original_filename
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             file_list = os.path.join(UPLOAD_FOLDER, 'files.json')
@@ -443,9 +396,6 @@ def Impvsimp():
         session_logs.append([dt_string, userId, activity])
         ivi_output.save(os.path.join(os.path.join(os.path.dirname(os.path.abspath(__file__)),'files', 'Imp-vs-Imp'),
          "{}-imp-vs-imp.xls".format(compound)))
-
-
-
         return render_template('imp-vs-imp.html', output_folder = UPLOAD_FOLDER, output_file =  "{}-imp-vs-imp.xls".format(compound))
 
 @app.route('/Assay',methods=['GET', 'POST'])
@@ -455,8 +405,6 @@ def Assay():
     dt_string = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
     userId = current_user.id
     activity = "opened Assay"
-    # logging.getLogger('imp_calc').info(current_user.username)
-    # logging.getLogger('imp_calc').info("Used Assay")
     if request.method == "GET":
         session_logs.append([dt_string, userId, activity])
         return render_template('assay.html')
@@ -518,9 +466,6 @@ def Lcysteine():
     userId = current_user.id
     activity = "opened Lcysteine"
 
-
-    # logging.getLogger('imp_calc').info(current_user.username)
-    # logging.getLogger('imp_calc').info("Used Lcysteine")
     if request.method == "GET":
         session_logs.append([dt_string, userId, activity])
         return render_template('lcysteine.html')

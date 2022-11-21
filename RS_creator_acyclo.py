@@ -226,7 +226,7 @@ def fill_rs_sheet(output_sheet, df_area_table, df_peak_table, sample_input_list,
 
     # final sum
     sum_of_impurities = str(round(df_peak_table["% w/w"].sum(), ndigits=2))
-    setOutCell(output_sheet, 6, 62, sum_of_impurities)
+    setOutCell(output_sheet, 6, 61, sum_of_impurities)
 
 def initiate_report_creation(chrom_inputs, area_input, area_input_imp_b, input_list):
 
@@ -260,16 +260,35 @@ def initiate_report_creation(chrom_inputs, area_input, area_input_imp_b, input_l
     tables = camelot.read_pdf(area_input, pages= 'all', line_scale =30)
     area_headers = area_headers_shimadzu if software == 'Lab Solutions' else area_headers_empower
     df_area_table = table_extratcor(tables, area_headers)
+    df_area_table.columns = area_headers_shimadzu
     df_area_table = df_area_table[['Title','Area']]
-    df_area_table['Title'] = ['Standard Solution_01','Standard Solution_02','Standard Solution_03','Standard Solution_04','Standard Solution_05','Standard Solution_06','Average', '%RSD','Standard Deviation']
+    sols_count = df_area_table.shape[0] - 3
+    areas = list(df_area_table["Area"])
+    if(sols_count < 6):
+        while(sols_count<6):
+            areas.insert(sols_count, 0)
+            sols_count+=1
+    titles = ['Standard Solution_01','Standard Solution_02','Standard Solution_03','Standard Solution_04','Standard Solution_05','Standard Solution_06','Average', '%RSD','Standard Deviation']
     if(software == 'Empower'):
         areas[7], areas[8] = areas[8], areas[7]
+    df_area_table = pd.DataFrame({'Title':titles, 'Area': areas })
     average_area = float(df_area_table["Area"][df_area_table["Title"] == "Average"].values.tolist()[0])
 
     # area table extraction for impurity b
     tables = camelot.read_pdf(area_input_imp_b, pages= 'all', line_scale =30)
     df_area_table_imp_b = table_extratcor(tables, area_headers)
+    df_area_table_imp_b.columns = area_headers_shimadzu
     df_area_table_imp_b = df_area_table_imp_b[['Title','Area']]
+    sols_count = df_area_table_imp_b.shape[0] - 3
+    areas = list(df_area_table_imp_b["Area"])
+    if(sols_count < 6):
+        while(sols_count<6):
+            areas.insert(sols_count, 0)
+            sols_count+=1
+    titles = ['Standard Solution_01','Standard Solution_02','Standard Solution_03','Standard Solution_04','Standard Solution_05','Standard Solution_06','Average', '%RSD','Standard Deviation']
+    if(software == 'Empower'):
+        areas[7], areas[8] = areas[8], areas[7]
+    df_area_table_imp_b = pd.DataFrame({'Title':titles, 'Area': areas })
     average_area_imp_b = float(df_area_table_imp_b["Area"][df_area_table_imp_b["Title"] == "Average"].values.tolist()[0])
 
     batch_size = len(chrom_inputs)

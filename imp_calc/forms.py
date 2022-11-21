@@ -29,17 +29,7 @@ class LoginForm(FlaskForm):
 class EmailForm(FlaskForm):
     email_address = StringField(label='Email Address:',validators=[Email(), DataRequired()])
     submit = SubmitField(label='Submit')
-
-class ResetPasswordRequestForm(FlaskForm):
-    email = StringField('Email', validators=[DataRequired(), Email()])
-    submit = SubmitField('Request Password Reset')
-
-class ResetPasswordForm(FlaskForm):
-    password = PasswordField('Password', validators=[DataRequired()])
-    password2 = PasswordField(
-        'Repeat Password', validators=[DataRequired(), EqualTo('password')])
-    submit = SubmitField('Request Password Reset')
-
+    
 class ChangePasswordForm(FlaskForm):
     """docstring for ChangePasswordForm"""
     password_old = PasswordField('Enter Old Password', validators=[DataRequired()])

@@ -230,7 +230,6 @@ def initiate_report_creation(chrom_inputs, area_input, input_list, rt_range):
     df_area_table = df_area_table[['Title','Area']]
     sols_count = df_area_table.shape[0] - 3
     areas = list(df_area_table["Area"])
-    print(areas)
     if(sols_count < 6):
         while(sols_count<6):
             areas.insert(sols_count, 0)

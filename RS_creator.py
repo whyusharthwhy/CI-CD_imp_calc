@@ -90,7 +90,8 @@ def table_extratcor(tables, headers):
 def calc_results (df_peak, df_rrf, compound, average_area, constant_1, constant_2, unit):
     """ Calculates the impurity values following the RS method"""
 
-    base_rt = float(df_peak['Ret. Time'][df_peak['Name'].str.contains(compound, flags = re.IGNORECASE)].values.tolist()[0])
+    # base_rt = float(df_peak['Ret. Time'][df_peak['Name'].str.contains(compound, flags = re.IGNORECASE)].values.tolist()[0])
+    base_rt = float(df_peak['Ret. Time'][df_peak['Name'].str.lower() == compound.lower()].values.tolist()[0])
 
     # columns to be filled in the output excel
     rrt_master = []
@@ -293,7 +294,8 @@ def initiate_report_creation(chrom_inputs, area_input, input_list, process_impur
         df_peak_table = df_peak_table.drop_duplicates(keep="first")
         df_peak_table.columns = chrom_headers_shimadzu
         try:
-            inx_to_shift = df_peak_table[df_peak_table["Name"].str.contains(compound, flags = re.IGNORECASE)].index[0]
+            # inx_to_shift = df_peak_table[df_peak_table["Name"].str.contains(compound, flags = re.IGNORECASE)].index[0]
+            inx_to_shift = df_peak_table[df_peak_table["Name"].str.lower() == compound.lower()].index[0]
         except IndexError as ie:
             print("\"{}\" might not be present in the tables of the file {}.Please check this file".format(compound,worksheet_name))
             continue
