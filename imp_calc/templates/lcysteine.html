@@ -20,7 +20,6 @@
       <li><a href="Areanorm">Area Normalization</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="#">Welcome, {{ current_user.username }}</a></li>
       {% if current_user.is_authenticated %}
       <li><a href="{{ url_for('logout_page') }}">Logout</a></li>
       {% else %}
