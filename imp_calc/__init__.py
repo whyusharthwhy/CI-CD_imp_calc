@@ -8,14 +8,14 @@ import os
 from itsdangerous import URLSafeTimedSerializer, SignatureExpired
 from datetime import timedelta
 
-app = Flask(__name__)
+app = Flask(__name__,template_folder='templates', static_folder='static')
 app.debug = True
 
 # Setting up my database
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 app.config['SECRET_KEY']= '0b843376d6f247b8a5e38df2'
-app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes = 5)
+# app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes = 5)
 
 #creating a sqlalchemy instance
 db = SQLAlchemy(app)
