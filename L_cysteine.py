@@ -260,7 +260,7 @@ def initiate_report_creation(chrom_inputs, area_input, input_list):
         df_peak_table["Per Unit"] = unit
         df_peak_table["Density"] = density
         assay_vals = list(df_peak_table['Assay%'])
-        assay_mgs = [round((assay_val/100) * label_claim, 1) for assay_val in assay_vals]
+        assay_mgs = [round((assay_val/100) * label_claim, 3) for assay_val in assay_vals]
         df_peak_table["Assay MG"] = assay_mgs
         df_peak_table = df_peak_table[['B.no', 'Condition', 'Sample quantity', 'V1', 'V2', 'V3', 'Label claim', 'Per Unit','Density', 'Area', 'Assay%', "AR No.", "Assay MG"]]
         peak_master.append(df_peak_table)

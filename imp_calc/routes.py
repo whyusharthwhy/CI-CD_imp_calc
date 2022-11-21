@@ -147,6 +147,7 @@ def reset_password(token):
 @app.route('/change_password',methods=['GET','POST'])
 @login_required
 def change_password():
+    global session_logs
     form = ChangePasswordForm()
     print(current_user)
     if form.validate_on_submit():
@@ -161,11 +162,11 @@ def change_password():
             db.session.add(user)
             db.session.commit()
             dt_string = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
-            activity = "logged in"
+            activity = "changed password"
             session_logs.append([dt_string, id, activity])
             # logger.info(current_user.username)
             # logger.info("changed password")
-            logout_user()
+            logout_page()
             return redirect(url_for('index'))
     if form.errors !={}: #if there are no errors from the validators
         for err_msg in form.errors.values():
