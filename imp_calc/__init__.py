@@ -64,7 +64,7 @@ class MyPassField(TextField):
             self.data = self.orig_hash
 
 class UserView(ModelView):
-    column_exclude_list = ['logs',]
+    column_exclude_list = ['logs', 'password_hash',]
     form_excluded_columns = ['logs']
     can_edit = True
     

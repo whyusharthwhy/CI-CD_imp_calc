@@ -20,7 +20,6 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer(),primary_key = True)
     username = db.Column(db.String(length=12),nullable = False, unique = True)
     role = db.Column(db.String(length=1),nullable=False)    
-    email_address = db.Column(db.String(length=50),nullable = False, unique = True)
     password_hash = db.Column(db.String(length=60),nullable = False)
     created_at = db.Column(db.DateTime, nullable = False, default= datetime.utcnow)
     logs = db.relationship('Logs', backref='user')

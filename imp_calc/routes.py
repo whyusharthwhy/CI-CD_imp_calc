@@ -9,7 +9,6 @@ import pandas as pd
 from datetime import datetime, timedelta
 from pathlib import Path
 
-
 from flask import Flask, session, g, redirect, url_for, render_template, request, send_file, send_from_directory, request, flash
 from flask_login import login_user, logout_user, login_required, current_user
 from werkzeug.utils import secure_filename
@@ -20,7 +19,6 @@ from imp_calc import app
 from imp_calc.forms import RegisterForm, LoginForm
 from imp_calc.models import User, Logs
 from imp_calc import db, s
-
 
 import RS_creator
 import RS_creator_acyclo
@@ -85,7 +83,7 @@ def register_page():
     if form.validate_on_submit():
         user_to_create = User(username=form.username.data,
                                 role= form.role.data,
-                              email_address=form.email_address.data,
+                              
                               password=form.password1.data)
         db.session.add(user_to_create)
         db.session.commit()
@@ -99,36 +97,36 @@ def register_page():
     return render_template('register.html', form=form)
 
  #  This one request to reset the password - https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-x-email-support
-@app.route('/reset_password_request', methods=['GET', 'POST'])
-def reset_password_request():
-    if current_user.is_authenticated:
-        return redirect(url_for('index'))
-        flash('You have to logout First')
-    form = ResetPasswordRequestForm()
-    if form.validate_on_submit():
-        user = User.query.filter_by(email_address=form.email.data).first()
-        if user:
-            send_password_reset_email(user)
+# @app.route('/reset_password_request', methods=['GET', 'POST'])
+# def reset_password_request():
+#     if current_user.is_authenticated:
+#         return redirect(url_for('index'))
+#         flash('You have to logout First')
+#     form = ResetPasswordRequestForm()
+#     if form.validate_on_submit():
+#         user = User.query.filter_by(email_address=form.email.data).first()
+#         if user:
+#             send_password_reset_email(user)
 
-        flash('Check your email for the instructions to reset your password')
-        return redirect(url_for('login'))
-    return render_template('reset_password_request.html',
-                           title='Reset Password', form=form)
-#This one will reset the passwordd
-@app.route('/reset_password/<token>', methods=['GET', 'POST'])
-def reset_password(token):
-    if current_user.is_authenticated:
-        return redirect(url_for('index'))
-    user = User.verify_reset_password_token(token)
-    if not user:
-        return redirect(url_for('index'))
-    form = ResetPasswordForm()
-    if form.validate_on_submit():
-        user.set_password(form.password.data) #WILL TRY THIS ONE IF CU DOESN'T WORK
-        db.session.commit()
-        flash('Your password has been reset.')
-        return redirect(url_for('login'))
-    return render_template('reset_password.html', form=form)
+#         flash('Check your email for the instructions to reset your password')
+#         return redirect(url_for('login'))
+#     return render_template('reset_password_request.html',
+#                            title='Reset Password', form=form)
+# #This one will reset the passwordd
+# @app.route('/reset_password/<token>', methods=['GET', 'POST'])
+# def reset_password(token):
+#     if current_user.is_authenticated:
+#         return redirect(url_for('index'))
+#     user = User.verify_reset_password_token(token)
+#     if not user:
+#         return redirect(url_for('index'))
+#     form = ResetPasswordForm()
+#     if form.validate_on_submit():
+#         user.set_password(form.password.data) #WILL TRY THIS ONE IF CU DOESN'T WORK
+#         db.session.commit()
+#         flash('Your password has been reset.')
+#         return redirect(url_for('login'))
+#     return render_template('reset_password.html', form=form)
 
 @app.route('/change_password',methods=['GET','POST'])
 @login_required
