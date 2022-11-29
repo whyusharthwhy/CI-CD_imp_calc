@@ -14,12 +14,13 @@ from flask import Flask, session, g, redirect, url_for, render_template, request
 from flask_login import login_user, logout_user, login_required, current_user
 from werkzeug.utils import secure_filename
 from flask.templating import render_template
-
+from flask_admin.contrib.sqla import ModelView
 
 from imp_calc import app
 from imp_calc.forms import RegisterForm, LoginForm
-from imp_calc.models import User
+from imp_calc.models import User, Logs
 from imp_calc import db, s
+
 
 import RS_creator
 import RS_creator_acyclo
@@ -30,8 +31,8 @@ import L_cysteine
 
 #Database Direct Connection - Without going through models, so we can't create a relationship between this scheam and model in our sqlite database
 
-import sqlite3
-conn = sqlite3.connect('instance/site.db',check_same_thread=False)
+# import sqlite3
+# conn = sqlite3.connect('instance/site.db',check_same_thread=False)
 
 session_logs = []                               #Initiating the log creation
 @app.route('/', methods = ['GET','POST'])
@@ -52,6 +53,7 @@ def login():
             userId = attempted_user.id
             activity = "logged in"
             session_logs.append([dt_string, userId, activity])
+            mylogger(dt_string,userId,activity)            
             return redirect(url_for('index'))
             session.permanent= True
         else:
@@ -81,6 +83,7 @@ def register_page():
     form = RegisterForm()
     if form.validate_on_submit():
         user_to_create = User(username=form.username.data,
+                                role= form.role.data,
                               email_address=form.email_address.data,
                               password=form.password1.data)
         db.session.add(user_to_create)
@@ -146,6 +149,8 @@ def change_password():
             dt_string = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
             activity = "changed password"
             session_logs.append([dt_string, id, activity])
+            mylogger(dt_string, userId,activity)
+            
             logout_page()
             return redirect(url_for('index'))
     if form.errors !={}: # if there are no errors from the validators
@@ -161,7 +166,9 @@ def logout_page():
     userId = current_user.id
     activity = "logged out"
     session_logs.append([dt_string, userId, activity])
-    df_session_logs = pd.DataFrame(session_logs, columns = ["Time", "User", "Activity"])
+    mylogger(dt_string, userId,activity)
+    
+    # df_session_logs = pd.DataFrame(session_logs, columns = ["Time", "User", "Activity"])
 
     ## This comment is to suggest how we can add sql database if the database isn't instantaniated by the flask inbuilt functions
     # if df.empty:
@@ -170,7 +177,7 @@ def logout_page():
     # else:
     #     df_session_logs.append(df)
     #     df_session_logs.to_csv(os.path.join('imp_calc',"Session-logs.csv"), index =False)
-    df_session_logs.to_sql('logs',conn, if_exists='append', index =False)
+    # df_session_logs.to_sql('logs',conn, if_exists='append', index =False)
     logout_user()
     #flash("You Have been logged out!", category= 'info')
     return redirect(url_for('login'))
@@ -181,9 +188,11 @@ def file_download(output_folder, output_file):
     userId = current_user.id
     activity = "File download"
     session_logs.append([dt_string, userId, activity])
+    mylogger(dt_string, userId,activity)
+    
     file_location = os.path.join('/', output_folder, output_file)
     print(file_location)
-    return send_file(file_location, as_attachment = True, max_age=0)
+    return send_file(file_location, as_attachment = True)
     #return send_file(file_location, as_attachment = True, cache_timeout=0) ##cache_timeout = 0 wasn't working for some reason so omitted it to make it work better
 
 @app.route('/RScalc',methods=['GET', 'POST'])
@@ -195,6 +204,8 @@ def RScalc():
     activity = "opened RS Calculation"
     if request.method == "GET":
         session_logs.append([dt_string, userId, activity])
+        mylogger(dt_string, userId,activity)
+        
         return render_template('rsscreen.html')
     if request.method == "POST":
         process_impurities = request.form.getlist('process_impurities[]')
@@ -233,6 +244,8 @@ def RScalc():
         user = current_user.id
         activity = "used RS Calculation"
         session_logs.append([dt_string, userId, activity])
+        mylogger(dt_string, userId,activity)
+        
         rs_output.save(os.path.join(UPLOAD_FOLDER, "{}-RS.xls".format(compound)))
         return render_template('rsscreen.html', output_folder= UPLOAD_FOLDER, output_file =  "{}-RS.xls".format(compound))
 
@@ -245,6 +258,8 @@ def RSacyclovir():
     activity = "opened RS Acyclovir"
     if request.method == "GET":
         session_logs.append([dt_string, userId, activity])
+        mylogger(dt_string, userId,activity)
+        
         return render_template('rsacyclo.html')
     if request.method == "POST":
         UPLOAD_FOLDER = os.path.join(os.path.dirname(os.path.abspath(__file__)),
@@ -276,6 +291,8 @@ def RSacyclovir():
         #init...rc...every used rs
         activity = "Used RS Acyclovir"
         session_logs.append([dt_string, userId, activity])
+        mylogger(dt_string, userId,activity)
+        
         rs_output.save(os.path.join(UPLOAD_FOLDER, "Acyclovir-RS.xls"))
         imp_b_rs_output.save(os.path.join(UPLOAD_FOLDER, "Imp-B-RS.xls"))
         return render_template('rsacyclo.html', output_folder= UPLOAD_FOLDER, output_file1 =  "Acyclovir-RS.xls", output_file2 = "Imp-B-RS.xls")
@@ -289,6 +306,8 @@ def Areanorm():
     activity = "opened Area Normalization"
     if request.method == "GET":
         session_logs.append([dt_string, userId, activity])
+        mylogger(dt_string, userId,activity)
+        
         return render_template('area-normalization.html')
     if request.method == "POST":
         UPLOAD_FOLDER = os.path.join(os.path.dirname(os.path.abspath(__file__)),
@@ -322,6 +341,8 @@ def Areanorm():
         area_norm_output = area_norm.initiate_report_creation(chrom_inputs, input_list)
         activity = "Used Area Normalization"
         session_logs.append([dt_string, userId, activity])
+        mylogger(dt_string, userId,activity)
+        
         area_norm_output.save(os.path.join(UPLOAD_FOLDER, "{}-area-norm.xls".format(compound)))
 
         return render_template('area-normalization.html', output_folder = UPLOAD_FOLDER, output_file =  "{}-area-norm.xls".format(compound))
@@ -335,6 +356,8 @@ def Impvsimp():
     activity = "opened Impurity vs Impurity"
     if request.method == "GET":
         session_logs.append([dt_string, userId, activity])
+        mylogger(dt_string, userId,activity)
+        
         return render_template('imp-vs-imp.html')
 
     if request.method == "POST":
@@ -394,6 +417,8 @@ def Impvsimp():
         ivi_output = imp_vs_imp.initiate_report_creation(chrom_inputs, area_inputs, inputs)
         activity = "Used Impurity vs Impurity"
         session_logs.append([dt_string, userId, activity])
+        mylogger(dt_string, userId,activity)
+
         ivi_output.save(os.path.join(os.path.join(os.path.dirname(os.path.abspath(__file__)),'files', 'Imp-vs-Imp'),
          "{}-imp-vs-imp.xls".format(compound)))
         return render_template('imp-vs-imp.html', output_folder = UPLOAD_FOLDER, output_file =  "{}-imp-vs-imp.xls".format(compound))
@@ -407,6 +432,7 @@ def Assay():
     activity = "opened Assay"
     if request.method == "GET":
         session_logs.append([dt_string, userId, activity])
+        mylogger(dt_string, userId,activity)
         return render_template('assay.html')
 
     if request.method == "POST":
@@ -455,6 +481,7 @@ def Assay():
         userId = current_user.id
         activity = "Used Assay"
         session_logs.append([dt_string, userId, activity])
+        mylogger(dt_string, userId,activity)
         assay_output.save(os.path.join(UPLOAD_FOLDER, "{}-Assay.xls".format(compound)))
         return render_template('assay.html', output_folder= UPLOAD_FOLDER, output_file =  "{}-Assay.xls".format(compound))
 
@@ -468,6 +495,7 @@ def Lcysteine():
 
     if request.method == "GET":
         session_logs.append([dt_string, userId, activity])
+        mylogger(dt_string, userId,activity)
         return render_template('lcysteine.html')
 
     if request.method == "POST":
@@ -509,5 +537,11 @@ def Lcysteine():
         userId = current_user.id
         activity = "Used Assay"
         session_logs.append([dt_string, userId, activity])
+        mylogger(dt_string, userId,activity)
         l_cysteine_output.save(os.path.join(UPLOAD_FOLDER, "{}-Assay.xls".format(compound)))
         return render_template('lcysteine.html', output_folder= UPLOAD_FOLDER, output_file =  "{}-Assay.xls".format(compound))
+
+def mylogger(dt_string, userId,activity):
+    logs_to_create = Logs(dt_string=dt_string, id = userId,activity = activity)
+    db.session.add(logs_to_create)
+    db.session.commit()

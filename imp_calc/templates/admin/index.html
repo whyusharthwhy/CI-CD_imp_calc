@@ -1,0 +1,26 @@
+{% extends 'admin/master.html' %}
+
+{% block body %}
+<script src="static/js/script.js"></script>
+  <div class="alert alert-dismissible alert-danger">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>Changes here will be permanent!</strong> <a href="/" class="alert-link">Click on Home,</a>If you don't want to change anything.
+</div>
+
+
+<div class="list-group">
+  <a href="#" class="list-group-item">
+    <h4 class="list-group-item-heading">Welcome to Admin Panel,</h4>
+    <p class="list-group-item-text">This is the admin panel. Please make sure to review before changing things, changes once done will be permanent and can't be changed further.</p>
+  </a>
+  <a href="user" class="list-group-item">
+    <h4 class="list-group-item-heading">User</h4>
+    <p class="list-group-item-text">If you want to make changes in User creation, updation deletion etc, click here</p>
+  </a>
+</div>
+  <a href="logs" class="list-group-item">
+    <h4 class="list-group-item-heading">Logs</h4>
+    <p class="list-group-item-text">If you want to review logs, click here</p>
+  </a>
+</div>
+{% endblock %}
