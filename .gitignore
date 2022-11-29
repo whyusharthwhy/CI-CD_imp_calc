@@ -1,6 +1,6 @@
 #folders
 __pycache__
-env
+py_imp_calc
 
 #extentions
 *.pdf

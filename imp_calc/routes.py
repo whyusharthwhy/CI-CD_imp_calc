@@ -52,6 +52,7 @@ def login():
             dt_string = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
             userId = attempted_user.id
             activity = "logged in"
+            print(userId)
             session_logs.append([dt_string, userId, activity])
             mylogger(dt_string,userId,activity)            
             return redirect(url_for('index'))
@@ -201,6 +202,7 @@ def RScalc():
     global session_logs
     dt_string = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
     userId = current_user.id
+    print(userId)
     activity = "opened RS Calculation"
     if request.method == "GET":
         session_logs.append([dt_string, userId, activity])
