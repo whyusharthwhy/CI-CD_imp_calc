@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block nav%}
+{% block nav %}
 <div class="container-fluid">
   <div class="navbar-header">
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -25,7 +25,7 @@
       {% else %}
       <li><a href="/">Login</a></li>
       {% endif %}
-      {% if current_user.role=='a' %}
+      {% if current_user.role!='u' %}
       <li><a href="admin">Admin</a></li>
       {% endif %}
     </ul>

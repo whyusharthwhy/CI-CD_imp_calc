@@ -542,6 +542,6 @@ def Lcysteine():
         return render_template('lcysteine.html', output_folder= UPLOAD_FOLDER, output_file =  "{}-Assay.xls".format(compound))
 
 def mylogger(dt_string, userId,activity):
-    logs_to_create = Logs(dt_string=dt_string, id = userId,activity = activity)
+    logs_to_create = Logs(dt_string=dt_string, user_id = userId,activity = activity)
     db.session.add(logs_to_create)
     db.session.commit()

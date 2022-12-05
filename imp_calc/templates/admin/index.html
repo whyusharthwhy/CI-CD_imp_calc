@@ -1,26 +1,42 @@
 {% extends 'admin/master.html' %}
 
+{% block brand %}
+
+<a class="brand" href="/admin">User Management</a>
+{% endblock %}
+
+{% block access_control %}
+    <ul class="nav navbar-nav navbar-left">
+      <li><a href="#about">Logout</a></li>
+    </ul>
+{% endblock %}
+
+
 {% block body %}
+{{ super() }}
+
 <script src="static/js/script.js"></script>
   <div class="alert alert-dismissible alert-danger">
   <button type="button" class="close" data-dismiss="alert">&times;</button>
-  <strong>Changes here will be permanent!</strong> <a href="/" class="alert-link">Click on Home,</a>If you don't want to change anything.
+  <strong>Changes made here will be permanent!</strong> <a href="/" class="alert-link">Click Here,</a>to go back to the tool.
 </div>
 
 
-<div class="list-group">
-  <a href="#" class="list-group-item">
-    <h4 class="list-group-item-heading">Welcome to Admin Panel,</h4>
-    <p class="list-group-item-text">This is the admin panel. Please make sure to review before changing things, changes once done will be permanent and can't be changed further.</p>
-  </a>
-  <a href="user" class="list-group-item">
-    <h4 class="list-group-item-heading">User</h4>
-    <p class="list-group-item-text">If you want to make changes in User creation, updation deletion etc, click here</p>
-  </a>
+<div class="list-group ">
+  
+    <h4 class="list-group-item-heading">Welcome to <a href="#" class="list-group-item">Admin Panel,</a></h4>
+    <p class="list-group-item-text">This is the admin panel. Please make sure to review before making any changes.</p>
+  
+  
+    <h4 class="list-group-item-heading"><a href="user" class="list-group-item">User</a></h4>
+    <p class="list-group-item-text">Create, Edit, Update, Delete.</p>
+  
 </div>
-  <a href="logs" class="list-group-item">
-    <h4 class="list-group-item-heading">Logs</h4>
-    <p class="list-group-item-text">If you want to review logs, click here</p>
-  </a>
+    <h4 class="list-group-item-heading"><a href="logs" class="list-group-item">Logs</a></h4>
+    <p class="list-group-item-text">
+  
+    View Logs
+  </p>
 </div>
+
 {% endblock %}

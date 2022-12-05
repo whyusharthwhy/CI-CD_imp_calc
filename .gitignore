@@ -1,6 +1,8 @@
 #folders
 __pycache__
 py_imp_calc
+node_modules
 
 #extentions
 *.pdf
+*.json
