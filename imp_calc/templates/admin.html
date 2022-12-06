@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block nav %}
+<div class="container-fluid">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+      <span class="icon-bar"></span>
+      
+    </button>
+    <a class="navbar-brand" href="/"><img src="{{ url_for('static', filename='img/logo.png') }}"></a>
+  </div>
+  <div class="collapse navbar-collapse" id="myNavbar">
+    <ul class="nav navbar-nav">
+      <li style class="active"><a href="/">Home</a></li>
+      <li><a href="{{ url_for('RetrieveDataList') }}">Users</a></li>
+      <li><a href="{{ url_for('RetrieveLogsList') }}">Logs</a></li>
+   </ul>
+    <ul class="nav navbar-nav navbar-right">
+    <!--<li><a href="{{ url_for('change_password') }}">Password Expiring in{{ remaining_days }}days</a></li> --> 
+      {% if current_user.is_authenticated %}
+      <li><a href="{{ url_for('logout_page') }}">Logout</a></li>
+      {% else %}
+      <li><a href="/">Login</a></li>
+      {% endif %}
+    </ul>
+  </div>  
+</div>
+{% endblock %}

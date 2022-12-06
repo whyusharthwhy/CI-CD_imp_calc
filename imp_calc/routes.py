@@ -27,6 +27,8 @@ import imp_vs_imp
 import assay
 import L_cysteine
 
+from wtforms import TextField, BooleanField
+from wtforms.validators import Required
 #Database Direct Connection - Without going through models, so we can't create a relationship between this scheam and model in our sqlite database
 
 # import sqlite3
@@ -96,7 +98,70 @@ def register_page():
 
     return render_template('register.html', form=form)
 
- #  This one request to reset the password - https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-x-email-support
+#CRUD Part handmade
+
+@app.route('/data')
+def RetrieveDataList():
+    if current_user.role == 'a':
+        users = User.query.all()
+    elif current_user.role == 'm':
+        users = User.query.filter_by(role='u')
+    else:
+        pass
+    return render_template('datalist.html',users = users)
+@app.route('/data/<int:user_id>')
+def RetrieveSingleEmployee(user_id):
+    user = User.query.filter_by(id=user_id).first()
+    if user:
+        return render_template('data.html', user = user)
+    return f"Employee with id ={id} Doenst exist"
+
+@app.route('/data/<int:id>/update',methods = ['GET','POST'])
+def update(id):
+    form = RegisterForm()
+    user = User.query.filter_by(id=id).first()
+    if request.method == 'POST':
+        if user:
+            db.session.delete(user)
+            db.session.commit()
+            form = RegisterForm()
+            if form.validate_on_submit():
+                user_to_create = User(id = id, 
+                    username=form.username.data,
+                    role= form.role.data,
+                    password=form.password1.data)
+                db.session.add(user_to_create)
+                db.session.commit()
+            return redirect(f'/data/{id}')
+        return f"User with id = {id} Does not exist"
+ 
+    return render_template('update.html', form = form, user = user)
+
+@app.route('/data/<int:user_id>/delete', methods=['GET','POST'])
+def delete(user_id):
+    user = User.query.filter_by(id=user_id).first()
+    if request.method == 'POST':
+        if user:
+            db.session.delete(user)
+            db.session.commit()
+            return redirect('/admin/data')
+        abort(404)
+ 
+    return render_template('delete.html')
+
+@app.route('/admin/', methods=['GET','POST'])
+def admin():
+    return render_template('admin.html')
+@app.route('/logs')
+def RetrieveLogsList():
+    if current_user.role == 'a':
+        logs = Logs.query.all()
+    elif current_user.role == 'm':
+        logs = Logs.query.join(User, User.id == Logs.user_id).filter(User.role == 'u')
+    else:
+        logs = Logs.query.filter_by(id= current_user.id)
+    return render_template('datalogs.html',logs = logs)
+#  This one request to reset the password - https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-x-email-support
 # @app.route('/reset_password_request', methods=['GET', 'POST'])
 # def reset_password_request():
 #     if current_user.is_authenticated:

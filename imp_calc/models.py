@@ -4,7 +4,6 @@ import jwt
 from time import time
 from datetime import datetime
 from flask_admin import Admin
-from imp_calc import admin
 from flask_admin.contrib.sqla import ModelView
 from sqlalchemy.orm import sessionmaker, relationship
 
@@ -24,6 +23,7 @@ class User(db.Model, UserMixin):
     password_hash = db.Column(db.String(length=60),nullable = False)
     created_at = db.Column(db.DateTime, nullable = False, default= datetime.utcnow)
     logs = relationship("Logs", backref="UserLogs")
+    
     @property
     def password(self):
         return self.password

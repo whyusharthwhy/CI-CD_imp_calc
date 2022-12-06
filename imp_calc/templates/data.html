@@ -1,0 +1,14 @@
+{% extends 'admin.html' %}
+
+{% block main %}
+
+	<h3>Id</h3>
+	<p>{{user.id}}</p><hr>
+	<h3>Name</h3>
+	<p>{{user.username}}</p><hr>
+	<h3>role</h3>
+	<p>{{user.role}}</p><hr>
+	<h3>Created At</h3>
+	<p>{{user.created_at}}</p><hr>
+
+{% endblock %}

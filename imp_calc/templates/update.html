@@ -1,0 +1,48 @@
+{% extends 'admin.html' %}
+{% block main %}
+<!--
+<body class="text-center">
+    <div class="container">
+        <form method="POST" class="form-update" style="color:gray">
+            {{ form.hidden_tag() }}
+            <h1 class="h3 mb-3 font-weight-normal">
+                Please Update your Account
+            </h1>
+            <br>
+            <p>Username <input type = "text" name = "username" value="{{user.username}}"/></p>
+            <p>Role <input type = "integer" name = "role"  value="{{user.role}}"/></p>
+            <p>Password <input type = "text" name = "password" value="{{user.password1}}"/></p>
+            <p><input type = "submit" value = "Update" /></p>
+            <br>
+
+        </form>
+    </div>
+</body>
+-->
+<body class="text-center">
+    <div class="container">
+      <form>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Username</label>
+          <input type="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        </div>
+              <div class="mb-3">
+              <div class="form-group">
+                <label>Role:
+                  <input list ="roles" class="form-control" id="role" name="role" required>
+                </label>
+                <datalist id="roles">
+                  <option value="a">
+                  <option value="m">
+                  <option value="u">
+                </div>
+            </div>
+        <div class="mb-3">
+          <label for="Password" class="form-label">Password</label>
+          <input type="Password" class="form-control" id="password1" aria-describedby="password">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+</body>
+{% endblock %}

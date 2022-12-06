@@ -1,0 +1,23 @@
+{% extends 'admin.html' %}
+
+{% block main %}
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">UID</th>
+      <th scope="col">Activity</th>
+      <th scope="col">Timing</th>
+    </tr>
+  </thead>
+  {% for log in logs %}
+  <tbody>
+    <tr>
+      <td>{{log.user_id}}</td>
+      <td>{{log.activity}}</td>
+      <td>{{log.dt_string}}</td>
+    </tr>
+  </tbody>
+  {% endfor %}
+
+</table>
+{% endblock %}
