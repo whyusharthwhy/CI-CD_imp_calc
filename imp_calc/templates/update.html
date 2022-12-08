@@ -21,28 +21,63 @@
 -->
 <body class="text-center">
     <div class="container">
-      <form>
-        <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">Username</label>
-          <input type="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+      <form id="form">
+        <div class="form-field">
+          {{ form.username.label(class="form-label") }}
+          {{ form.username(class="form-control", placeholder="Username") }} 
+        <!--  <label for="exampleInputEmail1" class="form-label">Username</label>
+          <input type="username"value="{{ current_user.username }}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">-->
         </div>
-              <div class="mb-3">
-              <div class="form-group">
-                <label>Role:
-                  <input list ="roles" class="form-control" id="role" name="role" required>
-                </label>
-                <datalist id="roles">
-                  <option value="a">
-                  <option value="m">
-                  <option value="u">
-                </div>
-            </div>
-        <div class="mb-3">
-          <label for="Password" class="form-label">Password</label>
-          <input type="Password" class="form-control" id="password1" aria-describedby="password">
+        <div class="form-field">
+          {{ form.role.label(class="form-label") }}
+          {{ form.role(class="form-control", placeholder="Role") }}                  
+        
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="form-field">
+            {{ form.password1.label(class="form-label") }}
+
+            {{ form.password1(class="form-control", placeholder="Password") }}
+
+        </div>
+        
+          <div class="form-field" id="submit-update">
+            {{ form.submit(class="form-control")}}
+          </div>
       </form>
     </div>
 </body>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br><br>
+<br>
+<br>
+<br>
+<br><br>
+<br>
+<br><!--
+<form method="post" action="/" id="form" class="validate">
+  <div class="form-field">
+    <label for="full-name">Username</label>
+    <input type="text" name="full-name" id="full-name" placeholder="Joe Bloggs" required />
+  </div>
+  <div class="form-field">
+    <label for="email-input">Role</label>
+    <input type="email" name="email-input" id="email-input" placeholder="example@domain.com" required />
+  </div>
+  <div class="form-field">
+    <label for="password-input">Password</label>
+    <input type="password" name="password-input" id="password-input" required />
+  </div>
+  <div class="form-field">
+    <label for=""></label>
+    <input type="submit" value="Sign Up" />
+  </div>
+</form>
+-->
 {% endblock %}

@@ -8,9 +8,9 @@
       <th scope="col">Username</th>
       <th scope="col">Role</th>
       <th scope="col">Created At</th>
-      <th scope="col">Action View</th>
-      <th scope="col">Action Update</th>
-      <th scope="col">Action Delete</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+      <th scope="col"></th>
     </tr>
   </thead>
   {% for user in users %}
@@ -29,10 +29,76 @@
   </a>
   </td>
       <td><a href="data/{{user.id}}/update" class="btn btn-secondary" tabindex="-1" role="button">Update</a></td>
-      <td><a href="data/{{user.id}}/delete" class="btn btn-secondary" tabindex="-1" role="button">Delete</a></td>
+      <!--<td><a href="data/{{user.id}}/delete" class="btn btn-secondary" tabindex="-1" role="button">Delete</a></td>-->
+      <td>
+      <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter{{user.username}}">
+            Delete
+        </button>
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModalCenter{{user.username}}">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle{{user.username}}">Deleting Post Permanently</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <h3>{{user.username}}??</h3>
+                  <p>Are you sure?</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+
+                  <form action="{{url_for('delete', user_id=user.id)}}" method="post">
+                    <input type="submit" value="Delete" class="btn btn-danger">
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
+    </tr>
+  {% endfor %}
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><a href="{{url_for('register_page')}}" class="btn btn-success" role="button">Create User</a>
+
+</td>
+
     </tr>
   </tbody>
-  {% endfor %}
-
 </table>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 {% endblock %}

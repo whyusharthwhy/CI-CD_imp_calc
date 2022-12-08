@@ -16,7 +16,7 @@ from flask.templating import render_template
 from flask_admin.contrib.sqla import ModelView
 
 from imp_calc import app
-from imp_calc.forms import RegisterForm, LoginForm
+from imp_calc.forms import RegisterFormA,RegisterFormM, LoginForm, UpdateFormA,UpdateFormM 
 from imp_calc.models import User, Logs
 from imp_calc import db, s
 
@@ -81,17 +81,18 @@ def index():
 
 @app.route('/register',methods=['GET', 'POST'])
 def register_page():
-    form = RegisterForm()
+    if current_user.role=='a':
+        form = RegisterFormA()
+    else:
+        form = RegisterFormM()
     if form.validate_on_submit():
         user_to_create = User(username=form.username.data,
                                 role= form.role.data,
-                              
                               password=form.password1.data)
         db.session.add(user_to_create)
         db.session.commit()
-        login_user(user_to_create)
-        flash(f"Account created successfully! You are now logged in as {user_to_create.username}", category='success')
-        return redirect(url_for('index'))  #home is the function defined for '/'url just above this code
+        flash(f"Account created successfully! {user_to_create.username}", category='success')
+        return redirect(url_for('RetrieveDataList'))  #home is the function defined for '/'url just above this code
     if form.errors !={}:                   # if there are no errors from the validators
         for err_msg in form.errors.values():
             flash(f'There was an error while creating user:{err_msg}')
@@ -102,13 +103,17 @@ def register_page():
 
 @app.route('/data')
 def RetrieveDataList():
-    if current_user.role == 'a':
-        users = User.query.all()
-    elif current_user.role == 'm':
-        users = User.query.filter_by(role='u')
+    if current_user.role =='a' or current_user.role =='m':
+        if current_user.role == 'a':
+            users = User.query.all()
+        elif current_user.role == 'm':
+            users = User.query.filter_by(role='u')
     else:
-        pass
+        flash(f"Please login as admin or manager to see UserManagement Section", category='danger')
+        return redirect(url_for('index'))
     return render_template('datalist.html',users = users)
+
+    
 @app.route('/data/<int:user_id>')
 def RetrieveSingleEmployee(user_id):
     user = User.query.filter_by(id=user_id).first()
@@ -118,7 +123,10 @@ def RetrieveSingleEmployee(user_id):
 
 @app.route('/data/<int:id>/update',methods = ['GET','POST'])
 def update(id):
-    form = RegisterForm()
+    if current_user.role=='a':
+        form = UpdateFormA()
+    else:
+        form = UpdateFormM()
     user = User.query.filter_by(id=id).first()
     if request.method == 'POST':
         if user:
@@ -130,8 +138,13 @@ def update(id):
                     username=form.username.data,
                     role= form.role.data,
                     password=form.password1.data)
+            if form.errors !={}:                   # if there are no errors from the validators
+                for err_msg in form.errors.values():
+                    flash(f'There was an error while creating user:{err_msg}')
                 db.session.add(user_to_create)
                 db.session.commit()
+                flash(f"Updated successfully", category='info')
+
             return redirect(f'/data/{id}')
         return f"User with id = {id} Does not exist"
  
@@ -144,10 +157,10 @@ def delete(user_id):
         if user:
             db.session.delete(user)
             db.session.commit()
-            return redirect('/admin/data')
+            return redirect(url_for('RetrieveDataList'))
         abort(404)
- 
-    return render_template('delete.html')
+        
+    # return render_template('delete.html')
 
 @app.route('/admin/', methods=['GET','POST'])
 def admin():
@@ -157,7 +170,7 @@ def RetrieveLogsList():
     if current_user.role == 'a':
         logs = Logs.query.all()
     elif current_user.role == 'm':
-        logs = Logs.query.join(User, User.id == Logs.user_id).filter(User.role == 'u')
+        logs = Logs.query.join(User, User.id == Logs.user_id).filter(User.role == 'u').filter(id== current_user.id)
     else:
         logs = Logs.query.filter_by(id= current_user.id)
     return render_template('datalogs.html',logs = logs)
