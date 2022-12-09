@@ -54,8 +54,7 @@ class UpdateFormA(FlaskForm):
     username = StringField(label='User Name:', validators = [Length(min=1,max=30), DataRequired()])
     role = SelectField(label='Role', choices=[('a', 'Admin'), ('m', 'Manager'), ('u', 'User')])
     password1 = PasswordField(label='Password:',validators= [Length(min = 6), DataRequired()])
-    password2 = PasswordField(label='Confirm Password:', validators=[EqualTo('password1'), DataRequired()])
-    submit = SubmitField(label='Create Account')
+    submit = SubmitField(label='Update Account')
 
 class UpdateFormM(FlaskForm):
     def validate_username(self, username_to_check):
@@ -71,8 +70,7 @@ class UpdateFormM(FlaskForm):
     username = StringField(label='User Name:', validators = [Length(min=1,max=30), DataRequired()])
     role = SelectField(label='Role', choices=[('u', 'User')])
     password1 = PasswordField(label='Password:',validators= [Length(min = 6), DataRequired()])
-    password2 = PasswordField(label='Confirm Password:', validators=[EqualTo('password1'), DataRequired()])
-    submit = SubmitField(label='Create Account')
+    submit = SubmitField(label='Update Account')
 class LoginForm(FlaskForm):
 	username = StringField(label='User Name:', validators=[DataRequired()])
 	password = PasswordField(label='Password:', validators=[DataRequired()])

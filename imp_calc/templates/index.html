@@ -34,8 +34,9 @@
 </div>
 {% endblock %}
 {% block main %}
-{% if remaining_days <= 3 %}
 <br>
+
+{% if remaining_days <= 3 %}
 <div class=" text-center">
     <div class="col-sm-11">
     <a href="{{ url_for('change_password') }}"><button type="button" class="bg-info text-center text-lg-start navbar-right">Password Expiring in {{ remaining_days }} days, Click here to change</button>

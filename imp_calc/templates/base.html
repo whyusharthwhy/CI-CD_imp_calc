@@ -10,6 +10,7 @@
   <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
   <script src="url_for('static', filename='script.js')"></script>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/back.css') }}">
   <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
   <style>
     /* Remove the navbar's default margin-bottom and rounded borders */
@@ -140,6 +141,23 @@
   <main>
     {% block main %}{% endblock %}
   </main>
+  <!--                                Nav btn                                                                     -->
+<div class="backBtn">
+      <span class="line tLine"></span>
+      <span class="line mLine"></span>
+      <span onclick="window.history.go(-1)" class="label" style="
+  position: absolute;
+  left: 0px;
+  top: 5px;
+  width: 100%;
+  text-align: center;
+  transition: all 0.4s ease;
+  font-size: 1em;
+  color: #333;
+">Back</span>
+      <span class="line bLine"></span>
+  </div>
+<!--                                Nav btn  Khatam                                                                    -->
   <footer class="container-fluid text-center fixed-bottom">
     <p>Document Automation Suite. Anthea Pharma 2022. Ver 2.0 </p>
   </footer>

@@ -119,32 +119,31 @@ def RetrieveSingleEmployee(user_id):
     user = User.query.filter_by(id=user_id).first()
     if user:
         return render_template('data.html', user = user)
-    return f"Employee with id ={id} Doenst exist"
+    return f"User with id ={id} Doenst exist"
 
 @app.route('/data/<int:id>/update',methods = ['GET','POST'])
 def update(id):
-    if current_user.role=='a':
-        form = UpdateFormA()
-    else:
-        form = UpdateFormM()
     user = User.query.filter_by(id=id).first()
+    if current_user.role=='a':
+        form = UpdateFormA(obj=user)
+    elif current_user.role=='m':
+        form = UpdateFormM(obj=user)
     if request.method == 'POST':
         if user:
             db.session.delete(user)
             db.session.commit()
-            form = RegisterForm()
+            # form = RegisterForm()
             if form.validate_on_submit():
-                user_to_create = User(id = id, 
+                user_to_update = User(id = id, 
                     username=form.username.data,
                     role= form.role.data,
                     password=form.password1.data)
+                db.session.add(user_to_update)
+                db.session.commit()
+                flash(f"Updated successfully", category='info')
             if form.errors !={}:                   # if there are no errors from the validators
                 for err_msg in form.errors.values():
                     flash(f'There was an error while creating user:{err_msg}')
-                db.session.add(user_to_create)
-                db.session.commit()
-                flash(f"Updated successfully", category='info')
-
             return redirect(f'/data/{id}')
         return f"User with id = {id} Does not exist"
  

@@ -21,7 +21,8 @@
 -->
 <body class="text-center">
     <div class="container">
-      <form id="form">
+      <form id="form" method="POST">
+        {{ form.csrf_token }}
         <div class="form-field">
           {{ form.username.label(class="form-label") }}
           {{ form.username(class="form-control", placeholder="Username") }} 
