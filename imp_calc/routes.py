@@ -95,7 +95,7 @@ def register_page():
         return redirect(url_for('RetrieveDataList'))  #home is the function defined for '/'url just above this code
     if form.errors !={}:                   # if there are no errors from the validators
         for err_msg in form.errors.values():
-            flash(f'There was an error while creating user:{err_msg}')
+            flash(f'{err_msg}', category='danger')
 
     return render_template('register.html', form=form)
 
@@ -169,9 +169,9 @@ def RetrieveLogsList():
     if current_user.role == 'a':
         logs = Logs.query.all()
     elif current_user.role == 'm':
-        logs = Logs.query.join(User, User.id == Logs.user_id).filter(User.role == 'u').filter(id== current_user.id)
+        logs = Logs.query.filter(User.role=='u'and current_user.role=='m')
     else:
-        logs = Logs.query.filter_by(id= current_user.id)
+        logs = Logs.query.filter_by(id=current_user.id).all()
     return render_template('datalogs.html',logs = logs)
 #  This one request to reset the password - https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-x-email-support
 # @app.route('/reset_password_request', methods=['GET', 'POST'])

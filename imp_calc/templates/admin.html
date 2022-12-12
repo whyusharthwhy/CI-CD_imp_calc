@@ -25,4 +25,24 @@
     </ul>
   </div>  
 </div>
+<script type="text/javascript">
+  $('a[href="' + this.location.pathname + '"]').parents('li,ul').addClass('active');
+</script>
+  <!--                                Nav btn                                                                     -->
+<div class="backBtn">
+      <span class="line tLine"></span>
+      <span class="line mLine"></span>
+      <span onclick="window.history.go(-1)" class="label" style="
+  position: absolute;
+  left: 0px;
+  top: 5px;
+  width: 100%;
+  text-align: center;
+  transition: all 0.4s ease;
+  font-size: 1em;
+  color: #333;
+">Back</span>
+      <span class="line bLine"></span>
+  </div>
+<!--                                Nav btn  Khatam                                                                    -->
 {% endblock %}
