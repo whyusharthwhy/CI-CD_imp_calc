@@ -166,12 +166,14 @@ def admin():
     return render_template('admin.html')
 @app.route('/logs')
 def RetrieveLogsList():
+    print(current_user.role)
     if current_user.role == 'a':
         logs = Logs.query.all()
     elif current_user.role == 'm':
-        logs = Logs.query.filter(User.role=='u'and current_user.role=='m')
+        print("This is coming till here")
+        logs = Logs.query.filter((User.role == 'u') | (User.id == current_user.id) & (not (User.role == 'a')))
     else:
-        logs = Logs.query.filter_by(id=current_user.id).all()
+        logs = Logs.query.filter(current_user.id == Logs.user_id)
     return render_template('datalogs.html',logs = logs)
 #  This one request to reset the password - https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-x-email-support
 # @app.route('/reset_password_request', methods=['GET', 'POST'])
@@ -187,7 +189,7 @@ def RetrieveLogsList():
 
 #         flash('Check your email for the instructions to reset your password')
 #         return redirect(url_for('login'))
-#     return render_template('reset_password_request.html',
+#     return render_template('reset_pass word_request.html',
 #                            title='Reset Password', form=form)
 # #This one will reset the passwordd
 # @app.route('/reset_password/<token>', methods=['GET', 'POST'])

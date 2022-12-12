@@ -3,6 +3,8 @@ from wtforms import StringField, PasswordField, SubmitField, SelectField
 from wtforms.validators import Length, EqualTo, Email, DataRequired, ValidationError
 from imp_calc.models import User
 from imp_calc.routes import current_user
+import re
+regex = re.compile('[@_!#$%^&*()<>?/\|}{~:]')
 
 class RegisterFormA(FlaskForm):
     def validate_password(self, password1):
@@ -30,12 +32,13 @@ class RegisterFormA(FlaskForm):
             raise ValidationError('Password must contain at least one uppercase letter.')
         if not any(char.islower() for char in password1.data):
             raise ValidationError('Password must contain at least one lowercase letter.')
-
+        if not re.search(r'[^A-Za-z0-9]', password1.data):
+            raise ValidationError('Password must contain at least one special character.')
 
     username = StringField(label='User Name:', validators = [Length(min=1,max=30), DataRequired()])
     role = SelectField(label='Role', choices=[('a', 'Admin'), ('m', 'Manager'), ('u', 'User')])
     # role = StringField(label='Role:',validators=[DataRequired()])
-    password1 = PasswordField(label='Password:',validators= [Length(min = 6), DataRequired()])
+    password1 = PasswordField(label='Password:',validators= [Length(min = 8), DataRequired()])
     password2 = PasswordField(label='Confirm Password:', validators=[EqualTo('password1'),validate_password, DataRequired()])
     submit = SubmitField(label='Create Account')
 
@@ -48,6 +51,8 @@ class RegisterFormM(FlaskForm):
             raise ValidationError('Password must contain at least one uppercase letter.')
         if not any(char.islower() for char in password1.data):
             raise ValidationError('Password must contain at least one lowercase letter.')
+        if not re.search(r'[^A-Za-z0-9]', password1.data):
+            raise ValidationError('Password must contain at least one special character.')
 
     def validate_username(self, username_to_check):
         user = User.query.filter_by(username=username_to_check.data).first()
@@ -75,6 +80,8 @@ class UpdateFormA(FlaskForm):
             raise ValidationError('Password must contain at least one uppercase letter.')
         if not any(char.islower() for char in password1.data):
             raise ValidationError('Password must contain at least one lowercase letter.')
+        if not re.search(r'[^A-Za-z0-9]', password1.data):
+            raise ValidationError('Password must contain at least one special character.')
 
 
     def validate_username(self, username_to_check):
@@ -101,6 +108,8 @@ class UpdateFormM(FlaskForm):
             raise ValidationError('Password must contain at least one uppercase letter.')
         if not any(char.islower() for char in password1.data):
             raise ValidationError('Password must contain at least one lowercase letter.')
+        if not re.search(r'[^A-Za-z0-9]', password1.data):
+            raise ValidationError('Password must contain at least one special character.')
 
     def validate_username(self, username_to_check):
         user = User.query.filter_by(username=username_to_check.data).first()
