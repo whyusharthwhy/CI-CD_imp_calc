@@ -14,6 +14,7 @@ from flask_login import login_user, logout_user, login_required, current_user
 from werkzeug.utils import secure_filename
 from flask.templating import render_template
 from flask_admin.contrib.sqla import ModelView
+from sqlalchemy import and_,or_
 
 from imp_calc import app
 from imp_calc.forms import RegisterFormA,RegisterFormM, LoginForm, UpdateFormA,UpdateFormM 
@@ -164,18 +165,36 @@ def delete(user_id):
 @app.route('/admin/', methods=['GET','POST'])
 def admin():
     return render_template('admin.html')
+# Working for everything but not for username
+# @app.route('/logs')
+# def RetrieveLogsList():
+#     print(current_user.role)
+#     if current_user.role == 'a':
+#         logs = Logs.query.all()
+#     elif current_user.role == 'm':
+#         print("This is coming till here")
+#         logs= Logs.query.join(User, User.id == Logs.user_id).filter(or_(User.role == 'u', User.id == current_user.id))
+#         # logs = Logs.query.filter(User.role == 'm') #| (User.id == current_user.id) & (not (User.role == 'a'))
+#     else:
+#         logs = Logs.query.filter(current_user.id == Logs.user_id)
+#     return render_template('datalogs.html',logs = logs)
+# Working of username but not for anything else
 @app.route('/logs')
 def RetrieveLogsList():
     print(current_user.role)
     if current_user.role == 'a':
-        logs = Logs.query.all()
+        logs = db.session.query(Logs, User.username).join(User, User.id == Logs.user_id)
     elif current_user.role == 'm':
         print("This is coming till here")
-        logs = Logs.query.filter((User.role == 'u') | (User.id == current_user.id) & (not (User.role == 'a')))
+        logs = db.session.query(Logs, User.username).join(User, User.id == Logs.user_id).filter(or_(User.role == 'u', User.id == current_user.id))
+        # logs = Logs.query.filter(User.role == 'm') #| (User.id == current_user.id) & (not (User.role == 'a'))
     else:
-        logs = Logs.query.filter(current_user.id == Logs.user_id)
+        logs = db.session.query(Logs, User.username).join(User, User.id == Logs.user_id).filter(current_user.id == Logs.user_id)
     return render_template('datalogs.html',logs = logs)
+
+
 #  This one request to reset the password - https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-x-email-support
+
 # @app.route('/reset_password_request', methods=['GET', 'POST'])
 # def reset_password_request():
 #     if current_user.is_authenticated:

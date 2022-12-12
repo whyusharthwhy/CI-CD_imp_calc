@@ -12,12 +12,13 @@
   {% for log in logs %}
   <tbody>
     <tr>
-      <td>{{log.user_id}}</td>
-      <td>{{log.activity}}</td>
-      <td>{{log.dt_string}}</td>
+      <td>{{log.username}}</td>
+      <td>{{log.Logs.activity}}</td>
+      <td>{{log.Logs.dt_string}}</td>
     </tr>
   </tbody>
   {% endfor %}
 
 </table>
+
 {% endblock %}
