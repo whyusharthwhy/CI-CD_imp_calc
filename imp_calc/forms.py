@@ -84,16 +84,6 @@ class UpdateFormA(FlaskForm):
             raise ValidationError('Password must contain at least one special character.')
 
 
-    def validate_username(self, username_to_check):
-        user = User.query.filter_by(username=username_to_check.data).first()
-        if user:
-            raise ValidationError('Username already exists! Please try a different username')
-
-    def validate_email_address(self, email_address_to_check):
-        email_address = User.query.filter_by(email_address=email_address_to_check.data).first()
-        if email_address:
-            raise ValidationError('Email Address already exists! Please try a different email address')
-
     username = StringField(label='User Name:', validators = [Length(min=1,max=30), DataRequired()])
     role = SelectField(label='Role', choices=[('a', 'Admin'), ('m', 'Manager'), ('u', 'User')])
     password1 = PasswordField(label='Password:',validators= [validate_password,Length(min = 6), DataRequired()])
@@ -110,16 +100,6 @@ class UpdateFormM(FlaskForm):
             raise ValidationError('Password must contain at least one lowercase letter.')
         if not re.search(r'[^A-Za-z0-9]', password1.data):
             raise ValidationError('Password must contain at least one special character.')
-
-    def validate_username(self, username_to_check):
-        user = User.query.filter_by(username=username_to_check.data).first()
-        if user:
-            raise ValidationError('Username already exists! Please try a different username')
-
-    def validate_email_address(self, email_address_to_check):
-        email_address = User.query.filter_by(email_address=email_address_to_check.data).first()
-        if email_address:
-            raise ValidationError('Email Address already exists! Please try a different email address')
 
     username = StringField(label='User Name:', validators = [Length(min=1,max=30), DataRequired()])
     role = SelectField(label='Role', choices=[('u', 'User')])

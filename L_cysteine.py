@@ -227,6 +227,8 @@ def initiate_report_creation(chrom_inputs, area_input, input_list):
             inx_to_shift = df_peak_table[df_peak_table["Name"].str.contains(compound, flags = re.IGNORECASE)].index[0]
         except IndexError as ie:
             print("\"{}\" might not be present in the tables of the file {}.Please check this file".format(compound,worksheet_name))
+            flash("\"{}\" might not be present in the tables of the file {}.Please check this file".format(compound,worksheet_name))
+            
             continue
         df_peak_table.columns = chrom_headers_shimadzu
         df_peak_table = shift_row_to_top(df_peak_table, inx_to_shift)

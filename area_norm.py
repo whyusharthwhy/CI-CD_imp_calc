@@ -7,7 +7,7 @@ import glob
 import pandas as pd
 import numpy as np
 import camelot
-
+from flask import flash
 # Area norm template sheet
 
 
@@ -99,6 +99,7 @@ def table_extratcor(tables, headers):
                 result_tables.append(df_table)
             except KeyError as ke:
                 print("Please check this file\n")
+                flash(f'Please check this file', category='danger')
                 return pd.DataFrame([], columns =headers)
         else:
             continue
@@ -106,6 +107,7 @@ def table_extratcor(tables, headers):
         df_result_table = pd.concat(result_tables, ignore_index=True)
     except ValueError as ve:
         print("No tables/values found in this file\n")
+        flash(f'No tables/values found in this file', category='danger')
         return pd.DataFrame()
     return df_result_table
 
@@ -180,6 +182,8 @@ def initiate_report_creation(chrom_inputs, input_list):
             base_rt = float(df_peak_table['Ret. Time'][df_peak_table["Name"].str.contains(compound, flags = re.IGNORECASE)].values.tolist()[0])
         except IndexError as ie:
             print("\"{}\" might not be present in the tables of the file {}. Please check this file".format(compound,worksheet_name))
+            flash("\"{}\" might not be present in the tables of the file {}. Please check this file".format(compound,worksheet_name))
+            
             continue
 
         compound_row = df_peak_table[df_peak_table["Name"].str.contains(compound, flags = re.IGNORECASE)].index

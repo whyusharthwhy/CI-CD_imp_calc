@@ -131,10 +131,10 @@ def update(id):
         form = UpdateFormM(obj=user)
     if request.method == 'POST':
         if user:
-            db.session.delete(user)
-            db.session.commit()
-            # form = RegisterForm()
             if form.validate_on_submit():
+                db.session.delete(user)
+                db.session.commit()
+                # form = RegisterForm()
                 user_to_update = User(id = id, 
                     username=form.username.data,
                     role= form.role.data,

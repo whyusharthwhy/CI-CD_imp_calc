@@ -12,7 +12,9 @@
   <div class="collapse navbar-collapse" id="myNavbar">
     <ul class="nav navbar-nav">
       <li class="nav-item"><a href="/">Home</a></li>
+      {% if current_user.role !='u' %}
       <li class="nav-item"><a href="{{ url_for('RetrieveDataList') }}">Users</a></li>
+      {% endif %}
       <li class="nav-item"><a href="{{ url_for('RetrieveLogsList') }}">Logs</a></li>
    </ul>
     <ul class="nav navbar-nav navbar-right">
