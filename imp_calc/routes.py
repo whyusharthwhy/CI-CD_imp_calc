@@ -17,7 +17,7 @@ from flask_admin.contrib.sqla import ModelView
 from sqlalchemy import and_,or_
 
 from imp_calc import app
-from imp_calc.forms import RegisterFormA,RegisterFormM, LoginForm, UpdateFormA,UpdateFormM 
+from imp_calc.forms import RegisterFormA,RegisterFormM, LoginForm, UpdateFormA, UpdateFormM, ChangePasswordForm
 from imp_calc.models import User, Logs
 from imp_calc import db, s
 
@@ -44,27 +44,30 @@ def login():
         return redirect(url_for('index'))
     form = LoginForm()
     if form.validate_on_submit():
-        attempted_user = User.query.filter_by(username=form.username.data).first()
-        if attempted_user and attempted_user.check_password_correction(
-                attempted_password=form.password.data
-        ):
-            login_user(attempted_user)
-            flash(f'Success! You are logged in as: {attempted_user.username}', category='success')
-            dt_string = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
-            userId = attempted_user.id
-            activity = "logged in"
-            print(userId)
-            session_logs.append([dt_string, userId, activity])
-            mylogger(dt_string,userId,activity)            
-            return redirect(url_for('index'))
-            session.permanent= True
-        else:
-            flash('Username and password are not match! Please try again', category='danger')
+        if User.is_active:
+            attempted_user = User.query.filter_by(username=form.username.data).first()
+            if attempted_user and attempted_user.check_password_correction(
+                    attempted_password=form.password.data
+            ):
+                login_user(attempted_user)
+                flash(f'Succes! Username and Matched! {attempted_user.username}', category='success')
+                dt_string = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+                userId = attempted_user.id
+                activity = "logged in"
+                print(userId)
+                session_logs.append([dt_string, userId, activity])
+                mylogger(dt_string,userId,activity)            
+                return redirect(url_for('index'))
+                session.permanent= True
+            else:
+                flash('Username and password are not match! Please try again', category='danger')
+        if user is not is_active:
+            flash('User is not active, Please contact Administrator or Manager', category='danger')
     return render_template('login.html', form = form)
 
 
 @app.route('/index')
-@login_required
+@login_required 
 def index():
     if current_user.is_authenticated:
         time_between_insertion = datetime.now() - current_user.created_at
@@ -79,13 +82,15 @@ def index():
         return render_template('index.html', remaining_days=remaining_days)
     else:
         return render_template('index.html')
-
+@login_required
 @app.route('/register',methods=['GET', 'POST'])
 def register_page():
-    if current_user.role=='a':
-        form = RegisterFormA()
-    else:
-        form = RegisterFormM()
+    form = RegisterFormA()
+
+    #if current_user.role=='a':
+    #    form = RegisterFormA()
+    #else:
+    #    form = RegisterFormM()
     if form.validate_on_submit():
         user_to_create = User(username=form.username.data,
                                 role= form.role.data,
@@ -137,6 +142,7 @@ def update(id):
                 # form = RegisterForm()
                 user_to_update = User(id = id, 
                     username=form.username.data,
+                    is_activate=form.is_activate.data,
                     role= form.role.data,
                     password=form.password1.data)
                 db.session.add(user_to_update)

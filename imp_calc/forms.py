@@ -1,10 +1,10 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, SelectField
+from wtforms import StringField, PasswordField, SubmitField, SelectField, BooleanField
 from wtforms.validators import Length, EqualTo, Email, DataRequired, ValidationError
 from imp_calc.models import User
 from imp_calc.routes import current_user
 import re
-regex = re.compile('[@_!#$%^&*()<>?/\|}{~:]')
+#regex = re.compile('[@_!#$%^&*()<>?/\|}{~:]')
 
 class RegisterFormA(FlaskForm):
     def validate_password(self, password1):
@@ -85,6 +85,7 @@ class UpdateFormA(FlaskForm):
 
 
     username = StringField(label='User Name:', validators = [Length(min=1,max=30), DataRequired()])
+    is_activate = BooleanField(label='Is Active:', default=True)
     role = SelectField(label='Role', choices=[('a', 'Admin'), ('m', 'Manager'), ('u', 'User')])
     password1 = PasswordField(label='Password:',validators= [validate_password,Length(min = 6), DataRequired()])
     submit = SubmitField(label='Update Account')
@@ -102,6 +103,7 @@ class UpdateFormM(FlaskForm):
             raise ValidationError('Password must contain at least one special character.')
 
     username = StringField(label='User Name:', validators = [Length(min=1,max=30), DataRequired()])
+    is_activate = BooleanField(label='Is Active:', default=True, false_values=('', 0, '0'))
     role = SelectField(label='Role', choices=[('u', 'User')])
     password1 = PasswordField(label='Password:',validators= [validate_password,Length(min = 6), DataRequired()])
     submit = SubmitField(label='Update Account')

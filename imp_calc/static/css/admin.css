@@ -90,7 +90,7 @@ body {
 
 
 .first-init-reply {
-  max-width: 600px;  
+  max-width: 15%;  
   margin:auto;
   margin-top: 50px;
   margin-bottom: 50px;
@@ -104,3 +104,10 @@ body {
   left: 10px;
   top: 10px;
 } 
+
+
+/* Checkbox control */
+.checkbox-control{
+  border: 2px solid #aaa;
+  border-radius: 2px;
+}

@@ -1,24 +1,7 @@
 {% extends 'admin.html' %}
-{% block main %}
-<!--
-<body class="text-center">
-    <div class="container">
-        <form method="POST" class="form-update" style="color:gray">
-            {{ form.hidden_tag() }}
-            <h1 class="h3 mb-3 font-weight-normal">
-                Please Update your Account
-            </h1>
-            <br>
-            <p>Username <input type = "text" name = "username" value="{{user.username}}"/></p>
-            <p>Role <input type = "integer" name = "role"  value="{{user.role}}"/></p>
-            <p>Password <input type = "text" name = "password" value="{{user.password1}}"/></p>
-            <p><input type = "submit" value = "Update" /></p>
-            <br>
+{% macro render_field(form) %}
 
-        </form>
-    </div>
-</body>
--->
+{% block main %}
 <body class="text-center">
     <div class="container">
       <form id="form" method="POST">
@@ -34,6 +17,10 @@
           {{ form.username(class="form-control", placeholder="Username") }} 
         <!--  <label for="exampleInputEmail1" class="form-label">Username</label>
           <input type="username"value="{{ current_user.username }}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">-->
+        </div>
+        <div class="form-field">
+          {{ form.is_activate.label(class="form-label") }}
+          {{ form.is_activate(id ="control",class="form-control") }} 
         </div>
         <div class="form-field">
           {{ form.role.label(class="form-label") }}
@@ -60,7 +47,7 @@
   </a>
   <a href="#" class="list-group-item">
     
-    One UPPERCASE character
+    One uppercase character
 </a>
   <a href="#" class="list-group-item">
     
@@ -77,9 +64,8 @@
 </body>
 <br>
 <br>
-<br>
-<br>
-<br><!--
+{% endblock %}
+{% endmacro %}<!--
 <form method="post" action="/" id="form" class="validate">
   <div class="form-field">
     <label for="full-name">Username</label>
@@ -99,4 +85,4 @@
   </div>
 </form>
 -->
-{% endblock %}
+
