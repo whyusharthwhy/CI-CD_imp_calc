@@ -1,32 +1,73 @@
-{% extends 'index.html' %}
+{% extends 'admin.html' %}
 {% block main %}
+
 <body class="text-center">
     <div class="container">
-        <form method="POST" class="form-register" style="color:gray">
+        <form method="POST" id="form" class="form-register" style="color:gray">
             {{ form.hidden_tag() }}
             <h1 class="h3 mb-3 font-weight-normal">
-                Please Create your Account
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Please Create your Account
             </h1>
             <br>
-            {{ form.username.label() }}
-            {{ form.username(class="form-control", placeholder="User Name") }}  
+        <div class="form-field">
+            {{ form.username.label(class="form-label") }}
+            {{ form.username(class="form-control", placeholder="Username") }}  
+        </div>
 
+          
+          <div class="form-field">
+            {{ form.role.label(class="form-label") }}
+            {{ form.role(class="form-control", placeholder="Username") }}  
+            <!--
+            <label for="exampleFormControlSelect1" class="form-label">Role</label>
+            <select class="form-control"  id="exampleFormControlSelect1">
+              <option>a</option>
+              <option>m</option>
+              <option>u</option>
+            </select>
+        -->
+          </div>
 
+        <div class="form-field">
 
-            {{ form.role.label() }}
-            {{ form.role(class="form-control", placeholder="role") }}
-
-            {{ form.password1.label() }}
+            {{ form.password1.label(class="form-label") }}
             {{ form.password1(class="form-control", placeholder="Password") }}
+        </div>
+        <div class="form-field">
 
-            {{ form.password2.label() }}
+            {{ form.password2.label(class="form-label") }}
             {{ form.password2(class="form-control", placeholder="Confirm Password") }}
+        </div>
 
             <br>
-
-            {{ form.submit(class="btn btn-lg btn-block btn-primary") }}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            {{ form.submit(id = "reg-submit",class="btn btn-lg btn-flex btn-primary right") }}
 
         </form>
     </div>
+
+<div class="list-group first-init-reply">
+    <h4>Please follow the given rules to create passwords:</h4>
+  <a href="#" class="list-group-item">
+    
+    One lowercase character
+  </a>
+  <a href="#" class="list-group-item">
+    
+    One uppercase character
+</a>
+  <a href="#" class="list-group-item">
+    
+    One numeric character
+  </a>
+  <a href="#" class="list-group-item">
+
+    One special character[!@#$%^&*()]  </a>
+  <a href="#" class="list-group-item">
+
+    8 characters minimum
+  </a>
+</div>
+</div>
 </body>
 {% endblock %}

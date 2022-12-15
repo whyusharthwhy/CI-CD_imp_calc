@@ -75,6 +75,8 @@ def table_extratcor(tables, headers):
                 result_tables.append(df_table)
             except KeyError as ke:
                 print("Please check this file\n")
+                flash("Please check this file\n")
+
                 return pd.DataFrame([], columns =headers)
         else:
             continue
@@ -82,6 +84,7 @@ def table_extratcor(tables, headers):
         df_result_table = pd.concat(result_tables, ignore_index=True)
     except ValueError as ve:
         print("No tables/values found in this file\n")
+        flash("No tables/values found in this file\n")
         return pd.DataFrame()
 
     return df_result_table

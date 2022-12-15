@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block nav%}
+{% block nav %}
 <div class="container-fluid">
   <div class="navbar-header">
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -20,25 +20,28 @@
    </ul>
     <ul class="nav navbar-nav navbar-right">
     <!--<li><a href="{{ url_for('change_password') }}">Password Expiring in{{ remaining_days }}days</a></li> --> 
+      {% if current_user.role!='u' %}
+      <li><a href="{{url_for('RetrieveDataList')}}">User Management</a></li>
+      {% endif %}
       {% if current_user.is_authenticated %}
+      <li><a href="logs">Logs</a></li>
       <li><a href="{{ url_for('logout_page') }}">Logout</a></li>
       {% else %}
       <li><a href="/">Login</a></li>
-      {% endif %}
-      {% if current_user.role=='a' %}
-      <li><a href="admin">Admin</a></li>
       {% endif %}
     </ul>
   </div>  
 </div>
 {% endblock %}
 {% block main %}
-{% if remaining_days <= 3 %}
 <br>
-<div class=" text-center">
-    <div class="col-sm-11">
+
+{% if remaining_days <= 30 %}
+<div class="text-center">
+    <div class="col-sm-12">
     <a href="{{ url_for('change_password') }}"><button type="button" class="bg-info text-center text-lg-start navbar-right">Password Expiring in {{ remaining_days }} days, Click here to change</button>
     </a>
+  </div>
   </div>
 </div>
 {% endif %}
@@ -62,6 +65,5 @@
     </div>
   </div>
 </div>
-</div>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>  
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 {% endblock %}

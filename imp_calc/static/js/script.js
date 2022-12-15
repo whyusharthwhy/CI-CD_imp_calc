@@ -21,6 +21,12 @@ function idleTimer() {
         t= setTimeout(reload, 30000);  // time is in milliseconds (1000 is 1 second)
     }
 }
+var navItems = document.querySelectorAll(".nav-item");
+for (var i = 0; i < navItems.length; i++) {
+   navItems[i].addEventListener("click", function() {
+      this.classList.add("active");
+   });
+}
 idleTimer();
 // // Set timeout variables.
 // var timoutWarning = 10; // Display warning in 14 Mins.

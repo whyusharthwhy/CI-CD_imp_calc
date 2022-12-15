@@ -1,0 +1,88 @@
+{% extends 'admin.html' %}
+{% macro render_field(form) %}
+
+{% block main %}
+<body class="text-center">
+    <div class="container">
+      <form id="form" method="POST">
+        {{ form.csrf_token }}
+        <h1 class="h3 mb-3 font-weight-normal" style="text-align: center;">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Update your Account
+            </h1>
+            <br>
+            <br>
+            
+        <div class="form-field">
+          {{ form.username.label(class="form-label") }}
+          {{ form.username(class="form-control", placeholder="Username") }} 
+        <!--  <label for="exampleInputEmail1" class="form-label">Username</label>
+          <input type="username"value="{{ current_user.username }}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">-->
+        </div>
+        <div class="form-field">
+          {{ form.is_activate.label(class="form-label") }}
+          {{ form.is_activate(id ="control",class="form-control") }} 
+        </div>
+        <div class="form-field">
+          {{ form.role.label(class="form-label") }}
+          {{ form.role(class="form-control", placeholder="Role") }}                  
+        
+        </div>
+        <div class="form-field">
+            {{ form.password1.label(class="form-label") }}
+
+            {{ form.password1(class="form-control", placeholder="Password") }}
+
+        </div>
+        
+          <div class="form-field" id="submit-update">
+            {{ form.submit(class="form-control")}}
+          </div>
+      </form>
+    </div>
+<div class="list-group first-init-reply">
+    <h4>Please follow the given rules to update passwords:</h4>
+  <a href="#" class="list-group-item">
+    
+    One lowercase character
+  </a>
+  <a href="#" class="list-group-item">
+    
+    One uppercase character
+</a>
+  <a href="#" class="list-group-item">
+    
+    One numeric character
+  </a>
+  <a href="#" class="list-group-item">
+
+    One special character[!@#$%^&*()]  </a>
+  <a href="#" class="list-group-item">
+
+    8 characters minimum
+  </a>
+</div>
+</body>
+<br>
+<br>
+{% endblock %}
+{% endmacro %}<!--
+<form method="post" action="/" id="form" class="validate">
+  <div class="form-field">
+    <label for="full-name">Username</label>
+    <input type="text" name="full-name" id="full-name" placeholder="Joe Bloggs" required />
+  </div>
+  <div class="form-field">
+    <label for="email-input">Role</label>
+    <input type="email" name="email-input" id="email-input" placeholder="example@domain.com" required />
+  </div>
+  <div class="form-field">
+    <label for="password-input">Password</label>
+    <input type="password" name="password-input" id="password-input" required />
+  </div>
+  <div class="form-field">
+    <label for=""></label>
+    <input type="submit" value="Sign Up" />
+  </div>
+</form>
+-->
+

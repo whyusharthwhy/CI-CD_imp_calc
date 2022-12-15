@@ -72,6 +72,7 @@ def table_extratcor(tables, headers):
                 result_tables.append(df_table)
             except KeyError as ke:
                 print("Please check this file\n")
+                flash("Please check this file")
                 return pd.DataFrame([], columns =headers)
         else:
             continue
@@ -79,6 +80,7 @@ def table_extratcor(tables, headers):
         df_result_table = pd.concat(result_tables, ignore_index=True)
     except ValueError as ve:
         print("No tables/values found in this file\n")
+        flash("No tables/values found in this file\n")
         return pd.DataFrame()
 
     return df_result_table
@@ -311,6 +313,8 @@ def initiate_report_creation(chrom_inputs, area_input, area_input_imp_b, input_l
             inx_to_shift = df_peak_table[df_peak_table["Name"].str.contains(compound, flags = re.IGNORECASE)].index[0]
         except IndexError as ie:
             print("\"{}\" might not be present in the tables of the file {}.Please check this file".format(compound,worksheet_name))
+            flash("\"{}\" might not be present in the tables of the file {}.Please check this file".format(compound,worksheet_name))
+            
             continue
         df_peak_table = shift_row_to_top(df_peak_table, inx_to_shift)
         cond_1 = df_peak_table["Name"] == ''

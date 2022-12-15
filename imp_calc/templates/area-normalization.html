@@ -20,7 +20,12 @@
       <li style class="active"><a href="Areanorm">Area Normalization</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
+    <!--<li><a href="{{ url_for('change_password') }}">Password Expiring in{{ remaining_days }}days</a></li> --> 
+      {% if current_user.role!='u' %}
+      <li><a href="{{url_for('RetrieveDataList')}}">User Management</a></li>
+      {% endif %}
       {% if current_user.is_authenticated %}
+      <li><a href="logs">Logs</a></li>
       <li><a href="{{ url_for('logout_page') }}">Logout</a></li>
       {% else %}
       <li><a href="/">Login</a></li>

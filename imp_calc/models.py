@@ -4,8 +4,8 @@ import jwt
 from time import time
 from datetime import datetime
 from flask_admin import Admin
-from imp_calc import admin
 from flask_admin.contrib.sqla import ModelView
+from sqlalchemy.orm import sessionmaker, relationship
 
 
 
@@ -18,12 +18,17 @@ def load_user(user_id):
 class User(db.Model, UserMixin):
     """docstring for User"""
     id = db.Column(db.Integer(),primary_key = True)
+    is_activate = db.Column(db.Boolean, default=True)
     username = db.Column(db.String(length=12),nullable = False, unique = True)
     role = db.Column(db.String(length=1),nullable=False)    
     password_hash = db.Column(db.String(length=60),nullable = False)
     created_at = db.Column(db.DateTime, nullable = False, default= datetime.utcnow)
-    logs = db.relationship('Logs', backref='user')
+    logs = relationship("Logs", backref="UserLogs")
 
+    @property
+    def is_active(self):
+        return self.is_activate
+    
     @property
     def password(self):
         return self.password
@@ -36,9 +41,11 @@ class User(db.Model, UserMixin):
         return bcrypt.check_password_hash(self.password_hash, attempted_password)
 
 class Logs(db.Model):
-    id = db.Column(db.Integer,db.ForeignKey('user.id') )   
-    log_id = db.Column(db.Integer, primary_key=True)
-    activity= db.Column(db.String(length=50),nullable = False)
+    # id = db.Column(db.Integer,db.ForeignKey('user.id') )   #primary key
+    # log_id = db.Column(db.Integer, primary_key=True)       #foreign key -> renamed "user_id"
+    id = db.Column(db.Integer, primary_key=True) 
+    user_id =  db.Column(db.Integer,db.ForeignKey('user.id'))
+    activity = db.Column(db.String(length=50),nullable = False)
     dt_string = db.Column(db.String(length=60),nullable = False)
 
 

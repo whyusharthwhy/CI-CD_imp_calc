@@ -14,9 +14,10 @@ from flask_login import login_user, logout_user, login_required, current_user
 from werkzeug.utils import secure_filename
 from flask.templating import render_template
 from flask_admin.contrib.sqla import ModelView
+from sqlalchemy import and_,or_
 
 from imp_calc import app
-from imp_calc.forms import RegisterForm, LoginForm
+from imp_calc.forms import RegisterFormA,RegisterFormM, LoginForm, UpdateFormA, UpdateFormM, ChangePasswordForm
 from imp_calc.models import User, Logs
 from imp_calc import db, s
 
@@ -27,6 +28,8 @@ import imp_vs_imp
 import assay
 import L_cysteine
 
+from wtforms import TextField, BooleanField
+from wtforms.validators import Required
 #Database Direct Connection - Without going through models, so we can't create a relationship between this scheam and model in our sqlite database
 
 # import sqlite3
@@ -41,27 +44,30 @@ def login():
         return redirect(url_for('index'))
     form = LoginForm()
     if form.validate_on_submit():
-        attempted_user = User.query.filter_by(username=form.username.data).first()
-        if attempted_user and attempted_user.check_password_correction(
-                attempted_password=form.password.data
-        ):
-            login_user(attempted_user)
-            flash(f'Success! You are logged in as: {attempted_user.username}', category='success')
-            dt_string = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
-            userId = attempted_user.id
-            activity = "logged in"
-            print(userId)
-            session_logs.append([dt_string, userId, activity])
-            mylogger(dt_string,userId,activity)            
-            return redirect(url_for('index'))
-            session.permanent= True
-        else:
-            flash('Username and password are not match! Please try again', category='danger')
+        if User.is_active:
+            attempted_user = User.query.filter_by(username=form.username.data).first()
+            if attempted_user and attempted_user.check_password_correction(
+                    attempted_password=form.password.data
+            ):
+                login_user(attempted_user)
+                flash(f'Succes! Username and Matched! {attempted_user.username}', category='success')
+                dt_string = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+                userId = attempted_user.id
+                activity = "logged in"
+                print(userId)
+                session_logs.append([dt_string, userId, activity])
+                mylogger(dt_string,userId,activity)            
+                return redirect(url_for('index'))
+                session.permanent= True
+            else:
+                flash('Username and password are not match! Please try again', category='danger')
+        if user is not is_active:
+            flash('User is not active, Please contact Administrator or Manager', category='danger')
     return render_template('login.html', form = form)
 
 
 @app.route('/index')
-@login_required
+@login_required 
 def index():
     if current_user.is_authenticated:
         time_between_insertion = datetime.now() - current_user.created_at
@@ -76,27 +82,125 @@ def index():
         return render_template('index.html', remaining_days=remaining_days)
     else:
         return render_template('index.html')
-
+@login_required
 @app.route('/register',methods=['GET', 'POST'])
 def register_page():
-    form = RegisterForm()
+    form = RegisterFormA()
+
+    #if current_user.role=='a':
+    #    form = RegisterFormA()
+    #else:
+    #    form = RegisterFormM()
     if form.validate_on_submit():
         user_to_create = User(username=form.username.data,
                                 role= form.role.data,
-                              
                               password=form.password1.data)
         db.session.add(user_to_create)
         db.session.commit()
-        login_user(user_to_create)
-        flash(f"Account created successfully! You are now logged in as {user_to_create.username}", category='success')
-        return redirect(url_for('index'))  #home is the function defined for '/'url just above this code
+        flash(f"Account created successfully! {user_to_create.username}", category='success')
+        return redirect(url_for('RetrieveDataList'))  #home is the function defined for '/'url just above this code
     if form.errors !={}:                   # if there are no errors from the validators
         for err_msg in form.errors.values():
-            flash(f'There was an error while creating user:{err_msg}')
+            flash(f'{err_msg}', category='danger')
 
     return render_template('register.html', form=form)
 
- #  This one request to reset the password - https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-x-email-support
+#CRUD Part handmade
+
+@app.route('/data')
+def RetrieveDataList():
+    if current_user.role =='a' or current_user.role =='m':
+        if current_user.role == 'a':
+            users = User.query.all()
+        elif current_user.role == 'm':
+            users = User.query.filter_by(role='u')
+    else:
+        flash(f"Please login as admin or manager to see UserManagement Section", category='danger')
+        return redirect(url_for('index'))
+    return render_template('datalist.html',users = users)
+
+    
+@app.route('/data/<int:user_id>')
+def RetrieveSingleEmployee(user_id):
+    user = User.query.filter_by(id=user_id).first()
+    if user:
+        return render_template('data.html', user = user)
+    return f"User with id ={id} Doenst exist"
+
+@app.route('/data/<int:id>/update',methods = ['GET','POST'])
+def update(id):
+    user = User.query.filter_by(id=id).first()
+    if current_user.role=='a':
+        form = UpdateFormA(obj=user)
+    elif current_user.role=='m':
+        form = UpdateFormM(obj=user)
+    if request.method == 'POST':
+        if user:
+            if form.validate_on_submit():
+                db.session.delete(user)
+                db.session.commit()
+                # form = RegisterForm()
+                user_to_update = User(id = id, 
+                    username=form.username.data,
+                    is_activate=form.is_activate.data,
+                    role= form.role.data,
+                    password=form.password1.data)
+                db.session.add(user_to_update)
+                db.session.commit()
+                flash(f"Updated successfully", category='info')
+            if form.errors !={}:                   # if there are no errors from the validators
+                for err_msg in form.errors.values():
+                    flash(f'There was an error while creating user:{err_msg}')
+            return redirect(f'/data/{id}')
+        return f"User with id = {id} Does not exist"
+ 
+    return render_template('update.html', form = form, user = user)
+
+@app.route('/data/<int:user_id>/delete', methods=['GET','POST'])
+def delete(user_id):
+    user = User.query.filter_by(id=user_id).first()
+    if request.method == 'POST':
+        if user:
+            db.session.delete(user)
+            db.session.commit()
+            return redirect(url_for('RetrieveDataList'))
+        abort(404)
+        
+    # return render_template('delete.html')
+
+@app.route('/admin/', methods=['GET','POST'])
+def admin():
+    return render_template('admin.html')
+# Working for everything but not for username
+# @app.route('/logs')
+# def RetrieveLogsList():
+#     print(current_user.role)
+#     if current_user.role == 'a':
+#         logs = Logs.query.all()
+#     elif current_user.role == 'm':
+#         print("This is coming till here")
+#         logs= Logs.query.join(User, User.id == Logs.user_id).filter(or_(User.role == 'u', User.id == current_user.id))
+#         # logs = Logs.query.filter(User.role == 'm') #| (User.id == current_user.id) & (not (User.role == 'a'))
+#     else:
+#         logs = Logs.query.filter(current_user.id == Logs.user_id)
+#     return render_template('datalogs.html',logs = logs)
+# Working of username but not for anything else
+@app.route('/logs')
+def RetrieveLogsList():
+    print(current_user.role)
+    if current_user.role == 'a':
+        logs = db.session.query(Logs, User.username).join(User, User.id == Logs.user_id)
+    elif current_user.role == 'm':
+        print("This is coming till here")
+        logs = db.session.query(Logs, User.username).join(User, User.id == Logs.user_id).filter(or_(User.role == 'u', User.id == current_user.id))
+        # logs = Logs.query.filter(User.role == 'm') #| (User.id == current_user.id) & (not (User.role == 'a'))
+    else:
+        logs = db.session.query(Logs, User.username).join(User, User.id == Logs.user_id).filter(current_user.id == Logs.user_id)
+    return render_template('datalogs.html',logs = logs)
+
+
+#  This one request to reset the password - https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-x-email-support
+
 # @app.route('/reset_password_request', methods=['GET', 'POST'])
 # def reset_password_request():
 #     if current_user.is_authenticated:
@@ -110,7 +214,7 @@ def register_page():
 
 #         flash('Check your email for the instructions to reset your password')
 #         return redirect(url_for('login'))
-#     return render_template('reset_password_request.html',
+#     return render_template('reset_pass word_request.html',
 #                            title='Reset Password', form=form)
 # #This one will reset the passwordd
 # @app.route('/reset_password/<token>', methods=['GET', 'POST'])
@@ -542,6 +646,6 @@ def Lcysteine():
         return render_template('lcysteine.html', output_folder= UPLOAD_FOLDER, output_file =  "{}-Assay.xls".format(compound))
 
 def mylogger(dt_string, userId,activity):
-    logs_to_create = Logs(dt_string=dt_string, id = userId,activity = activity)
+    logs_to_create = Logs(dt_string=dt_string, user_id = userId,activity = activity)
     db.session.add(logs_to_create)
     db.session.commit()
