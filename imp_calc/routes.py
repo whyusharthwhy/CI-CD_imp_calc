@@ -13,7 +13,6 @@ from flask import Flask, session, g, redirect, url_for, render_template, request
 from flask_login import login_user, logout_user, login_required, current_user
 from werkzeug.utils import secure_filename
 from flask.templating import render_template
-from flask_admin.contrib.sqla import ModelView
 from sqlalchemy import and_,or_
 
 from imp_calc import app
