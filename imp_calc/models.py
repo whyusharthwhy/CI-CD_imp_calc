@@ -3,8 +3,6 @@ from flask_login import UserMixin
 import jwt
 from time import time
 from datetime import datetime
-from flask_admin import Admin
-from flask_admin.contrib.sqla import ModelView
 from sqlalchemy.orm import sessionmaker, relationship
 
 
