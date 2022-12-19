@@ -50,7 +50,7 @@ def login():
                     attempted_password=form.password.data
             ):
                 login_user(attempted_user)
-                flash(f'Succes! Username and Matched! {attempted_user.username}', category='success')
+                #flash(f'Succes! Username and password Matched! {attempted_user.username}', category='success')
                 dt_string = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
                 userId = attempted_user.id
                 activity = "logged in"
@@ -60,8 +60,8 @@ def login():
                 return redirect(url_for('index'))
                 session.permanent= True
             else:
-                flash('Username and password are not match! Please try again', category='danger')
-        if user is not is_active:
+                flash('Username and password do not match! Please try again', category='danger')
+        else:
             flash('User is not active, Please contact Administrator or Manager', category='danger')
     return render_template('login.html', form = form)
 
@@ -150,7 +150,7 @@ def update(id):
                 flash(f"Updated successfully", category='info')
             if form.errors !={}:                   # if there are no errors from the validators
                 for err_msg in form.errors.values():
-                    flash(f'There was an error while creating user:{err_msg}')
+                    flash(f'{err_msg}')
             return redirect(f'/data/{id}')
         return f"User with id = {id} Does not exist"
  
@@ -189,13 +189,13 @@ def admin():
 def RetrieveLogsList():
     print(current_user.role)
     if current_user.role == 'a':
-        logs = db.session.query(Logs, User.username).join(User, User.id == Logs.user_id)
+        logs = db.session.query(Logs, User.username).join(User, User.id == Logs.user_id, isouter=True)
     elif current_user.role == 'm':
         print("This is coming till here")
-        logs = db.session.query(Logs, User.username).join(User, User.id == Logs.user_id).filter(or_(User.role == 'u', User.id == current_user.id))
+        logs = db.session.query(Logs, User.username).join(User, User.id == Logs.user_id,  isouter=True).filter(or_(User.role == 'u', User.id == current_user.id))
         # logs = Logs.query.filter(User.role == 'm') #| (User.id == current_user.id) & (not (User.role == 'a'))
     else:
-        logs = db.session.query(Logs, User.username).join(User, User.id == Logs.user_id).filter(current_user.id == Logs.user_id)
+        logs = db.session.query(Logs, User.username).join(User, User.id == Logs.user_id, isouter=True).filter(current_user.id == Logs.user_id)
     return render_template('datalogs.html',logs = logs)
 
 

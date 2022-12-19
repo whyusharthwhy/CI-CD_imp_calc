@@ -17,4 +17,5 @@ email-validator
 flask-mail
 PyJWT
 pandas
+WTForms==2.3.3
 #tailwindcss

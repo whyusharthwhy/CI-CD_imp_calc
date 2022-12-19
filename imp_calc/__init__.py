@@ -7,7 +7,6 @@ import flask_login as login
 import os
 from itsdangerous import URLSafeTimedSerializer, SignatureExpired
 from datetime import timedelta
-from flask_admin.contrib.sqla import ModelView
 from flask_wtf import Form
 from flask import render_template
 from wtforms import TextField, BooleanField

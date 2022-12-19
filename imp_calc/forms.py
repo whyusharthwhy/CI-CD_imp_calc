@@ -39,7 +39,7 @@ class RegisterFormA(FlaskForm):
     role = SelectField(label='Role', choices=[('a', 'Admin'), ('m', 'Manager'), ('u', 'User')])
     # role = StringField(label='Role:',validators=[DataRequired()])
     password1 = PasswordField(label='Password:',validators= [Length(min = 8), DataRequired()])
-    password2 = PasswordField(label='Confirm Password:', validators=[EqualTo('password1'),validate_password, DataRequired()])
+    password2 = PasswordField(label='Confirm Password:', validators=[EqualTo('password1',message='Both passwords must be equal'),validate_password, DataRequired()])
     submit = SubmitField(label='Create Account')
 
 class RegisterFormM(FlaskForm):
@@ -68,7 +68,7 @@ class RegisterFormM(FlaskForm):
     role = SelectField(label='Role', choices=[('u', 'User')])
     # role = StringField(label='Role:',validators=[DataRequired()])
     password1 = PasswordField(label='Password:',validators= [Length(min = 6), DataRequired()])
-    password2 = PasswordField(label='Confirm Password:', validators=[EqualTo('password1'),validate_password, DataRequired()])
+    password2 = PasswordField(label='Confirm Password:', validators=[EqualTo('password1',message='Both passwords must be equal'),validate_password, DataRequired()])
     submit = SubmitField(label='Create Account')
 
 class UpdateFormA(FlaskForm):

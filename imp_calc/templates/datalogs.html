@@ -12,7 +12,11 @@
   {% for log in logs %}
   <tbody>
     <tr>
+      {% if log.username!=None %}
       <td>{{log.username}}</td>
+      {% else %}
+      <td><i>Deleted User</i></td>
+      {% endif %}
       <td>{{log.Logs.activity}}</td>
       <td>{{log.Logs.dt_string}}</td>
     </tr>
