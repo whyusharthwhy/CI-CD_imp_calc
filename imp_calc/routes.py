@@ -150,7 +150,7 @@ def update(id):
                 flash(f"Updated successfully", category='info')
             if form.errors !={}:                   # if there are no errors from the validators
                 for err_msg in form.errors.values():
-                    flash(f'There was an error while creating user:{err_msg}')
+                    flash(f'{err_msg}')
             return redirect(f'/data/{id}')
         return f"User with id = {id} Does not exist"
  
