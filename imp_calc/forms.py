@@ -118,9 +118,20 @@ class EmailForm(FlaskForm):
     submit = SubmitField(label='Submit')
     
 class ChangePasswordForm(FlaskForm):
+    def validate_password(self, password_new1):
+        if not any(char.isdigit() for char in password_new1.data):
+            raise ValidationError('Password must contain at least one number.')
+        if not any(char.isupper() for char in password_new1.data):
+            raise ValidationError('Password must contain at least one uppercase letter.')
+        if not any(char.islower() for char in password_new1.data):
+            raise ValidationError('Password must contain at least one lowercase letter.')
+        if not re.search(r'[^A-Za-z0-9]', password_new1.data):
+            raise ValidationError('Password must contain at least one special character.')
     """docstring for ChangePasswordForm"""
+    is_activate = BooleanField(label='Is Active:', default=True)
     password_old = PasswordField('Enter Old Password', validators=[DataRequired()])
     password_new1 = PasswordField('Enter New Password', validators=[DataRequired()])
-    password_new2 = PasswordField('Confirm New Password',validators=[EqualTo('password_new1',
+    password_new2 = PasswordField('Confirm New Password',validators=[validate_password, EqualTo('password_new1',
         message='Both passwords must be equal'), DataRequired()])
     submit = SubmitField('Confirm Change Password')
+

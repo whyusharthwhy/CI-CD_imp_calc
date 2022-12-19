@@ -252,12 +252,12 @@ def change_password():
             dt_string = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
             activity = "changed password"
             session_logs.append([dt_string, id, activity])
-            mylogger(dt_string, userId,activity)
+            mylogger(dt_string, id,activity)
             
             logout_page()
-            return redirect(url_for('index'))
+            return redirect(url_for('login'))
         else:
-            flash(f'Username and password not matching please try again',category='danger')
+            flash(f'Username and password not matching!!! Please try again.',category='danger')
     if form.errors !={}: # if there are no errors from the validators
         for err_msg in form.errors.values():
             flash(f'{err_msg}',category='danger')
