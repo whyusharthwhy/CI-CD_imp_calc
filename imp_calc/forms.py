@@ -121,5 +121,6 @@ class ChangePasswordForm(FlaskForm):
     """docstring for ChangePasswordForm"""
     password_old = PasswordField('Enter Old Password', validators=[DataRequired()])
     password_new1 = PasswordField('Enter New Password', validators=[DataRequired()])
-    password_new2 = PasswordField('Confirm New Password',validators=[EqualTo('password_new1'), DataRequired()])
+    password_new2 = PasswordField('Confirm New Password',validators=[EqualTo('password_new1',
+        message='Both passwords must be equal'), DataRequired()])
     submit = SubmitField('Confirm Change Password')

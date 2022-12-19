@@ -256,9 +256,11 @@ def change_password():
             
             logout_page()
             return redirect(url_for('index'))
+        else:
+            flash(f'Username and password not matching please try again',category='danger')
     if form.errors !={}: # if there are no errors from the validators
         for err_msg in form.errors.values():
-            flash(f'There was an error while creating user:{err_msg}',category='danger')
+            flash(f'{err_msg}',category='danger')
     return render_template('change_password.html',form = form)
 
 @app.route('/logout',methods=['GET','POST'])
