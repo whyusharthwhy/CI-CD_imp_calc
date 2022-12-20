@@ -127,7 +127,7 @@ class ChangePasswordForm(FlaskForm):
             raise ValidationError('Password must contain at least one lowercase letter.')
         if not re.search(r'[^A-Za-z0-9]', password_new1.data):
             raise ValidationError('Password must contain at least one special character.')
-    """docstring for ChangePasswordForm"""
+    """docstring for ChangePasswordForm"""    nb
     is_activate = BooleanField(label='Is Active:', default=True)
     password_old = PasswordField('Enter Old Password', validators=[DataRequired()])
     password_new1 = PasswordField('Enter New Password', validators=[DataRequired()])
