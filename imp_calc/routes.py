@@ -16,8 +16,8 @@ from flask.templating import render_template
 from sqlalchemy import and_,or_
 
 from imp_calc import app
-from imp_calc.forms import RegisterFormA,RegisterFormM, LoginForm, UpdateFormA, UpdateFormM, ChangePasswordForm
-from imp_calc.models import User, Logs
+from imp_calc.forms import RegisterFormA,RegisterFormM, LoginForm, UpdateFormA, UpdateFormM, ChangePasswordForm,DeactivateForm
+from imp_calc.models import User, Logs, AttemptModel    
 from imp_calc import db, s
 
 import RS_creator
@@ -29,10 +29,6 @@ import L_cysteine
 
 from wtforms import TextField, BooleanField
 from wtforms.validators import Required
-#Database Direct Connection - Without going through models, so we can't create a relationship between this scheam and model in our sqlite database
-
-# import sqlite3
-# conn = sqlite3.connect('instance/site.db',check_same_thread=False)
 
 session_logs = []                               #Initiating the log creation
 @app.route('/', methods = ['GET','POST'])
@@ -48,18 +44,40 @@ def login():
             if attempted_user and attempted_user.check_password_correction(
                     attempted_password=form.password.data
             ):
+                del_attempt = AttemptModel.query.filter_by(user_id_attempts=attempted_user.id).first()
+                if del_attempt:
+                    db.session.delete(del_attempt)
+                    db.session.commit()
                 login_user(attempted_user)
                 #flash(f'Succes! Username and password Matched! {attempted_user.username}', category='success')
                 dt_string = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
                 userId = attempted_user.id
                 activity = "logged in"
-                print(userId)
                 session_logs.append([dt_string, userId, activity])
                 mylogger(dt_string,userId,activity)            
                 return redirect(url_for('index'))
                 session.permanent= True
             else:
-                flash('Username and password do not match! Please try again', category='danger')
+                current_attempts = AttemptModel.query.filter_by(user_id_attempts=attempted_user.id).order_by(
+                            AttemptModel.timestamp.desc()).first()
+                if current_attempts:
+                    current_attempts.attempt += 1
+                    current_attempts.timestamp = datetime.utcnow()
+                    db.session.commit()
+                    flash('Username and password do not match! Please try again. Attempts Left: ' + str(3-current_attempts.attempt), category='danger')
+                    # Check if the user has made three or more attempts within the past hour
+                    if current_attempts.attempt >= 3 and(datetime.utcnow() - current_attempts.timestamp).total_seconds() < 3600:
+                        # Redirect the user to an error page and display a message
+                        user_to_update = User.query.filter_by(id=attempted_user.id).update({"is_activate": False})
+                        db.session.commit()
+
+                        return render_template('exceedattempts.html', form = form)
+                else:
+                    new_attempts = AttemptModel(user_id_attempts=attempted_user.id, attempt=1, timestamp=datetime.utcnow())
+                    db.session.add(new_attempts)
+                    db.session.commit()
+                    flash('Username and password do not match! Please try again. Attempts Left: ' + str(3-new_attempts.attempt), category='danger')
+                #flash('Username and password do not match! Please try again. Attempts Left:'3-current_attempts.attempt, category='danger')
         else:
             flash('User is not active, Please contact Administrator or Manager', category='danger')
     return render_template('login.html', form = form)
@@ -84,19 +102,24 @@ def index():
 @login_required
 @app.route('/register',methods=['GET', 'POST'])
 def register_page():
-    form = RegisterFormA()
-
-    #if current_user.role=='a':
-    #    form = RegisterFormA()
-    #else:
-    #    form = RegisterFormM()
+    #form = RegisterFormA()
+    if current_user.role=='a':
+        form = RegisterFormA()
+    else:
+        form = RegisterFormM()
     if form.validate_on_submit():
+        global session_logs
+        dt_string = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+        userId = current_user.id
+        activity = "{} Created \n, Created by:{}".format(form.username.data, current_user.username)
+
         user_to_create = User(username=form.username.data,
                                 role= form.role.data,
                               password=form.password1.data)
         db.session.add(user_to_create)
         db.session.commit()
         flash(f"Account created successfully! {user_to_create.username}", category='success')
+        mylogger(dt_string, userId, activity)
         return redirect(url_for('RetrieveDataList'))  #home is the function defined for '/'url just above this code
     if form.errors !={}:                   # if there are no errors from the validators
         for err_msg in form.errors.values():
@@ -112,11 +135,11 @@ def RetrieveDataList():
         if current_user.role == 'a':
             users = User.query.all()
         elif current_user.role == 'm':
-            users = User.query.filter_by(role='u')
+            users = User.query.filter(User.role.in_(['u', 'm']))
     else:
         flash(f"Please login as admin or manager to see UserManagement Section", category='danger')
         return redirect(url_for('index'))
-    return render_template('datalist.html',users = users)
+    return render_template('datalist.html', users = users)
 
     
 @app.route('/data/<int:user_id>')
@@ -139,6 +162,11 @@ def update(id):
                 db.session.delete(user)
                 db.session.commit()
                 # form = RegisterForm()
+                global session_logs
+                dt_string = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+                userId = current_user.id
+                activity = "{} Updated \n, Updated by:{}".format(form.username.data, current_user.username)
+
                 user_to_update = User(id = id, 
                     username=form.username.data,
                     is_activate=form.is_activate.data,
@@ -159,84 +187,57 @@ def update(id):
 def delete(user_id):
     user = User.query.filter_by(id=user_id).first()
     if request.method == 'POST':
+        reason = '\n'.join(request.form.getlist('reason'))
+        activity = "{} deleted \nReason: {}\n Deleted by:{}".format(user.username, reason, current_user.username)
+        global session_logs
+        dt_string = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+        userId = current_user.id
         if user:
             db.session.delete(user)
             db.session.commit()
+            mylogger(dt_string, userId,activity)
             return redirect(url_for('RetrieveDataList'))
         abort(404)
-        
+    #return render_template('datalist.html', form=form, user=user)    
     # return render_template('delete.html')
+@app.route('/data/<int:user_id>/deactivate', methods=['GET','POST'])
+def deactivate(user_id):
+    form = DeactivateForm()
+    user = User.query.filter_by(id=user_id).first()
+    if request.method == 'POST':
+        reason = '\n'.join(request.form.getlist('reason'))
+        activity = "{} deactivated \nReason: {}\n deactivated by:{}".format(user.username, reason, current_user.username)
+        global session_logs
+        dt_string = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+        userId = current_user.id
+        if user:
+            user_to_update = User.query.filter_by(id=user_id).update({"is_activate": form.is_activate.data})
+            db.session.commit()
+            mylogger(dt_string, userId,activity)
+            return redirect(url_for('RetrieveDataList'))
+        abort(404)
 
 @app.route('/admin/', methods=['GET','POST'])
 def admin():
     return render_template('admin.html')
-# Working for everything but not for username
-# @app.route('/logs')
-# def RetrieveLogsList():
-#     print(current_user.role)
-#     if current_user.role == 'a':
-#         logs = Logs.query.all()
-#     elif current_user.role == 'm':
-#         print("This is coming till here")
-#         logs= Logs.query.join(User, User.id == Logs.user_id).filter(or_(User.role == 'u', User.id == current_user.id))
-#         # logs = Logs.query.filter(User.role == 'm') #| (User.id == current_user.id) & (not (User.role == 'a'))
-#     else:
-#         logs = Logs.query.filter(current_user.id == Logs.user_id)
-#     return render_template('datalogs.html',logs = logs)
-# Working of username but not for anything else
+
 @app.route('/logs')
 def RetrieveLogsList():
-    print(current_user.role)
     if current_user.role == 'a':
         logs = db.session.query(Logs, User.username).join(User, User.id == Logs.user_id, isouter=True)
     elif current_user.role == 'm':
-        print("This is coming till here")
         logs = db.session.query(Logs, User.username).join(User, User.id == Logs.user_id,  isouter=True).filter(or_(User.role == 'u', User.id == current_user.id))
         # logs = Logs.query.filter(User.role == 'm') #| (User.id == current_user.id) & (not (User.role == 'a'))
     else:
         logs = db.session.query(Logs, User.username).join(User, User.id == Logs.user_id, isouter=True).filter(current_user.id == Logs.user_id)
     return render_template('datalogs.html',logs = logs)
 
-
-#  This one request to reset the password - https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-x-email-support
-
-# @app.route('/reset_password_request', methods=['GET', 'POST'])
-# def reset_password_request():
-#     if current_user.is_authenticated:
-#         return redirect(url_for('index'))
-#         flash('You have to logout First')
-#     form = ResetPasswordRequestForm()
-#     if form.validate_on_submit():
-#         user = User.query.filter_by(email_address=form.email.data).first()
-#         if user:
-#             send_password_reset_email(user)
-
-#         flash('Check your email for the instructions to reset your password')
-#         return redirect(url_for('login'))
-#     return render_template('reset_pass word_request.html',
-#                            title='Reset Password', form=form)
-# #This one will reset the passwordd
-# @app.route('/reset_password/<token>', methods=['GET', 'POST'])
-# def reset_password(token):
-#     if current_user.is_authenticated:
-#         return redirect(url_for('index'))
-#     user = User.verify_reset_password_token(token)
-#     if not user:
-#         return redirect(url_for('index'))
-#     form = ResetPasswordForm()
-#     if form.validate_on_submit():
-#         user.set_password(form.password.data) #WILL TRY THIS ONE IF CU DOESN'T WORK
-#         db.session.commit()
-#         flash('Your password has been reset.')
-#         return redirect(url_for('login'))
-#     return render_template('reset_password.html', form=form)
-
 @app.route('/change_password',methods=['GET','POST'])
 @login_required
 def change_password():
     global session_logs
     form = ChangePasswordForm()
-    print(current_user)
+
     if form.validate_on_submit():
         #current_user = User.query.filter_by(id=curret_user.getid()).first()
         if current_user and current_user.check_password_correction(
@@ -271,17 +272,6 @@ def logout_page():
     activity = "logged out"
     session_logs.append([dt_string, userId, activity])
     mylogger(dt_string, userId,activity)
-    
-    # df_session_logs = pd.DataFrame(session_logs, columns = ["Time", "User", "Activity"])
-
-    ## This comment is to suggest how we can add sql database if the database isn't instantaniated by the flask inbuilt functions
-    # if df.empty:
-    #     df_session_logs.to_csv(os.path.join('imp_calc',"Session-logs.csv"), index =False)
-    #     df_session_logs.to_sql('logs',conn, if_exists='append', index =False)
-    # else:
-    #     df_session_logs.append(df)
-    #     df_session_logs.to_csv(os.path.join('imp_calc',"Session-logs.csv"), index =False)
-    # df_session_logs.to_sql('logs',conn, if_exists='append', index =False)
     logout_user()
     #flash("You Have been logged out!", category= 'info')
     return redirect(url_for('login'))
@@ -295,7 +285,6 @@ def file_download(output_folder, output_file):
     mylogger(dt_string, userId,activity)
     
     file_location = os.path.join('/', output_folder, output_file)
-    print(file_location)
     return send_file(file_location, as_attachment = True)
     #return send_file(file_location, as_attachment = True, cache_timeout=0) ##cache_timeout = 0 wasn't working for some reason so omitted it to make it work better
 
@@ -305,7 +294,6 @@ def RScalc():
     global session_logs
     dt_string = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
     userId = current_user.id
-    print(userId)
     activity = "opened RS Calculation"
     if request.method == "GET":
         session_logs.append([dt_string, userId, activity])
@@ -319,7 +307,7 @@ def RScalc():
         UPLOAD_FOLDER = os.path.join(os.path.dirname(os.path.abspath(__file__)),
          'files', 'RS')
         [f.unlink() for f in Path(os.path.join(UPLOAD_FOLDER)).glob("*") if f.is_file()]
-        print("This is pwd",os.getcwd())
+        #print("This is pwd",os.getcwd())
         app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
         upload_files = []
         input_list = []
@@ -622,7 +610,7 @@ def Lcysteine():
         input_list_fields =["software","compound", "product", "concentration","sampleweight","v1", "v2", "v3", "v4", "v5","v6", "v7","factor1","factor2","potency","doa","mor","wsid","ubd"]
         density_feilds = ["density" + str(n) for n in range(len(upload_files)-1)]
         smplqty_fields = ["smplqty"+ str(n) for n in range(len(upload_files)-1)]
-        input_list_fields += density_feilds
+        input_list_fields += density_feildsda
         input_list_fields += smplqty_fields
         for field in input_list_fields:
             input_list.append(request.form[field])

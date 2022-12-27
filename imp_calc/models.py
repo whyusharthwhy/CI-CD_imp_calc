@@ -46,6 +46,15 @@ class Logs(db.Model):
     activity = db.Column(db.String(length=50),nullable = False)
     dt_string = db.Column(db.String(length=60),nullable = False)
 
+class AttemptModel(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    #user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    #attempts = db.Column(db.Integer)
+    #Stimestamp = db.Column(db.DateTime)
+    user_id_attempts = db.Column(db.Integer,db.ForeignKey('user.id'))
+    attempt = db.Column(db.Integer())
+    timestamp = db.Column(db.DateTime, nullable = False)
+
 
 
 # class MyModelView(ModelView):

@@ -37,7 +37,6 @@ class RegisterFormA(FlaskForm):
 
     username = StringField(label='User Name:', validators = [Length(min=1,max=30), DataRequired()])
     role = SelectField(label='Role', choices=[('a', 'Admin'), ('m', 'Manager'), ('u', 'User')])
-    # role = StringField(label='Role:',validators=[DataRequired()])
     password1 = PasswordField(label='Password:',validators= [Length(min = 8), DataRequired()])
     password2 = PasswordField(label='Confirm Password:', validators=[EqualTo('password1',message='Both passwords must be equal'),validate_password, DataRequired()])
     submit = SubmitField(label='Create Account')
@@ -66,7 +65,6 @@ class RegisterFormM(FlaskForm):
 
     username = StringField(label='User Name:', validators = [Length(min=1,max=30), DataRequired()])
     role = SelectField(label='Role', choices=[('u', 'User')])
-    # role = StringField(label='Role:',validators=[DataRequired()])
     password1 = PasswordField(label='Password:',validators= [Length(min = 6), DataRequired()])
     password2 = PasswordField(label='Confirm Password:', validators=[EqualTo('password1',message='Both passwords must be equal'),validate_password, DataRequired()])
     submit = SubmitField(label='Create Account')
@@ -127,7 +125,7 @@ class ChangePasswordForm(FlaskForm):
             raise ValidationError('Password must contain at least one lowercase letter.')
         if not re.search(r'[^A-Za-z0-9]', password_new1.data):
             raise ValidationError('Password must contain at least one special character.')
-    """docstring for ChangePasswordForm"""    nb
+    """docstring for ChangePasswordForm"""    
     is_activate = BooleanField(label='Is Active:', default=True)
     password_old = PasswordField('Enter Old Password', validators=[DataRequired()])
     password_new1 = PasswordField('Enter New Password', validators=[DataRequired()])
@@ -135,3 +133,11 @@ class ChangePasswordForm(FlaskForm):
         message='Both passwords must be equal'), DataRequired()])
     submit = SubmitField('Confirm Change Password')
 
+class DeleteForm(FlaskForm):
+    reason = StringField('Reason for deleting user:', validators=[DataRequired()])
+    submit = SubmitField('Delete')
+
+class DeactivateForm(FlaskForm):
+    reason = StringField('Reason for deactivating user:', validators=[DataRequired()])
+    is_activate = BooleanField(label='Is Active:', default=False)
+    submit = SubmitField('Deactivate')

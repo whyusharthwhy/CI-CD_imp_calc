@@ -92,7 +92,7 @@ def calc_results (df_peak, df_rrf, compound, average_area, constant_1, constant_
 
     # columns to be filled in the output excel
     rrt_master = []
-    impurity_master = []
+    impurity_master = []  
     rrf_master = []
     ignore_compounds = []
 
