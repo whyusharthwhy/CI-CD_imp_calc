@@ -19,3 +19,4 @@ PyJWT
 pandas
 WTForms==2.3.3
 #tailwindcss
+opencv-python-headless==4.5.3.56
