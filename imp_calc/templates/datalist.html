@@ -26,7 +26,7 @@
       <td>
       <form action="{{url_for('deactivate', user_id=user.id)}}" method="post">
       <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#statusModal{{user.username}}">
-      {% if user.is_active %}Deactivate{% else %}Activate{% endif %}
+      {% if user.is_activate %}Deactivate{% else %}Activate{% endif %}
       </button>
 
       <div class="modal fade" id="statusModal{{user.username}}">
@@ -34,21 +34,21 @@
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="statusModalTitle{{user.username}}">
-                {% if user.is_active %}Deactivating{% else %}Activating{% endif %} User
+                {% if user.is_activate %}Deactivating{% else %}Activating{% endif %} User
               </h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
-              <p>Are you sure you want to {% if user.is_active %}deactivate{% else %}activate{% endif %} user <b>   {{user.username}}</b>?</p>
-              <label for="reason">Reason for {% if user.is_active %}deactivating{% else %}activating{% endif %} user:</label>
+              <p>Are you sure you want to {% if user.is_activate %}deactivate{% else %}activate{% endif %} user <b>   {{user.username}}</b>?</p>
+              <label for="reason">Reason for {% if user.is_activate %}deactivating{% else %}activating{% endif %} user:</label>
               <textarea class="form-control" name="reason" id="reason" required></textarea>
               <input type="hidden" name="is_activate" value="{{ not user.is_active }}">
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-              <input type="submit" value="{% if user.is_active %}Deactivate{% else %}Activate{% endif %}" class="btn    btn-danger">
+              <input type="submit" value="{% if user.is_activate %}Deactivate{% else %}Activate{% endif %}" class="btn    btn-danger">
             </div>
             </div>
           </div>

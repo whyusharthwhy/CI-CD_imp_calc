@@ -211,7 +211,8 @@ def deactivate(user_id):
         dt_string = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
         userId = current_user.id
         if user:
-            user_to_update = User.query.filter_by(id=user_id).update({"is_activate": form.is_activate.data})
+            print("Check if this prints or not")
+            user_to_update = User.query.filter_by(id=user_id).update({"is_activate": not user.is_activate})
             db.session.commit()
             mylogger(dt_string, userId,activity)
             return redirect(url_for('RetrieveDataList'))
