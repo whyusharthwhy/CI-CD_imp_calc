@@ -41,7 +41,7 @@ def login():
     if form.validate_on_submit():
         if User.is_active:
             attempted_user = User.query.filter_by(username=form.username.data).first()
-            if attempted_user and attempted_user.check_password_correction(
+            if attempted_user!=None and attempted_user.check_password_correction(
                     attempted_password=form.password.data
             ):
                 del_attempt = AttemptModel.query.filter_by(user_id_attempts=attempted_user.id).first()
@@ -58,26 +58,28 @@ def login():
                 return redirect(url_for('index'))
                 session.permanent= True
             else:
-                current_attempts = AttemptModel.query.filter_by(user_id_attempts=attempted_user.id).order_by(
-                            AttemptModel.timestamp.desc()).first()
-                if current_attempts:
-                    current_attempts.attempt += 1
-                    current_attempts.timestamp = datetime.utcnow()
-                    db.session.commit()
-                    flash('Username and password do not match! Please try again. Attempts Left: ' + str(3-current_attempts.attempt), category='danger')
-                    # Check if the user has made three or more attempts within the past hour
-                    if current_attempts.attempt >= 3 and(datetime.utcnow() - current_attempts.timestamp).total_seconds() < 3600:
-                        # Redirect the user to an error page and display a message
-                        user_to_update = User.query.filter_by(id=attempted_user.id).update({"is_activate": False})
+                if attempted_user:
+                    current_attempts = AttemptModel.query.filter_by(user_id_attempts=attempted_user.id).order_by(
+                                AttemptModel.timestamp.desc()).first()
+                    if current_attempts:
+                        current_attempts.attempt += 1
+                        current_attempts.timestamp = datetime.utcnow()
                         db.session.commit()
-
-                        return render_template('exceedattempts.html', form = form)
+                        flash('Username and password do not match! Please try again. Attempts Left: ' + str(3-current_attempts.attempt), category='danger')
+                        # Check if the user has made three or more attempts within the past hour
+                        if current_attempts.attempt >= 3 and(datetime.utcnow() - current_attempts.timestamp).total_seconds() < 3600:
+                            # Redirect the user to an error page and display a message
+                            user_to_update = User.query.filter_by(id=attempted_user.id).update({"is_activate": False})
+                            db.session.commit()
+                            return render_template('exceedattempts.html', form = form)
+                    else:
+                        new_attempts = AttemptModel(user_id_attempts=attempted_user.id, attempt=1, timestamp=datetime.utcnow())
+                        db.session.add(new_attempts)
+                        db.session.commit()
+                        flash('Username and password do not match! Please try again. Attempts Left: ' + str(3-new_attempts.attempt), category='danger')
                 else:
-                    new_attempts = AttemptModel(user_id_attempts=attempted_user.id, attempt=1, timestamp=datetime.utcnow())
-                    db.session.add(new_attempts)
-                    db.session.commit()
-                    flash('Username and password do not match! Please try again. Attempts Left: ' + str(3-new_attempts.attempt), category='danger')
-                #flash('Username and password do not match! Please try again. Attempts Left:'3-current_attempts.attempt, category='danger')
+                    flash('No such username exists', category='danger')
+
         else:
             flash('User is not active, Please contact Administrator or Manager', category='danger')
     return render_template('login.html', form = form)
