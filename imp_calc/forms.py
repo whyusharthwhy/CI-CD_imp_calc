@@ -139,5 +139,5 @@ class DeleteForm(FlaskForm):
 
 class DeactivateForm(FlaskForm):
     reason = StringField('Reason for deactivating user:', validators=[DataRequired()])
-    is_activate = BooleanField(label='Is Active:', default=False)
+    is_activate = BooleanField(label='Is Active:', validators=[DataRequired()])
     submit = SubmitField('Deactivate')

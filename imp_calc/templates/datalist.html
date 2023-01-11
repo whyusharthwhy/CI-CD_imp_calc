@@ -14,6 +14,7 @@
     </tr>
   </thead>
   {% for user in users %}
+  {% if user.id != current_user.id %}
   <tbody>
     <tr>
       <th scope="row">{{user.id}}</th>
@@ -24,31 +25,36 @@
       <td><a href="data/{{user.id}}/update" class="btn btn-warning" tabindex="1" role="button">Update</a></td>
       <!--<td><a href="data/{{user.id}}/delete" class="btn btn-secondary" tabindex="-1" role="button">Delete</a></td>-->
       <td>
-        <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#deactivateModal{{user.username}}">Deactivate</button>
-        <!-- Modal -->
-        <div class="modal fade" id="deactivateModal{{user.username}}">
-          <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle{{user.username}}">Deactivating User Permanently</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <!-- <h3>{{user.username}}?</h3> -->
-                <form action="{{url_for('deactivate', user_id=user.id)}}" method="post">
-                <p>Are you sure you want to deactivate user <b>{{user.username}}</b> permanently?</p>
-                <label for="reason">Reason for Deactivating user:</label>
-                <textarea class="form-control" name="reason" id="reason" required></textarea>
-                <br>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <input type="submit" value="Deactivate" class="btn btn-danger">
-                </form>
-              </div>
+      <form action="{{url_for('deactivate', user_id=user.id)}}" method="post">
+      <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#statusModal{{user.username}}">
+      {% if user.is_activate %}Deactivate{% else %}Activate{% endif %}
+      </button>
+
+      <div class="modal fade" id="statusModal{{user.username}}">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="statusModalTitle{{user.username}}">
+                {% if user.is_activate %}Deactivating{% else %}Activating{% endif %} User
+              </h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>Are you sure you want to {% if user.is_activate %}deactivate{% else %}activate{% endif %} user <b>   {{user.username}}</b>?</p>
+              <label for="reason">Reason for {% if user.is_activate %}deactivating{% else %}activating{% endif %} user:</label>
+              <textarea class="form-control" name="reason" id="reason" required></textarea>
+              <input type="hidden" name="is_activate" value="{{ not user.is_active }}">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+              <input type="submit" value="{% if user.is_activate %}Deactivate{% else %}Activate{% endif %}" class="btn    btn-danger">
+            </div>
             </div>
           </div>
         </div>
+      </form>
       </td>
       <td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter{{user.username}}">Delete</button>
         <!-- Modal -->
@@ -77,6 +83,7 @@
         </div>
       </td>
     </tr>
+{% endif %}
 {% endfor %}
     <tr>
       <td></td>
