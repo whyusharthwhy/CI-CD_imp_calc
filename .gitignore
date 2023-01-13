@@ -2,6 +2,7 @@
 __pycache__
 py_imp_calc
 evn
+instance
 #extentions
 *.pdf
 *.json
