@@ -19,9 +19,5 @@ PyJWT
 pandas
 WTForms==2.3.3
 #tailwindcss
-<<<<<<< HEAD
 opencv-python-headless==4.1.2.30
 reportlab
-
-#opencv-python-headless==4.1.2.30
->>>>>>> da0a86d60ed0cc71750ed5d6d3a826382933ec59
