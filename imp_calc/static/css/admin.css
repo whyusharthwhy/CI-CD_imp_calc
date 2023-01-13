@@ -110,3 +110,19 @@ body {
   border: 2px solid #aaa;
   border-radius: 2px;
 }
+
+/* Download and Print button */
+
+.table {
+    position: relative;
+}
+#download-btn{
+    position: absolute;
+    right: 100px;
+    top: 150px;
+}
+#print-btn{
+    position: absolute;
+    right: 25px;
+    top: 150px;
+}

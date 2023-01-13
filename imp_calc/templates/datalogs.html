@@ -25,4 +25,13 @@
 
 </table>
 
+<button id="download-btn" type="button" class="btn btn-info"href="{{url_for('download_logs')}}"role="button">Download Logs</a></button>
+<button id="print-btn" type="button" class="btn btn-info" role="button">Print</a></button>
+
+<script>
+    var printBtn = document.getElementById("print-btn");
+    printBtn.addEventListener("click", function() {
+        window.print();
+    });
+</script>
 {% endblock %}

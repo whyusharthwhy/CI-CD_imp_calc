@@ -27,6 +27,15 @@ import imp_vs_imp
 import assay
 import L_cysteine
 
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table
+from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.rl_config import defaultPageSize
+from reportlab.lib.pagesizes import letter
+from reportlab.lib.units import inch
+from reportlab.platypus import Image
+from reportlab.lib.utils import ImageReader
+from reportlab.pdfgen import canvas
+
 from wtforms import TextField, BooleanField
 from wtforms.validators import Required
 
@@ -226,14 +235,38 @@ def admin():
 
 @app.route('/logs')
 def RetrieveLogsList():
-    if current_user.role == 'a':
-        logs = db.session.query(Logs, User.username).join(User, User.id == Logs.user_id, isouter=True)
-    elif current_user.role == 'm':
-        logs = db.session.query(Logs, User.username).join(User, User.id == Logs.user_id,  isouter=True).filter(or_(User.role == 'u', User.id == current_user.id))
-        # logs = Logs.query.filter(User.role == 'm') #| (User.id == current_user.id) & (not (User.role == 'a'))
-    else:
-        logs = db.session.query(Logs, User.username).join(User, User.id == Logs.user_id, isouter=True).filter(current_user.id == Logs.user_id)
+    logs = db.session.query(Logs, User.username).join(User, User.id == Logs.user_id, isouter=True)
     return render_template('datalogs.html',logs = logs)
+#    if current_user.role == 'a':
+#        logs = db.session.query(Logs, User.username).join(User, User.id == Logs.user_id, isouter=True)
+#    elif current_user.role == 'm':
+#        logs = db.session.query(Logs, User.username).join(User, User.id == Logs.user_id,  isouter=True).filter(or_(User.role == 'u', User.id == current_user.id))
+#        # logs = Logs.query.filter(User.role == 'm') #| (User.id == current_user.id) & (not (User.role == 'a'))
+#    else:
+#        logs = db.session.query(Logs, User.username).join(User, User.id == Logs.user_id, isouter=True).filter(current_user.id == Logs.user_id)
+#    return render_template('datalogs.html',logs = logs)
+
+@app.route('/download_logs')
+def download_logs():
+    logs = db.session.query(Logs, User.username).join(User, User.id == Logs.user_id, isouter=True).all()
+    now = datetime.now()
+    filename = "query_" + now.strftime("%Y-%m-%d_%H-%M-%S") + ".pdf"
+    current_directory = os.path.abspath(os.path.join(os.getcwd(), ".."))
+    path = os.path.join(current_directory,"impurity_calculator_app2", filename)
+    doc = SimpleDocTemplate(path, pagesize=letter)
+    styles = getSampleStyleSheet()
+    elements = []
+    data=[]
+    data.append(["Username","Activity","Timestamp"])
+    for log in logs:
+        if log.username!=None:
+            data.append([log.username,log.Logs.activity,log.Logs.dt_string])
+        else:
+            data.append(["Deleted User",log.Logs.activity,log.Logs.dt_string])
+    table = Table(data,colWidths=[2*inch, 4*inch, 2*inch])
+    elements.append(table)
+    doc.build(elements)
+    return send_file(path, as_attachment=True)
 
 @app.route('/change_password',methods=['GET','POST'])
 @login_required
