@@ -246,8 +246,9 @@ def RetrieveLogsList():
 #        logs = db.session.query(Logs, User.username).join(User, User.id == Logs.user_id, isouter=True).filter(current_user.id == Logs.user_id)
 #    return render_template('datalogs.html',logs = logs)
 
-@app.route('/download_logs')
+@app.route('/download_logs',methods=['GET','POST'])
 def download_logs():
+    print("This works")
     logs = db.session.query(Logs, User.username).join(User, User.id == Logs.user_id, isouter=True).all()
     now = datetime.now()
     filename = "query_" + now.strftime("%Y-%m-%d_%H-%M-%S") + ".pdf"
