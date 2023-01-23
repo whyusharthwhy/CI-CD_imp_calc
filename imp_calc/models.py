@@ -17,6 +17,7 @@ class User(db.Model, UserMixin):
     """docstring for User"""
     id = db.Column(db.Integer(),primary_key = True)
     is_activate = db.Column(db.Boolean, default=True)
+    is_password_changed = db.Column(db.Boolean, default=False)
     username = db.Column(db.String(length=12),nullable = False, unique = True)
     role = db.Column(db.String(length=1),nullable=False)    
     password_hash = db.Column(db.String(length=60),nullable = False)

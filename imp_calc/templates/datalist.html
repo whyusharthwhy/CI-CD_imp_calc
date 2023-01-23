@@ -14,7 +14,7 @@
     </tr>
   </thead>
   {% for user in users %}
-  {% if user.id != current_user.id %}
+  
   <tbody>
     <tr>
       <th scope="row">{{user.id}}</th>
@@ -26,7 +26,11 @@
       <!--<td><a href="data/{{user.id}}/delete" class="btn btn-secondary" tabindex="-1" role="button">Delete</a></td>-->
       <td>
       <form action="{{url_for('deactivate', user_id=user.id)}}" method="post">
+      {% if user.id == current_user.id %}
+      <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#statusModal{{user.username}}"disabled>
+      {% else %}
       <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#statusModal{{user.username}}">
+      {% endif %}
       {% if user.is_activate %}Deactivate{% else %}Activate{% endif %}
       </button>
 
@@ -56,7 +60,12 @@
         </div>
       </form>
       </td>
-      <td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter{{user.username}}">Delete</button>
+      <td>
+      {% if user.id != current_user.id %}  
+        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter{{user.username}}">Delete</button>
+      {% else %}
+        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter{{user.username}}" disabled>Delete</button>
+      {% endif %}
         <!-- Modal -->
         <div class="modal fade" id="exampleModalCenter{{user.username}}">
           <div class="modal-dialog modal-dialog-centered" role="document">
@@ -83,7 +92,7 @@
         </div>
       </td>
     </tr>
-{% endif %}
+{#% endif %#}
 {% endfor %}
     <tr>
       <td></td>

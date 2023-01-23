@@ -29,10 +29,12 @@ for (var i = 0; i < navItems.length; i++) {
 }
 idleTimer();
 
-var printBtn = document.getElementById("print-btn");
-    printBtn.addEventListener("click", function() {
-        window.print();
-    });
+
+function print_current_page()
+{
+window.print();
+}
+
 // // Set timeout variables.
 // var timoutWarning = 10; // Display warning in 14 Mins.
 // var timoutNow = 30; // Warning has been shown, give the user 1 minute to interact

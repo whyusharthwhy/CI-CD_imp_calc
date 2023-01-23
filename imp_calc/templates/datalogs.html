@@ -25,13 +25,7 @@
 
 </table>
 
-<button id="download-btn" type="button" class="btn btn-info"href="{{url_for('download_logs')}}"role="button">Download Logs</a></button>
-<button id="print-btn" type="button" class="btn btn-info" role="button">Print</a></button>
+<a id="download-btn" href="{{url_for('download_logs')}}" class="btn btn-info" role="button">Download Logs</a>
+<button onclick="print_current_page()" id="print-btn" type="button" class="btn btn-info" role="button">Print</a></button>
 
-<script>
-    var printBtn = document.getElementById("print-btn");
-    printBtn.addEventListener("click", function() {
-        window.print();
-    });
-</script>
 {% endblock %}

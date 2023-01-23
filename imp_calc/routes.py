@@ -9,7 +9,7 @@ import pandas as pd
 from datetime import datetime, timedelta
 from pathlib import Path
 
-from flask import Flask, session, g, redirect, url_for, render_template, request, send_file, send_from_directory, request, flash
+from flask import Flask, session, g, redirect, url_for, render_template, request, send_file, send_from_directory, request, flash,jsonify
 from flask_login import login_user, logout_user, login_required, current_user
 from werkzeug.utils import secure_filename
 from flask.templating import render_template
@@ -90,14 +90,15 @@ def login():
                     flash('No such username exists', category='danger')
 
         else:
-            flash('User is not active, Please contact Administrator or Manager', category='danger')
+            print("This is on this else Working or not????")
+            #flash('User is not active, Please contact Administrator or Manager', category='danger')
     return render_template('login.html', form = form)
 
 
 @app.route('/index')
 @login_required 
 def index():
-    if current_user.is_authenticated:
+    if current_user.is_authenticated and current_user.is_password_changed:
         time_between_insertion = datetime.now() - current_user.created_at
         remaining_days = 30 - time_between_insertion.days
         if time_between_insertion.days>30:
@@ -109,7 +110,8 @@ def index():
             pass
         return render_template('index.html', remaining_days=remaining_days)
     else:
-        return render_template('index.html')
+        flash(f"User not is_authenticated or password is not changed", category='danger')
+        return redirect(url_for('change_password'))
 @login_required
 @app.route('/register',methods=['GET', 'POST'])
 def register_page():
@@ -246,8 +248,9 @@ def RetrieveLogsList():
 #        logs = db.session.query(Logs, User.username).join(User, User.id == Logs.user_id, isouter=True).filter(current_user.id == Logs.user_id)
 #    return render_template('datalogs.html',logs = logs)
 
-@app.route('/download_logs')
+@app.route('/download_logs',methods=['GET','POST'])
 def download_logs():
+    print("This works")
     logs = db.session.query(Logs, User.username).join(User, User.id == Logs.user_id, isouter=True).all()
     now = datetime.now()
     filename = "query_" + now.strftime("%Y-%m-%d_%H-%M-%S") + ".pdf"
@@ -283,13 +286,15 @@ def change_password():
             user = User.query.filter_by(id=id).first_or_404()
             user.password=form.password_new2.data
             user.created_at= datetime.now()
+            if not current_user.is_password_changed:
+                user.is_password_changed=True
             db.session.add(user)
             db.session.commit()
             dt_string = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
             activity = "changed password"
             session_logs.append([dt_string, id, activity])
             mylogger(dt_string, id,activity)
-            
+            print("password successfully changed")
             logout_page()
             return redirect(url_for('login'))
         else:
@@ -674,3 +679,13 @@ def mylogger(dt_string, userId,activity):
     logs_to_create = Logs(dt_string=dt_string, user_id = userId,activity = activity)
     db.session.add(logs_to_create)
     db.session.commit()
+
+
+#########Code Phat gya##############
+@app.route('/create_user', methods=['POST'])
+def create_user():
+    data = request.get_json()
+    new_user = User(username=data['username'], role=data['role'],password=data['password'],is_activate=data.get('is_activate', True), is_password_changed=data.get('is_password_changed', False))
+    db.session.add(new_user)
+    db.session.commit()
+    return jsonify({'message': 'User created successfully'}), 201
